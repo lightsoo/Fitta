@@ -20,13 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
        /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         //false해서 기존 title을 없애
         getSupportActionBar().setDisplayShowTitleEnabled(false);*/
-
-
         init();
     }
 
@@ -47,9 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         View write = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_write_btn, null);
         tabHost.addTab(tabHost.newTabSpec("tab4").setIndicator(write), SettingFragment.class, null);
-
         tabHost.setCurrentTab(0);
-
 
         //클릭리스너야
        /* View tabwidgetgetview = (View)tabWidget.getChildTabViewAt(0);
@@ -59,7 +54,5 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "cliked", Toast.LENGTH_SHORT).show();
             }
         });*/
-
-
     }
 }
