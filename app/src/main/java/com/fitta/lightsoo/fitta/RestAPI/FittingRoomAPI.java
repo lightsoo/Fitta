@@ -1,5 +1,8 @@
 package com.fitta.lightsoo.fitta.RestAPI;
 
+import com.fitta.lightsoo.fitta.Data.ClothesItems;
+
+import retrofit.Call;
 import retrofit.http.GET;
 
 /**
@@ -7,6 +10,7 @@ import retrofit.http.GET;
  */
 public interface FittingRoomAPI {
 
-    @GET("/")
+    @GET("/clothes")
+    Call<ClothesItems> getClothes();
 
 }
