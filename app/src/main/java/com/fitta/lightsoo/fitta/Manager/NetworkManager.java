@@ -16,7 +16,7 @@ import retrofit.Retrofit;
 public class NetworkManager {
     // where my server lives.
 //    private static final String serverURL ="http://172.30.2.30:3000/";
-    private static final String serverURL ="http://192.168.0.5:3030/";
+    private static final String serverURL ="http://52.192.180.38:3000/";
     //    private static final String serverURL ="http://127.0.0.1:3000/";
     Retrofit client;
 

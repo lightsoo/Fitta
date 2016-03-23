@@ -4,7 +4,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.fitta.lightsoo.fitta.Data.ClothesItems;
 import com.fitta.lightsoo.fitta.ViewHolder.ClothesImageItemView;
 
 import java.util.ArrayList;
@@ -13,30 +12,35 @@ import java.util.List;
 /**
  * Created by LG on 2016-03-22.
  */
-public class ImageAdapter extends BaseAdapter {
+public class ClothesAdapter extends BaseAdapter {
 
-    List<ClothesItems> items = new ArrayList<ClothesItems>();
-//    private static final int top =0, bottom =1, etc =2;
+    List<String> items = new ArrayList<String>();
 
+    public void add(String url){
+        items.add(url);
+        notifyDataSetChanged();
+    }
 
+    public void addAll(List<String> url){
+        items.addAll(url);
+        notifyDataSetChanged();
+    }
     @Override
     public int getCount() {
         return items.size();
     }
 
-    //item리턴
     @Override
-    public Object getItem(int position) {
+    public String getItem(int position) {
         return items.get(position);
     }
 
-    //item번호 리턴
     @Override
     public long getItemId(int position) {
         return position;
     }
 
-    //출력할 view를 설정후 리턴
+    //뷰홀더에서다가 데이터를 입력해서 리턴함으로서 출력하는거야.
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ClothesImageItemView view;
@@ -45,7 +49,9 @@ public class ImageAdapter extends BaseAdapter {
         }else{
             view = (ClothesImageItemView)convertView;
         }
-//        view.setClotheImageView(items.get(position));
+        //객체리턴했어
+        view.setClotheImageView(items.get(position));
         return view;
+
     }
 }
