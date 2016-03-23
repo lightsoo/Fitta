@@ -48,12 +48,14 @@ public class FittingRoomFragment extends Fragment {
     }
 
     public void getClothes(){
-        //리턴받을 데이터형인거야
+        //리턴받을 데이터형을Call<리턴형>인거야
         Call<ClothesItems> call = NetworkManager.getInstance().getAPI(FittingRoomAPI.class).getClothes();
         call.enqueue(new Callback<ClothesItems>() {
             @Override
             public void onResponse(Response<ClothesItems> response, Retrofit retrofit) {
 
+                //Call에 안넣었으면 타입캐스팅을 해줘야되
+                //ClothesItems clothesItems = (ClotheItems)response.body();
                 ClothesItems clothesItems = response.body();
 
                 List<String> clotheTop = clothesItems.clotheTop;
@@ -73,7 +75,6 @@ public class FittingRoomFragment extends Fragment {
 //                Log.d("please", "response = " +response.body().clotheTop);
 //                Log.d("please", "response = " +response.body().clotheBottom);
 //                Log.d("please", "response = " +response.body().clotheEtc);
-
 
                 topAdapter.addAll(clotheTop);
                 bottomAdapter.addAll(clotheBottom);
