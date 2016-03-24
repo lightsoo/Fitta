@@ -2,10 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fitta.lightsoo.fitta">
 
-
-
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +23,13 @@
         <activity
             android:name=".Fragment.FittingFragment"
             android:label="@string/title_activity_fitting_fragment"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Camera.CameraActivity"
+            android:label="@string/title_activity_camera"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
+        <activity android:name=".Activity.OfflineCaptureActivity"></activity>
     </application>
 
 </manifest>
