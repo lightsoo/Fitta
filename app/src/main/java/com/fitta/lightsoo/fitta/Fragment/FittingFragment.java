@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.fitta.lightsoo.fitta.Camera.CameraActivity;
+import com.fitta.lightsoo.fitta.Activity.FittingInfoActivity;
 import com.fitta.lightsoo.fitta.R;
 
 public class FittingFragment extends Fragment {
@@ -27,11 +27,17 @@ public class FittingFragment extends Fragment {
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CameraActivity.class);
+                Intent intent = new Intent(getActivity(), FittingInfoActivity.class);
                 startActivityForResult(intent, REQUEST_CAMERA);
             }
         });
-
+        btn_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FittingInfoActivity.class);
+                startActivityForResult(intent, REQUEST_GALLERY);
+            }
+        });
 
         return view;
     }

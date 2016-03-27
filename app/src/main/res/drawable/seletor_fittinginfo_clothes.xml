@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="false" android:drawable="@android:drawable/button_onoff_indicator_off"/>  // 선택하지 않을때
+    <item android:state_checked="true" android:drawable="@android:drawable/button_onoff_indicator_on"/>    // 선택했을때
+    <item android:drawable="@android:drawable/button_onoff_indicator_off"/> //기본 이미지
+</selector>

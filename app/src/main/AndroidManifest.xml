@@ -31,7 +31,10 @@
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
         <activity android:name=".Fragment.StoreFragment" />
         <activity android:name=".Activity.FittingResultActivity" />
-        <activity android:name=".Activity.FittingInfoActivity"></activity>
+        <activity
+            android:name=".Activity.FittingInfoActivity"
+            android:label="@string/title_activity_fitting_info"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
