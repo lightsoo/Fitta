@@ -28,8 +28,10 @@
             android:name=".Camera.CameraActivity"
             android:label="@string/title_activity_camera"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
-        <activity android:name=".Activity.OfflineCaptureActivity"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity android:name=".Fragment.StoreFragment" />
+        <activity android:name=".Activity.FittingResultActivity" />
+        <activity android:name=".Activity.FittingInfoActivity"></activity>
     </application>
 
 </manifest>

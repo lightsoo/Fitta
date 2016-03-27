@@ -22,9 +22,6 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-/**
- * Created by LG on 2016-03-17.
- */
 public class FittingRoomFragment extends Fragment {
     ListView lv_top, lv_bottom, lv_etc;
     View view;
@@ -34,17 +31,22 @@ public class FittingRoomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fittingroom, container, false);
         init();
-        getClothes();
+//        getClothes();
         return view;
     }
 
+
     public void init(){
-        lv_top = (ListView) view.findViewById(R.id.lv_top);
+        /*lv_top = (ListView) view.findViewById(R.id.lv_top);
         lv_bottom = (ListView) view.findViewById(R.id.lv_bottom);
         lv_etc = (ListView) view.findViewById(R.id.lv_etc);
         topAdapter = new ClothesAdapter();
         bottomAdapter = new ClothesAdapter();
-        etcAdapter = new ClothesAdapter();
+        etcAdapter = new ClothesAdapter();*/
+
+
+
+
     }
 
     public void getClothes(){

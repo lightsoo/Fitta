@@ -54,8 +54,6 @@ public class CameraActivity extends Activity implements PictureCallback {
     }
 
     public void onCaptureClick(View button) {
-        // Take a picture with a callback when the photo has been created
-        // Here you can add callbacks if you want to give feedback when the picture is being taken
         camera.takePicture(null, null, this);
     }
 
@@ -83,13 +81,6 @@ public class CameraActivity extends Activity implements PictureCallback {
     protected void onPause() {
         super.onPause();
         Log.e(TAG, "==onPause==");
-        if (camera != null) {
-            camera.release();
-            camera = null;
-        }
-    }
-
-    private void releaseCamera() {
         if (camera != null) {
             camera.release();
             camera = null;
