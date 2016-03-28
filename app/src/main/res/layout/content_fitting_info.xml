@@ -14,50 +14,106 @@
     tools:showIn="@layout/activity_fitting_info">
 
     <RelativeLayout
+        android:orientation="horizontal"
         android:id="@+id/info_layout1"
         android:layout_width="match_parent"
-        android:layout_height="85dp">
-        <RadioGroup
+        android:layout_height="135dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp">
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_layout_border"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:src="@mipmap/ic_launcher"
+                android:layout_above="@+id/cb_top"
+                android:layout_centerHorizontal="true" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상의"
+                android:textSize="15dp"
+                android:id="@+id/cb_top"
+                android:checked="false"
+                android:background="@color/transparent"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_layout_border"
+            android:id="@+id/relativeLayout2"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true">
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text=" 상의 "
-                android:background="@drawable/seletor_fittinginfo_clothes"
-                android:id="@+id/fittinginfo_top"
-                android:layout_weight="1"
-                android:button="@null"/>
 
-            <RadioButton
-                android:layout_width="0dp"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 하의 "
-                android:background="@drawable/seletor_fittinginfo_clothes"
-                android:id="@+id/fittinginfo_bottom"
-                android:layout_weight="1"
-                android:button="@null"/>
+                android:id="@+id/imageView2"
+                android:src="@mipmap/ic_launcher"
+                android:layout_above="@+id/cb_bottom"
+                android:layout_centerHorizontal="true" />
 
-            <RadioButton
-                android:layout_width="0dp"
+            <CheckBox
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 기타 "
-                android:background="@drawable/seletor_fittinginfo_clothes"
-                android:id="@+id/fittinginfo_etc"
-                android:layout_weight="1"
-                android:button="@null"/>
+                android:text="하의"
+                android:textSize="15dp"
+                android:id="@+id/cb_bottom"
+                android:background="@color/transparent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:checked="false" />
 
-        </RadioGroup>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_layout_border"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView3"
+                android:src="@mipmap/ic_launcher"
+                android:layout_above="@+id/cb_etc"
+                android:layout_centerHorizontal="true" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기타"
+                android:textSize="15dp"
+                android:id="@+id/cb_etc"
+                android:background="@color/transparent"
+                android:layout_alignParentBottom="true"
+                android:checked="false" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/info_layout2"
         android:layout_width="match_parent"
-        android:layout_height="274dp"  >
+        android:layout_height="194dp" >
 
 
         <TextView
@@ -66,30 +122,37 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="피팅 의상 사이즈 입력"
             android:id="@+id/textView3"
+            android:layout_marginTop="20dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:text="사이즈 입력"
-            android:id="@+id/editText"
+            android:hint="숫자 입력칸"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:id="@+id/editSize"
+            android:textColorHint="#45000000"
             android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_toLeftOf="@+id/spinner"
+            android:layout_toStartOf="@+id/spinner"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp" />
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner_size"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/editText"
-            android:layout_alignRight="@+id/textView3"
-            android:layout_alignEnd="@+id/textView3"
-            android:layout_marginRight="84dp"
-            android:layout_marginEnd="84dp" />
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:prompt="@string/spinnerClothes"
+        android:layout_alignBottom="@+id/editSize"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_alignTop="@+id/editSize" />
+
 
     </RelativeLayout>
 

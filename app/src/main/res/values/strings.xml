@@ -5,4 +5,8 @@
     <string name="title_activity_fitting_fragment">FittingFragment</string>
     <string name="title_activity_camera">CameraActivity</string>
     <string name="title_activity_fitting_info">FittingInfoActivity</string>
+
+    <string name="spinnerClothes">단위입력칸</string>
+
+
 </resources>

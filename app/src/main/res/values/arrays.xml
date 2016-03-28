@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerArray1">
+        <item>단위입력</item>
+        <item>cm</item>
+        <item>inch</item>
+        <item>S,M,L</item>
+        <item>사이즈</item>
+
+    </string-array>
+
+
+</resources>

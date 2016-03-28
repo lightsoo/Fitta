@@ -22,7 +22,7 @@ public class CameraHelper {
         } catch (Exception e) {
             // Camera is not available or doesn't exist
 //            com.example.lightsoo.mycustomcamera.Util.Log
-            Log.d("getCamera failed", e);
+//            Log.d("getCamera failed", e);
         }
         return camera;
     }
