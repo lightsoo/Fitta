@@ -18,15 +18,15 @@ import com.fitta.lightsoo.fitta.R;
 
 public class FittingInfoActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CAMERA = 0;
-    private static final int REQUEST_GALLERY = 1;
+    private static final int REQUEST_CAMERA = 100;
+    private static final int REQUEST_GALLERY = 101;
     private String resultSize1 = "";
     private String resultSize2 = "";
     private Spinner spinner;
 
     private EditText editSize ;
     private Button btn_post ;
-
+    private static int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,11 @@ public class FittingInfoActivity extends AppCompatActivity {
         });
 
         init();
+
+        Intent intent = new Intent(getIntent());
+        flag = intent.getExtras().getInt("flag");
+        
+        Log.d("test ", String.valueOf(flag));
 
         String [] spinnerArray = getResources().getStringArray(R.array.spinnerArray1);
         ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, spinnerArray);
@@ -88,7 +93,7 @@ public class FittingInfoActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(editSize.getText().toString())){
             return false;
         }else{
-            resultSize1 = (String)editSize.getText().toString();
+            resultSize1 = editSize.getText().toString();
 
             return true;
         }
@@ -105,17 +110,22 @@ public class FittingInfoActivity extends AppCompatActivity {
         Log.d("test", resultSize2);
     }
 
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         //액티비티 결과가 이상는경우
         if(resultCode != RESULT_OK){return;}
 
         switch (requestCode){
             case REQUEST_CAMERA :
+                Log.d("RESULT", "카메라");
+                Toast.makeText(FittingInfoActivity.this, "카메라액티비티 클릭! ", Toast.LENGTH_SHORT).show();
                 break;
             case REQUEST_GALLERY :
+                Log.d("RESULT", "갤러리");
+                Toast.makeText(FittingInfoActivity.this, "갤러리액티비티 클릭! ", Toast.LENGTH_SHORT).show();
                 break;
         }
-    }
+    }*/
 }

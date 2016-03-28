@@ -16,8 +16,8 @@ public class FittingFragment extends Fragment {
     private ImageButton btn_camera, btn_gallery;
 
     //인텐트 사용시 onActivityResult에서 사용될 reqCode
-    private static final int REQUEST_CAMERA = 0;
-    private static final int REQUEST_GALLERY = 1;
+    private static final int REQUEST_CAMERA = 100;
+    private static final int REQUEST_GALLERY = 101;
 
 
     @Override
@@ -28,14 +28,18 @@ public class FittingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FittingInfoActivity.class);
-                startActivityForResult(intent, REQUEST_CAMERA);
+                intent.putExtra("flag", REQUEST_CAMERA);
+                startActivity(intent);
+//                startActivityForResult(intent, REQUEST_CAMERA);
             }
         });
         btn_gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FittingInfoActivity.class);
-                startActivityForResult(intent, REQUEST_GALLERY);
+                intent.putExtra("flag", REQUEST_GALLERY);
+//                startActivityForResult(intent, REQUEST_GALLERY);
+                startActivity(intent);
             }
         });
 
