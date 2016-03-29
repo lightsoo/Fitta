@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -46,7 +45,6 @@ public class FittingInfoActivity extends AppCompatActivity {
     private static final String TEMP_CAMERA_FILE = "temp_camera.jpg";
     private static final String TEMP_PHOTO_FILE = "temp_album.jpg";
 
-    private ImageView test;
 
 
     @Override
@@ -109,7 +107,6 @@ public class FittingInfoActivity extends AppCompatActivity {
     }
 
     public void init(){
-        test=(ImageView)findViewById(R.id.test);
         editSize = (EditText)findViewById(R.id.editSize);
         btn_post = (Button)findViewById(R.id.btn_input_info);
     }
@@ -137,7 +134,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_CAMERA);
     }
 
-
     private void getGalleryImage(){
         Intent photoPickerIntent = new Intent(
                 Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -148,7 +144,6 @@ public class FittingInfoActivity extends AppCompatActivity {
                 Bitmap.CompressFormat.JPEG.toString());
         startActivityForResult(photoPickerIntent, REQUEST_GALLERY);
     }
-
 
     private Uri getTempUri() {
         //정해둔 경로에 파일객체를 만든 다음에 그 객체의 경로를 action_pick에 MediaStore.EXTRA_OUTPUT에 같이 넘겨준다.
@@ -170,31 +165,21 @@ public class FittingInfoActivity extends AppCompatActivity {
         */
 
         switch (requestCode){
+            //안써!!! 다르게 쓸꺼야!!!
 //            case REQUEST_CAMERA :
 //                Log.d(TAG, "카메라");
 //                Toast.makeText(FittingInfoActivity.this, "카메라액티비티 클릭! ", Toast.LENGTH_SHORT).show();
 //                break;
             case REQUEST_GALLERY :
-                //
-                Log.d(TAG, "갤러리");
 //                Toast.makeText(FittingInfoActivity.this, "갤러리액티비티 클릭! ", Toast.LENGTH_SHORT).show();
-
-
                 String filePath = Environment.getExternalStorageDirectory() + "/" + TEMP_PHOTO_FILE;
-
-                Log.d(TAG, filePath);
-
                 Intent intent = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
                 intent.putExtra("clothesUrl", filePath);
+                Log.d("data ", "filePath : " + filePath + ", clothesSize : " + resultSize1 + ", clothesUnit : " + resultSize2);
+                intent.putExtra("clothesSize", resultSize1);
+                intent.putExtra("clothesUnit",resultSize2);
                 startActivity(intent);
-
-
                 break;
         }
     }
-
-
-
-
-
 }

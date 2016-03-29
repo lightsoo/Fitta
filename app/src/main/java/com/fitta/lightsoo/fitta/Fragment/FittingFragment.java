@@ -19,7 +19,6 @@ public class FittingFragment extends Fragment {
     private static final int REQUEST_CAMERA = 100;
     private static final int REQUEST_GALLERY = 101;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fitting, container, false);
@@ -30,7 +29,6 @@ public class FittingFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), FittingInfoActivity.class);
                 intent.putExtra("flag", REQUEST_CAMERA);
                 startActivity(intent);
-//                startActivityForResult(intent, REQUEST_CAMERA);
             }
         });
         btn_gallery.setOnClickListener(new View.OnClickListener() {
@@ -38,21 +36,14 @@ public class FittingFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FittingInfoActivity.class);
                 intent.putExtra("flag", REQUEST_GALLERY);
-//                startActivityForResult(intent, REQUEST_GALLERY);
                 startActivity(intent);
             }
         });
-
         return view;
     }
 
-    public void init(){
+    public void init() {
         btn_camera = (ImageButton)view.findViewById(R.id.btn_camera);
         btn_gallery = (ImageButton)view.findViewById(R.id.btn_gallery);
-
     }
-
-
-
-
 }
