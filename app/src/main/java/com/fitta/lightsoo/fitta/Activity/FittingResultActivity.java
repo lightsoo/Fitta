@@ -15,12 +15,16 @@ public class FittingResultActivity extends AppCompatActivity {
     private ImageView avatar;
     private static final int REQ_CAMERA_IMAGE = 123;
 
+    private static int flag=0;
     private static final String TAG = "FittingResultActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fitting_result);
         init();
+
+        Intent intent = new Intent(getIntent());
+        flag = intent.getExtras().getInt("flag");
     }
 
 

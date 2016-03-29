@@ -24,8 +24,7 @@ import java.io.File;
 
 public class FittingInfoActivity extends AppCompatActivity {
 
-
-
+    private static final String TAG = "FittingInfoActivity";
 
     private static final int REQUEST_CAMERA = 100;
     private static final int REQUEST_GALLERY = 101;
@@ -36,9 +35,7 @@ public class FittingInfoActivity extends AppCompatActivity {
 
     private EditText editSize ;
     private Button btn_post ;
-    private static int flag=0;
-
-
+    private static int flag=0 ;
 
     private File mSavedFile;
 
@@ -70,7 +67,6 @@ public class FittingInfoActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getIntent());
         flag = intent.getExtras().getInt("flag");
-        
         Log.d("test ", String.valueOf(flag));
 
         String [] spinnerArray = getResources().getStringArray(R.array.spinnerArray1);
@@ -88,6 +84,7 @@ public class FittingInfoActivity extends AppCompatActivity {
 
             }
         });
+
 
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +127,7 @@ public class FittingInfoActivity extends AppCompatActivity {
             resultSize2="";
         }
 
-        Log.d("test", resultSize2);
+        Log.d(TAG, resultSize2);
     }
 
 
@@ -153,22 +150,31 @@ public class FittingInfoActivity extends AppCompatActivity {
     }
 
 
-   /* @Override
+   @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //액티비티 결과가 이상는경우
         if(resultCode != RESULT_OK){return;}
 
+       /**
+        * camera는 내가 만든 액티비티로 이동하니깐 거기서 startIntent(FittingResult)해서 파일 경로를 보내면되
+        * 갤러리를 action_pick을 쓰니깐 직접 조작이 안되, 그래서 호출했던 액티비티로 onActivityResult로 와서
+        * FittingResult액티비티로 화면이동을 해줘야 될것 같다.
+        */
         switch (requestCode){
-            case REQUEST_CAMERA :
-                Log.d("RESULT", "카메라");
-                Toast.makeText(FittingInfoActivity.this, "카메라액티비티 클릭! ", Toast.LENGTH_SHORT).show();
-                break;
+//            case REQUEST_CAMERA :
+//                Log.d(TAG, "카메라");
+//                Toast.makeText(FittingInfoActivity.this, "카메라액티비티 클릭! ", Toast.LENGTH_SHORT).show();
+//                break;
             case REQUEST_GALLERY :
-                Log.d("RESULT", "갤러리");
+                //
+                Log.d(TAG, "갤러리");
                 Toast.makeText(FittingInfoActivity.this, "갤러리액티비티 클릭! ", Toast.LENGTH_SHORT).show();
+                String filePath = Environment.getExternalStorageDirectory() + "/" + TEMP_PHOTO_FILE;
+
+
                 break;
         }
-    }*/
+    }
 }
