@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="성별 : "
+            android:text="성별 :  "
             android:id="@+id/textView5"
             android:layout_marginTop="30dp"
             android:layout_below="@+id/textView4"
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="신장 : "
+            android:text="신장 :  "
             android:id="@+id/textView6"
             android:layout_below="@+id/textView5"
             android:layout_alignParentLeft="true"
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="체중 : "
+            android:text="체중 :  "
             android:id="@+id/textView7"
             android:layout_below="@+id/textView6"
             android:layout_alignParentLeft="true"
@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="신체 : "
+            android:text="신체 :  "
             android:id="@+id/textView8"
             android:layout_below="@+id/textView7"
             android:layout_alignParentLeft="true"
@@ -87,6 +87,46 @@
             android:layout_below="@+id/textView8"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="여성"
+            android:id="@+id/user_sex"
+            android:layout_alignTop="@+id/textView5"
+            android:layout_toRightOf="@+id/textView5"
+            android:layout_toEndOf="@+id/textView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="157cm"
+            android:id="@+id/user_height"
+            android:layout_below="@+id/textView5"
+            android:layout_toRightOf="@+id/textView5"
+            android:layout_toEndOf="@+id/textView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="46kg"
+            android:id="@+id/user_weight"
+            android:layout_below="@+id/user_height"
+            android:layout_alignLeft="@+id/user_size"
+            android:layout_alignStart="@+id/user_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="머리/가슴/배"
+            android:id="@+id/user_size"
+            android:layout_below="@+id/textView7"
+            android:layout_toRightOf="@+id/textView8"
+            android:layout_toEndOf="@+id/textView8" />
 
     </RelativeLayout>
 
