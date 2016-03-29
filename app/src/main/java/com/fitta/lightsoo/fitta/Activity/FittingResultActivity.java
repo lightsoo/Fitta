@@ -8,15 +8,15 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.fitta.lightsoo.fitta.Camera.CameraActivity;
 import com.fitta.lightsoo.fitta.R;
 
 public class FittingResultActivity extends AppCompatActivity {
-    private ImageView avatar;
+    private ImageView avatar, clothes;
     private static final int REQ_CAMERA_IMAGE = 123;
 
     private static int flag=0;
     private static final String TAG = "FittingResultActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,14 +24,13 @@ public class FittingResultActivity extends AppCompatActivity {
         init();
 
         Intent intent = new Intent(getIntent());
-        flag = intent.getExtras().getInt("flag");
+        String clothesUrl = intent.getExtras().getString("clothesUrl");
+        Log.d(TAG, clothesUrl);
+        setClothes(clothesUrl);
     }
 
-
-
     public void init(){
-
-
+        clothes = (ImageView)findViewById(R.id.clothes);
         avatar = (ImageView)findViewById(R.id.avatar);
         Glide.with(getApplicationContext())
                 .load(R.drawable.body100cf)
@@ -41,7 +40,17 @@ public class FittingResultActivity extends AppCompatActivity {
                 .into(avatar);
     }
 
-    @Override
+
+    public void setClothes(String clothesUrl){
+        Glide.with(getApplicationContext())
+                .load(clothesUrl)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(clothes);
+    }
+
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -59,6 +68,5 @@ public class FittingResultActivity extends AppCompatActivity {
         } else if (requestCode == REQ_CAMERA_IMAGE && resultCode == RESULT_CANCELED) {
             Log.i(TAG,"User didn't take an image");
         }
-
-    }
+    }*/
 }

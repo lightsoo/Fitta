@@ -15,9 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.fitta.lightsoo.fitta.Camera.CameraActivity;
 import com.fitta.lightsoo.fitta.R;
 
 import java.io.File;
@@ -44,6 +46,9 @@ public class FittingInfoActivity extends AppCompatActivity {
     private static final String TEMP_CAMERA_FILE = "temp_camera.jpg";
     private static final String TEMP_PHOTO_FILE = "temp_album.jpg";
 
+    private ImageView test;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +72,7 @@ public class FittingInfoActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getIntent());
         flag = intent.getExtras().getInt("flag");
-        Log.d("test ", String.valueOf(flag));
+        Log.d(TAG, String.valueOf(flag));
 
         String [] spinnerArray = getResources().getStringArray(R.array.spinnerArray1);
         ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, spinnerArray);
@@ -85,26 +90,26 @@ public class FittingInfoActivity extends AppCompatActivity {
             }
         });
 
-
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //빈칸이 있는경우
                 if(!preInspection()){
                     Toast.makeText(FittingInfoActivity.this, "빈칸있다!", Toast.LENGTH_SHORT).show();
-                }else{//여기서 액티비티 flag에 따라 카메라, 갤러리액티비티로 이동한다.
+                }else{
+                //여기서 액티비티 flag에 따라 카메라, 갤러리액티비티로 이동한다.
                     if(flag == REQUEST_CAMERA){
-
+                        onUseCameraClick();
                     }else if(flag == REQUEST_GALLERY){
                         getGalleryImage();
                     }
                 }
             }
         });
-
     }
 
     public void init(){
+        test=(ImageView)findViewById(R.id.test);
         editSize = (EditText)findViewById(R.id.editSize);
         btn_post = (Button)findViewById(R.id.btn_input_info);
     }
@@ -114,20 +119,22 @@ public class FittingInfoActivity extends AppCompatActivity {
             return false;
         }else{
             resultSize1 = editSize.getText().toString();
-
             return true;
         }
     }
 
     public void setSpinnerData(View v, int position){
-
         if(spinner.getSelectedItemPosition()>0){
             resultSize2 = (String)spinner.getAdapter().getItem(spinner.getSelectedItemPosition());
         }else {
             resultSize2="";
         }
-
         Log.d(TAG, resultSize2);
+    }
+
+    public void onUseCameraClick() {
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivityForResult(intent, REQUEST_CAMERA);
     }
 
 
@@ -136,19 +143,18 @@ public class FittingInfoActivity extends AppCompatActivity {
                 Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         photoPickerIntent.setType("image/*");
         photoPickerIntent.putExtra("crop", "true");
-
         photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
         photoPickerIntent.putExtra("outputFormat",
                 Bitmap.CompressFormat.JPEG.toString());
         startActivityForResult(photoPickerIntent, REQUEST_GALLERY);
     }
 
+
     private Uri getTempUri() {
+        //정해둔 경로에 파일객체를 만든 다음에 그 객체의 경로를 action_pick에 MediaStore.EXTRA_OUTPUT에 같이 넘겨준다.
         mSavedFile = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE);
         return Uri.fromFile(mSavedFile);
-//        return Uri.fromFile(getTempFile());
     }
-
 
    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -156,12 +162,13 @@ public class FittingInfoActivity extends AppCompatActivity {
 
         //액티비티 결과가 이상는경우
         if(resultCode != RESULT_OK){return;}
-
        /**
         * camera는 내가 만든 액티비티로 이동하니깐 거기서 startIntent(FittingResult)해서 파일 경로를 보내면되
         * 갤러리를 action_pick을 쓰니깐 직접 조작이 안되, 그래서 호출했던 액티비티로 onActivityResult로 와서
-        * FittingResult액티비티로 화면이동을 해줘야 될것 같다.
+        * FittingResult액티비티로 화면이동을 해줘야 될것 같다
+        * 공통으로는 파일의 경로를 putExtra()해서 FittingResultActivity를 호출하자!!!!
         */
+
         switch (requestCode){
 //            case REQUEST_CAMERA :
 //                Log.d(TAG, "카메라");
@@ -170,11 +177,24 @@ public class FittingInfoActivity extends AppCompatActivity {
             case REQUEST_GALLERY :
                 //
                 Log.d(TAG, "갤러리");
-                Toast.makeText(FittingInfoActivity.this, "갤러리액티비티 클릭! ", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(FittingInfoActivity.this, "갤러리액티비티 클릭! ", Toast.LENGTH_SHORT).show();
+
+
                 String filePath = Environment.getExternalStorageDirectory() + "/" + TEMP_PHOTO_FILE;
+
+                Log.d(TAG, filePath);
+
+                Intent intent = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
+                intent.putExtra("clothesUrl", filePath);
+                startActivity(intent);
 
 
                 break;
         }
     }
+
+
+
+
+
 }
