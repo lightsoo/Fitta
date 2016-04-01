@@ -29,12 +29,12 @@ public class FittingInfoActivity extends AppCompatActivity {
 
     private static final int REQUEST_CAMERA = 100;
     private static final int REQUEST_GALLERY = 101;
-    private static final int REQUEST_CROP = 102;
-    private String resultSize1 = "";
-    private String resultSize2 = "";
-    private Spinner spinner;
+    private String resultSize1 = ""; //사이즈
+    private String resultSize2 = ""; //단위 결과
 
-    private EditText editSize ;
+    private Spinner spinner;          //단위 선택
+    private EditText editSize ;       //사이즈 선택
+
     private Button btn_post ;
     private static int flag=0 ;
 
@@ -44,8 +44,6 @@ public class FittingInfoActivity extends AppCompatActivity {
     // THEMP_PHOTO_FILE로 명명해서 크롭된 이미지를 사용
     private static final String TEMP_CAMERA_FILE = "temp_camera.jpg";
     private static final String TEMP_PHOTO_FILE = "temp_album.jpg";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,9 +127,19 @@ public class FittingInfoActivity extends AppCompatActivity {
         Log.d(TAG, resultSize2);
     }
 
+    //카메라 액티비티 실행
     public void onUseCameraClick() {
         Intent intent = new Intent(this, CameraActivity.class);
-        startActivityForResult(intent, REQUEST_CAMERA);
+        intent.putExtra("clothesSize", resultSize1);
+        intent.putExtra("clothesUnit",resultSize2);
+        startActivity(intent);
+        finish();
+
+        //그냥 스타트인텐트할까나...
+//        Log.d(TAG , "clothesSize : " + resultSize1 + ", clothesUnit : " + resultSize2);
+//        intent.putExtra("clothesSize", resultSize1);
+//        intent.putExtra("clothesUnit",resultSize2);
+//        startActivity(intent);
     }
 
     private void getGalleryImage(){
@@ -148,6 +156,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     private Uri getTempUri() {
         //정해둔 경로에 파일객체를 만든 다음에 그 객체의 경로를 action_pick에 MediaStore.EXTRA_OUTPUT에 같이 넘겨준다.
         mSavedFile = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE);
+        Log.d(TAG, "getTempUri() : "+ Uri.fromFile(mSavedFile).toString());
         return Uri.fromFile(mSavedFile);
     }
 
@@ -163,15 +172,14 @@ public class FittingInfoActivity extends AppCompatActivity {
         * FittingResult액티비티로 화면이동을 해줘야 될것 같다
         * 공통으로는 파일의 경로를 putExtra()해서 FittingResultActivity를 호출하자!!!!
         */
-
         switch (requestCode){
-            //안써!!! 다르게 쓸꺼야!!!
 //            case REQUEST_CAMERA :
-//                Log.d(TAG, "카메라");
-//                Toast.makeText(FittingInfoActivity.this, "카메라액티비티 클릭! ", Toast.LENGTH_SHORT).show();
 //                break;
+            /**
+             * 갤러리 인텐트 호출해서 getGalleryImage()함수에서 갤러리 인텐트를 부른 다음
+             * 갤러리인텐트 종료 이후의 작업을 여기서 한다.
+             */
             case REQUEST_GALLERY :
-//                Toast.makeText(FittingInfoActivity.this, "갤러리액티비티 클릭! ", Toast.LENGTH_SHORT).show();
                 String filePath = Environment.getExternalStorageDirectory() + "/" + TEMP_PHOTO_FILE;
                 Intent intent = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
                 intent.putExtra("clothesUrl", filePath);

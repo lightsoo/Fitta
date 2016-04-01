@@ -25,6 +25,10 @@ public class FittingResultActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getIntent());
         String clothesUrl = intent.getExtras().getString("clothesUrl");
+        String clothesSize = intent.getExtras().getString("clothesSize");
+        String clohthesUnit = intent.getExtras().getString("clothesUnit");
+
+
         Log.d(TAG, clothesUrl);
         setClothes(clothesUrl);
     }
