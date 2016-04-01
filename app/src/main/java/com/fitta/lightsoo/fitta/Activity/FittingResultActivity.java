@@ -22,13 +22,12 @@ public class FittingResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fitting_result);
         init();
-
         Intent intent = new Intent(getIntent());
+        //나중에는 서버에서 이미지 처리하기위해 받으면 액티비티 생성후 데이터를 보내서
+        //피드백과 처리된 이미지를 받아서 화면에 적용한다.
         String clothesUrl = intent.getExtras().getString("clothesUrl");
         String clothesSize = intent.getExtras().getString("clothesSize");
         String clohthesUnit = intent.getExtras().getString("clothesUnit");
-
-
         Log.d(TAG, clothesUrl);
         setClothes(clothesUrl);
     }
@@ -54,23 +53,4 @@ public class FittingResultActivity extends AppCompatActivity {
                 .into(clothes);
     }
 
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        //카메라 촬영이후 이미지의 경로를 준다,
-        if (requestCode == REQ_CAMERA_IMAGE && resultCode == RESULT_OK) {
-            //CameraActivity의 onPictureTaken()에서 경로 입력 받아.
-            String imgPath = data.getStringExtra(CameraActivity.EXTRA_IMAGE_PATH);
-            Log.i(TAG,"Got image path: " + imgPath);
-
-            //이미지를 앨범에 저장하는게 필요.
-//            saveImage(imgPath, FittingResultActivity.this);
-            //이미지뷰에 설정해서 출력해주는데
-//            displayImage(imgPath);
-
-        } else if (requestCode == REQ_CAMERA_IMAGE && resultCode == RESULT_CANCELED) {
-            Log.i(TAG,"User didn't take an image");
-        }
-    }*/
 }
