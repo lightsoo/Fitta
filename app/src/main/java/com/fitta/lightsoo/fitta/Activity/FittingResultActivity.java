@@ -12,9 +12,7 @@ import com.fitta.lightsoo.fitta.R;
 
 public class FittingResultActivity extends AppCompatActivity {
     private ImageView avatar, clothes;
-    private static final int REQ_CAMERA_IMAGE = 123;
 
-    private static int flag=0;
     private static final String TAG = "FittingResultActivity";
 
     @Override

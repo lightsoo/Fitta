@@ -1,4 +1,4 @@
-package com.fitta.lightsoo.fitta.ViewHolder;
+package com.fitta.lightsoo.fitta.View;
 
 import android.content.Context;
 import android.widget.FrameLayout;
@@ -6,6 +6,10 @@ import android.widget.TextView;
 
 import com.fitta.lightsoo.fitta.R;
 
+/**
+ * viewHolder패턴을 사용하는 이유
+ * 매번 findView를 해야되서 낭비가 심하지만
+ */
 
 public class ClothesImageItemView extends FrameLayout{
 

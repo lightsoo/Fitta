@@ -9,6 +9,7 @@ import android.view.View;
 import com.fitta.lightsoo.fitta.Fragment.FittingFragment;
 import com.fitta.lightsoo.fitta.Fragment.FittingRoomFragment;
 import com.fitta.lightsoo.fitta.Fragment.SettingFragment;
+import com.fitta.lightsoo.fitta.Fragment.StoreFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator(home), FittingFragment.class, null);
 
         View chat = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_chat_btn, null);
-        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator(chat), FittingFragment.class, null);
+        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator(chat), FittingRoomFragment.class, null);
 
         View myinfo = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_myinfo_btn, null);
-        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator(myinfo), FittingRoomFragment.class, null);
+        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator(myinfo), StoreFragment.class, null);
 
         View write = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_write_btn, null);
         tabHost.addTab(tabHost.newTabSpec("tab4").setIndicator(write), SettingFragment.class, null);

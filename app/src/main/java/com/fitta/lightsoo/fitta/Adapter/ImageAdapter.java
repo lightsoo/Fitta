@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.fitta.lightsoo.fitta.Data.ClothesItems;
-import com.fitta.lightsoo.fitta.ViewHolder.ClothesImageItemView;
+import com.fitta.lightsoo.fitta.View.ClothesImageItemView;
 
 import java.util.ArrayList;
 import java.util.List;
