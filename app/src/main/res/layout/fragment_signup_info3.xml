@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fitta.lightsoo.fitta.Intro.SignupInfo3Fragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="선택입력사항"
+        android:id="@+id/textView19"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="39.67dp"
+        android:layout_marginTop="59dp" />
+
+    <TextView
+        android:layout_width="283.33dp"
+        android:layout_height="wrap_content"
+        android:text="이내용은 아바타의 정확도를 위한 입력 사항이며 옵션 설정에서 얼마든지 수정할 수 있습니다. 잘 모르는 사이즈는 나중에 작성해주세요!"
+        android:id="@+id/textView20"
+        android:layout_below="@+id/textView19"
+        android:layout_alignLeft="@+id/textView19"
+        android:layout_alignStart="@+id/textView19"
+        android:layout_marginTop="39dp" />
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_top"
+        android:layout_marginLeft="53.33dp"
+        android:layout_marginTop="240dp"
+        android:layout_alignLeft="@+id/textView20"
+        android:layout_alignStart="@+id/textView20" />
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_bottom"
+        android:layout_below="@+id/iv_top"
+        android:layout_alignLeft="@+id/iv_top"
+        android:layout_alignStart="@+id/iv_top"
+        android:layout_marginTop="49.33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="가슴둘레(상의사이즈)"
+        android:id="@+id/textView21"
+        android:layout_alignTop="@+id/iv_top"
+        android:layout_toRightOf="@+id/textView19"
+        android:layout_toEndOf="@+id/textView19" />
+
+    <EditText
+        android:layout_width="131dp"
+        android:layout_height="26dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:layout_below="@+id/textView21"
+        android:layout_alignLeft="@+id/textView21"
+        android:layout_alignStart="@+id/textView21" />
+
+    <EditText
+        android:layout_width="131dp"
+        android:layout_height="26dp"
+        android:id="@+id/editText5"
+        android:layout_alignBottom="@+id/iv_bottom"
+        android:layout_alignRight="@+id/editText4"
+        android:layout_alignEnd="@+id/editText4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="cm"
+        android:id="@+id/textView22"
+        android:layout_below="@+id/textView21"
+        android:layout_toRightOf="@+id/editText4"
+        android:layout_toEndOf="@+id/editText4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="inch"
+        android:id="@+id/textView23"
+        android:layout_alignBottom="@+id/editText5"
+        android:layout_toRightOf="@+id/editText5"
+        android:layout_toEndOf="@+id/editText5" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="입력완료"
+        android:id="@+id/btn_post"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="43dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="허리둘레(하의사이즈)"
+        android:id="@+id/textView24"
+        android:layout_above="@+id/textView23"
+        android:layout_alignLeft="@+id/editText5"
+        android:layout_alignStart="@+id/editText5" />
+</RelativeLayout>

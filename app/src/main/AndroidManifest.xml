@@ -41,7 +41,12 @@
             android:name=".Activity.FittingInfoActivity"
             android:label="@string/title_activity_fitting_info"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Intro.SplashActivity"></activity>
+        <activity android:name=".Intro.SplashActivity" />
+        <activity android:name=".Intro.LoginActivity" />
+        <activity android:name=".Intro.SignupActivity" />
+        <activity android:name=".Intro.SignupInfo1Fragment" />
+        <activity android:name=".Intro.SignupInfo2Fragment" />
+        <activity android:name=".Intro.SignupInfo3Fragment"></activity>
     </application>
 
 </manifest>

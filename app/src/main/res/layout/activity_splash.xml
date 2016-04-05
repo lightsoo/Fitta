@@ -11,16 +11,16 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="여러분의 핏!을 도와줄 앱!"
         android:id="@+id/textView11"
-        android:layout_marginTop="198.33dp"
+        android:layout_marginTop="203.33dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="74.67dp"
-        android:layout_marginStart="74.67dp" />
+        android:layout_marginLeft="47dp"
+        android:layout_marginStart="47dp" />
 
     <ImageView
-        android:layout_width="214.33dp"
-        android:layout_height="155dp"
+        android:layout_width="269dp"
+        android:layout_height="144.33dp"
         android:src="@mipmap/ic_launcher"
         android:id="@+id/imageView4"
         android:layout_below="@+id/textView11"
