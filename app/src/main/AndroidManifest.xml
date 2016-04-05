@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Intro.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,6 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
         <activity
             android:name=".Fragment.FittingFragment"
             android:label="@string/title_activity_fitting_fragment"
@@ -41,7 +44,6 @@
             android:name=".Activity.FittingInfoActivity"
             android:label="@string/title_activity_fitting_info"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Intro.SplashActivity" />
         <activity android:name=".Intro.LoginActivity" />
         <activity android:name=".Intro.SignupActivity" />
         <activity android:name=".Intro.SignupInfo1Fragment" />

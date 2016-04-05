@@ -1,18 +1,20 @@
 package com.fitta.lightsoo.fitta.Intro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-import com.fitta.lightsoo.fitta.R;
 
 public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        goMain();
     }
 
-
+    private void goMain(){
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
 
 }

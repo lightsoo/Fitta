@@ -24,8 +24,8 @@
         android:orientation="horizontal"
         android:id="@+id/radioGroup"
         android:layout_alignBottom="@+id/textView13"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText">
+        android:layout_alignLeft="@+id/et_age"
+        android:layout_alignStart="@+id/et_age">
 
         <RadioButton
             android:layout_width="0dp"
@@ -33,7 +33,7 @@
             android:text=" 남자 "
             android:button="@null"
             android:background="@drawable/selector_radio"
-            android:id="@+id/radio_city1"
+            android:id="@+id/radio_man"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingTop="5dp"
@@ -47,7 +47,7 @@
             android:text=" 여자 "
             android:button="@null"
             android:background="@drawable/selector_radio"
-            android:id="@+id/radio_city2"
+            android:id="@+id/radio_woman"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingTop="5dp"
@@ -71,10 +71,10 @@
 
     <EditText
         android:layout_width="131.67dp"
-        android:layout_height="26.67dp"
+        android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/et_age"
         android:layout_above="@+id/textView14"
         android:layout_toRightOf="@+id/textView15"
         android:layout_toEndOf="@+id/textView15"
@@ -105,23 +105,23 @@
 
     <EditText
         android:layout_width="131.67dp"
-        android:layout_height="26.67dp"
+        android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/et_height"
         android:layout_alignBottom="@+id/textView14"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_alignLeft="@+id/et_age"
+        android:layout_alignStart="@+id/et_age" />
 
     <EditText
         android:layout_width="131.67dp"
-        android:layout_height="26.67dp"
+        android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/et_weight"
         android:layout_alignBottom="@+id/textView15"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_alignLeft="@+id/et_height"
+        android:layout_alignStart="@+id/et_height" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -130,8 +130,8 @@
         android:text="세"
         android:id="@+id/textView16"
         android:layout_alignTop="@+id/textView12"
-        android:layout_toRightOf="@+id/editText"
-        android:layout_toEndOf="@+id/editText"
+        android:layout_toRightOf="@+id/et_age"
+        android:layout_toEndOf="@+id/et_age"
         android:layout_marginLeft="13dp"
         android:layout_marginStart="13dp" />
 
@@ -159,7 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="다음 >>"
-        android:id="@+id/button2"
+        android:id="@+id/btn_next1"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="39dp" />
