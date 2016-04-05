@@ -2,6 +2,7 @@ package com.fitta.lightsoo.fitta.Intro;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,9 @@ public class SignupInfo1Fragment extends Fragment {
     private RadioGroup radioGroup;
     private RadioButton radio_man, radio_woman;
 
+    Fragment info2, info3;
+    private static final String info2_TAG = "info2";
+    private static final String info3_TAG = "info3";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,7 +48,18 @@ public class SignupInfo1Fragment extends Fragment {
                 if(!preInspection()){
                     Toast.makeText(getActivity(), "빈칸을 채워주세요", Toast.LENGTH_SHORT).show();
                 }else{
-                    //flag에 따라서
+                    //flag에 따라서 2가남자, 3이 여자
+                    if(flag==2){
+                        info2 = new SignupInfo2Fragment();
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.add(R.id.container, info2, info2_TAG);
+                        ft.commit();
+                    }else {
+                        info3 = new SignupInfo3Fragment();
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.add(R.id.container, info3, info3_TAG);
+                        ft.commit();
+                    }
                 }
             }
         });
@@ -53,6 +68,9 @@ public class SignupInfo1Fragment extends Fragment {
 
     public void init(View view){
         btn_next1 = (Button)view.findViewById(R.id.btn_next1);
+
+        info2 = new SignupInfo2Fragment();
+        info3 = new SignupInfo3Fragment();
 
         et_age = (EditText)view.findViewById(R.id.et_age);
         et_height=(EditText)view.findViewById(R.id.et_height);
@@ -66,7 +84,8 @@ public class SignupInfo1Fragment extends Fragment {
     public boolean preInspection(){
         if(TextUtils.isEmpty(et_age.getText().toString()) ||
                 TextUtils.isEmpty(et_height.getText().toString())||
-                TextUtils.isEmpty(et_weight.getText().toString())) {
+                TextUtils.isEmpty(et_weight.getText().toString())||
+                !(radio_man.isChecked()||radio_woman.isChecked())) {
 
             Log.d(TAG, "radio_man : " + radio_man.isChecked());
             Log.d(TAG, "radio_woman : " + radio_woman.isChecked());
