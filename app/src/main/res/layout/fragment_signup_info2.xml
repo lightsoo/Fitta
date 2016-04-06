@@ -57,23 +57,21 @@
         android:layout_toRightOf="@+id/textView19"
         android:layout_toEndOf="@+id/textView19" />
 
-    <EditText
+    <Spinner
         android:layout_width="131dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/et_top"
+        android:id="@+id/spinner"
         android:layout_below="@+id/textView21"
-        android:layout_alignLeft="@+id/textView21"
-        android:layout_alignStart="@+id/textView21" />
+        android:layout_alignLeft="@+id/btn_post"
+        android:layout_alignStart="@+id/btn_post" />
 
     <EditText
         android:layout_width="131dp"
         android:layout_height="wrap_content"
         android:id="@+id/et_bottom"
         android:layout_alignBottom="@+id/iv_bottom"
-        android:layout_alignRight="@+id/et_top"
-        android:layout_alignEnd="@+id/et_top" />
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,9 +79,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="컵"
         android:id="@+id/textView22"
-        android:layout_below="@+id/textView21"
-        android:layout_toRightOf="@+id/et_top"
-        android:layout_toEndOf="@+id/et_top" />
+        android:layout_above="@+id/iv_bottom"
+        android:layout_toRightOf="@+id/spinner"
+        android:layout_toEndOf="@+id/spinner" />
 
     <TextView
         android:layout_width="wrap_content"

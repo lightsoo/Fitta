@@ -43,7 +43,6 @@ public class SignupInfo3Fragment extends Fragment {
 //                }else{
 //
 //                }
-                //
                 setInfo();
                 top = et_top.getText().toString();
                 bottom = et_bottom.getText().toString();
@@ -51,7 +50,6 @@ public class SignupInfo3Fragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
-
             }
         });
         return view;
@@ -61,11 +59,8 @@ public class SignupInfo3Fragment extends Fragment {
     public void init(View view){
         btn_post = (Button)view.findViewById(R.id.btn_post);
 
-
         et_top = (EditText)view.findViewById(R.id.et_top);
         et_bottom = (EditText)view.findViewById(R.id.et_bottom);
-
-
     }
 
     public boolean preInspection(){

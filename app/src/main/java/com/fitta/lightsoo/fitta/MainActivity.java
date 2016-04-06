@@ -10,6 +10,7 @@ import com.fitta.lightsoo.fitta.Fragment.FittingFragment;
 import com.fitta.lightsoo.fitta.Fragment.FittingRoomFragment;
 import com.fitta.lightsoo.fitta.Fragment.SettingFragment;
 import com.fitta.lightsoo.fitta.Fragment.StoreFragment;
+import com.fitta.lightsoo.fitta.Handler.BackPressCloseHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,10 +18,15 @@ public class MainActivity extends AppCompatActivity {
     //드로우 메뉴를 하기위한 clicked리스너였는데 일단은 제외한다.
 //    private TabWidget tabWidget;
 
+
+    private BackPressCloseHandler backPressCloseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //뒤로가기 핸들러
+        backPressCloseHandler = new BackPressCloseHandler(this);
        /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         //false해서 기존 title을 없애
@@ -56,4 +62,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
     }
+
+
+    @Override
+    public void onBackPressed() {backPressCloseHandler.onBackPressed();  }
 }

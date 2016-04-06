@@ -70,6 +70,7 @@
     <EditText
         android:layout_width="131dp"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:id="@+id/et_bottom"
         android:layout_alignBottom="@+id/iv_bottom"
         android:layout_alignRight="@+id/et_top"

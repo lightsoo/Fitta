@@ -6,26 +6,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.fitta.lightsoo.fitta.Handler.BackPressCloseHandler;
 import com.fitta.lightsoo.fitta.R;
 
 public class LoginActivity extends AppCompatActivity {
 
    private ImageButton btn_fb, btn_naver, btn_kakao;
 
+    private BackPressCloseHandler backPressCloseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        backPressCloseHandler = new BackPressCloseHandler(this);
         init();
         btn_fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
+               finish();
             }
         });
-
-
     }
 
     public void init(){
@@ -36,5 +39,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {backPressCloseHandler.onBackPressed();}
 }
