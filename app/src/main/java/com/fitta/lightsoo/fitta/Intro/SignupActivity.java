@@ -1,8 +1,8 @@
 package com.fitta.lightsoo.fitta.Intro;
 
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.fitta.lightsoo.fitta.R;
@@ -19,25 +19,22 @@ import com.fitta.lightsoo.fitta.R;
 
 public class SignupActivity extends AppCompatActivity {
 
-
-    //tag를 통해서 현재 프레그먼트 구별 한다.
-    private static final String info1_TAG = "info1";
-    private static final String info2_TAG = "info2";
-    private static final String info3_TAG = "info3";
-
-
-    Fragment info1, info2, info3, current;
-
-
+    //replace를 써서 화면 이동하자
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        info1 = new SignupInfo1Fragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.container, info1, info1_TAG);
-        ft.commit();
-        current = info1;
+
+
+
+        Fragment info1 = new SignupInfo1Fragment();
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.add(R.id.container, info1, info1_TAG);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.container, info1).commit();
+
+//        ft.commit();
+//        current = info1;
 
     }
 

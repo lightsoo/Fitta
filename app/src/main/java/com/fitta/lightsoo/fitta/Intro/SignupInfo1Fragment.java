@@ -2,7 +2,7 @@ package com.fitta.lightsoo.fitta.Intro;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +15,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.fitta.lightsoo.fitta.R;
+
+
+/**
+ * signup2, 3에 번들을 통해 setArgumet()로 signup1의 데이터를 전달하자!
+ */
 
 public class SignupInfo1Fragment extends Fragment {
 
@@ -29,14 +34,18 @@ public class SignupInfo1Fragment extends Fragment {
     private RadioButton radio_man, radio_woman;
 
     Fragment info2, info3;
-    private static final String info2_TAG = "info2";
-    private static final String info3_TAG = "info3";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_signup_info1,container, false);
+        View view = inflater.inflate(R.layout.fragment_signup_info1, container, false);
         init(view);
 
+
+        Bundle bundle = new Bundle();
+
+
+//                getSupportFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.container, info1).commit();
 
 
 
@@ -45,20 +54,33 @@ public class SignupInfo1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //빈칸이 있는경우
-                if(!preInspection()){
+                if (!preInspection()) {
                     Toast.makeText(getActivity(), "빈칸을 채워주세요", Toast.LENGTH_SHORT).show();
-                }else{
-                    //flag에 따라서 2가남자, 3이 여자
-                    if(flag==2){
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("age",age);
+                    bundle.putString("weight",weight);
+                    bundle.putString("height",height);
+
+                    //flag에 따라서 2가여자, 3이 남자
+                    if (flag == 2) {
                         info2 = new SignupInfo2Fragment();
-                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        ft.add(R.id.container, info2, info2_TAG);
-                        ft.commit();
-                    }else {
+                        info2.setArguments(bundle);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, info2).commit();
+//                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//                        ft.add(R.id.container, info2, info2_TAG);
+//                        ft.commit();
+                    } else {
                         info3 = new SignupInfo3Fragment();
-                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        ft.add(R.id.container, info3, info3_TAG);
-                        ft.commit();
+                        info3.setArguments(bundle);
+
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, info3).commit();
+
+//                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//                        ft.add(R.id.container, info3, info3_TAG);
+//                        ft.commit();
                     }
                 }
             }
@@ -87,18 +109,18 @@ public class SignupInfo1Fragment extends Fragment {
                 TextUtils.isEmpty(et_weight.getText().toString())||
                 !(radio_man.isChecked()||radio_woman.isChecked())) {
 
-            Log.d(TAG, "radio_man : " + radio_man.isChecked());
-            Log.d(TAG, "radio_woman : " + radio_woman.isChecked());
+//            Log.d(TAG, "radio_man : " + radio_man.isChecked());
+//            Log.d(TAG, "radio_woman : " + radio_woman.isChecked());
             return false;
         }else {
 
             //성별 클릭 유무
             if(radio_man.isChecked()){
                 Toast.makeText(getActivity(), "남자 클릭", Toast.LENGTH_SHORT).show();
-                flag = 2;
+                flag = 3;
             }else if(radio_woman.isChecked()){
                 Toast.makeText(getActivity(), "여자 클릭", Toast.LENGTH_SHORT).show();
-                flag = 3;
+                flag = 2;
             }
 
             Log.d(TAG, "flag : " + flag);

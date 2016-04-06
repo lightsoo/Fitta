@@ -9,8 +9,17 @@ import android.view.ViewGroup;
 
 import com.fitta.lightsoo.fitta.R;
 
-//남자 상세정보입력
+//여자 상세정보입력
 public class SignupInfo2Fragment extends Fragment {
+
+    private static final String TAG = "SignupInfo2Fragment";
+
+
+
+    private String age="", height="", weight="";
+    //가슴둘레(컵), 허리둘레(inch)
+    private String top="", bottom="";
+
 
     @Nullable
     @Override
