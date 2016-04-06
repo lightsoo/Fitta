@@ -107,7 +107,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         });
 
 
-
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +140,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     public void setSpinnerItme(int pos){
         switch (pos){
             //일반치수
-            case 0 : spinner2Item = new String[]{"44", "55", "66"};
+            case 0 : spinner2Item = new String[]{"44", "55", "66","1", "2"};
                 break;
             //cm
             case 1 : spinner2Item = new String[]{"65", "70", "75"};
