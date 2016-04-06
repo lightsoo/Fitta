@@ -26,7 +26,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
-               finish();
+                //쉐어드 하면은 로그인을 안오고 바로 홈으로 갈꺼니깐 안해야해
+//               finish();
             }
         });
     }

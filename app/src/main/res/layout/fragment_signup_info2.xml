@@ -68,6 +68,7 @@
     <EditText
         android:layout_width="131dp"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:id="@+id/et_bottom"
         android:layout_alignBottom="@+id/iv_bottom"
         android:layout_alignLeft="@+id/spinner"
@@ -108,8 +109,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="허리둘레(하의사이즈)"
         android:id="@+id/textView24"
-        android:layout_above="@+id/textView23"
-        android:layout_alignLeft="@+id/et_bottom"
-        android:layout_alignStart="@+id/et_bottom" />
+        android:layout_above="@+id/et_bottom"
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
 
 </RelativeLayout>

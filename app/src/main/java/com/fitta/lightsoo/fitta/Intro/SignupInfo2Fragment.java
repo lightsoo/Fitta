@@ -51,7 +51,8 @@ public class SignupInfo2Fragment extends Fragment {
     public void init(View view){
         spinner = (Spinner)view.findViewById(R.id.spinner);
         spinnerItem = new String[]{"A", "B", "C", "D", "E"};
-        arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, spinnerItem);
+        arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, spinnerItem);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 //        spinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
 
