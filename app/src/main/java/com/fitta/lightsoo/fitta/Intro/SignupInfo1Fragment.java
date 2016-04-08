@@ -99,6 +99,7 @@ public class SignupInfo1Fragment extends Fragment {
         et_weight=(EditText)view.findViewById(R.id.et_weight);
 
         radioGroup = (RadioGroup)view.findViewById(R.id.radioGroup);
+//        radioGroup.clearCheck();
         radio_man= (RadioButton)view.findViewById(R.id.radio_man);
         radio_woman = (RadioButton)view.findViewById(R.id.radio_woman);
     }
@@ -113,7 +114,6 @@ public class SignupInfo1Fragment extends Fragment {
 //            Log.d(TAG, "radio_woman : " + radio_woman.isChecked());
             return false;
         }else {
-
             //성별 클릭 유무
             if(radio_man.isChecked()){
                 Toast.makeText(getActivity(), "남자 클릭", Toast.LENGTH_SHORT).show();

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.fitta.lightsoo.fitta.Camera.CameraActivity;
 import com.fitta.lightsoo.fitta.R;
+import com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout;
 
 import java.io.File;
 
@@ -35,6 +36,9 @@ public class FittingInfoActivity extends AppCompatActivity {
 
     private Button btn_post ;
     private static int flag=0 ;
+
+    private RadioButtonWithTableLayout tableLayoutTop, tableLayoutBottom, tableLayoutEtc;
+    private Button btn_fitting;
 
     private File mSavedFile;
 
@@ -84,7 +88,6 @@ public class FittingInfoActivity extends AppCompatActivity {
                 int pos = spinner1.getSelectedItemPosition();
                 setSpinnerItme(pos);
 //                setSpinnerData(seletedView, position);
-
             }
 
             @Override
@@ -111,21 +114,46 @@ public class FittingInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //빈칸이 있는경우
-                if(!preInspection()){
+                if (!preInspection()) {
                     Toast.makeText(FittingInfoActivity.this, "빈칸있다!", Toast.LENGTH_SHORT).show();
-                }else{
-                //여기서 액티비티 flag에 따라 카메라, 갤러리액티비티로 이동한다.
-                    if(flag == REQUEST_CAMERA){
+                } else {
+                    //여기서 액티비티 flag에 따라 카메라, 갤러리액티비티로 이동한다.
+                    if (flag == REQUEST_CAMERA) {
                         onUseCameraClick();
-                    }else if(flag == REQUEST_GALLERY){
+                    } else if (flag == REQUEST_GALLERY) {
                         getGalleryImage();
                     }
                 }
             }
         });
+
+        btn_fitting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                tableLayoutTop.clearRadioButton();
+                Toast.makeText(FittingInfoActivity.this, tableLayoutTop.getChedRdioButtonText(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, tableLayoutTop.getChedRdioButtonText().toString());
+//                getChedRdioButtonText
+//                Log.d(TAG, String.valueOf(tableLayoutTop.getCheckedRadioButtonId()));
+//                Log.d(TAG, String.valueOf(tableLayoutBottom.getCheckedRadioButtonId()));
+//                Log.d(TAG, String.valueOf(tableLayoutEtc.getCheckedRadioButtonId()));
+
+                int cntCaptureImage = 0;
+//                switch ()
+
+
+            }
+        });
     }
 
     public void init(){
+        tableLayoutTop = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutTop);
+        tableLayoutBottom = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutBottom);
+        tableLayoutEtc = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutEtc);
+        btn_fitting = (Button)findViewById(R.id.btn_fitting);
+
+
+
 //        editSize = (EditText)findViewById(R.id.editSize);
         spinner1 = (Spinner)findViewById(R.id.spinner1);
         spinner1Item = new String[]{"일반치수", "cm", "Inch", "호", "영문"};
@@ -140,7 +168,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     public void setSpinnerItme(int pos){
         switch (pos){
             //일반치수
-            case 0 : spinner2Item = new String[]{"44", "55", "66","1", "2"};
+            case 0 : spinner2Item = new String[]{"44", "55", "66"};
                 break;
             //cm
             case 1 : spinner2Item = new String[]{"65", "70", "75"};
@@ -158,6 +186,19 @@ public class FittingInfoActivity extends AppCompatActivity {
         spinner2Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(spinner2Adapter);
     }
+
+    //어떠 이미지를 찍을건지 (상의9, 하의6, 기타6)
+    public int getCaptureImage(){
+        return 0;
+    }
+
+    public void getRadioItem(){
+
+
+
+
+    }
+
 
 
     //입력체크

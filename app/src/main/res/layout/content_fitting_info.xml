@@ -6,86 +6,355 @@
     tools:context="com.fitta.lightsoo.fitta.Activity.FittingInfoActivity"
     tools:showIn="@layout/activity_fitting_info">
 
-    <Button
-        android:layout_width="211dp"
-        android:layout_height="45dp"
-        android:text=" 입력완료 "
-        android:id="@+id/btn_post"
-        android:layout_below="@+id/spinner1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="촬영할 의상의 종류를 선택하세요"
-        android:id="@+id/textView3"
-        android:layout_marginTop="60dp"
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/btn_post"
-        android:layout_alignEnd="@+id/btn_post" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-    <ImageView
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="103dp"
-        android:layout_height="133.67dp"
-        android:id="@+id/iv_bottom"
-        android:layout_below="@+id/textView3"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="촬영할 의상의 종류를 선택하세요"
+            android:id="@+id/textView3"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="상의"
+            android:id="@+id/tv_top"
+            android:layout_below="@+id/textView3"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_marginTop="19dp" />
+
+
+
+        <com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout
+            android:layout_width="309dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayoutTop"
+            android:layout_below="@+id/tv_top"
+            android:layout_alignLeft="@+id/tv_top"
+            android:layout_alignStart="@+id/tv_top">
+            <TableRow>
+
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의1"
+                        android:id="@+id/radioButton"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의2"
+                        android:id="@+id/radioButton2"
+                        android:layout_weight="1"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의3"
+                        android:id="@+id/radioButton3"
+                        android:layout_weight="1"
+                        android:checked="false" />
+
+            </TableRow>
+            <TableRow>
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의4"
+                        android:id="@+id/radioButton10"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의5"
+                        android:id="@+id/radioButton11"
+                        android:layout_weight="1"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의6"
+                        android:id="@+id/radioButton12"
+                        android:layout_weight="1"
+                        android:checked="false" />
+            </TableRow>
+            <TableRow>
+
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의7"
+                        android:id="@+id/radioButton4"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의8"
+                        android:id="@+id/radioButton5"
+                        android:layout_weight="1"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상의9"
+                        android:id="@+id/radioButton6"
+                        android:layout_weight="1"
+                        android:checked="false" />
+            </TableRow>
+        </com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="하의"
+            android:id="@+id/tv_bottom"
+            android:layout_below="@+id/tableLayoutTop"
+            android:layout_alignLeft="@+id/tableLayoutTop"
+            android:layout_alignStart="@+id/tableLayoutTop"
+            android:layout_marginTop="19dp" />
+
+        <com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout
+            android:layout_width="309dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayoutBottom"
+            android:layout_below="@+id/tv_bottom"
+            android:layout_alignLeft="@+id/tv_bottom"
+            android:layout_alignStart="@+id/tv_bottom">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의1"
+                        android:id="@+id/radioButton7"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의2"
+                        android:id="@+id/radioButton8"
+                        android:layout_weight="1"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의3"
+                        android:id="@+id/radioButton9"
+                        android:layout_weight="1"
+                        android:checked="false" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의4"
+                        android:id="@+id/radioButton13"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의5"
+                        android:id="@+id/radioButton14"
+                        android:layout_weight="1"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의6"
+                        android:id="@+id/radioButton15"
+                        android:layout_weight="1"
+                        android:checked="false" />
+            </TableRow>
+
+        </com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="원피스, 기타"
+            android:id="@+id/tv_etc"
+            android:layout_below="@+id/tableLayoutBottom"
+            android:layout_alignLeft="@+id/tableLayoutBottom"
+            android:layout_alignStart="@+id/tableLayoutBottom"
+            android:layout_marginTop="19dp" />
+
+        <com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout
+            android:layout_width="309dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayoutEtc"
+            android:layout_below="@+id/tv_etc"
+            android:layout_alignLeft="@+id/tv_etc"
+            android:layout_alignStart="@+id/tv_etc">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의1"
+                        android:id="@+id/radioButton16"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의2"
+                        android:id="@+id/radioButton17"
+                        android:layout_weight="1"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의3"
+                        android:id="@+id/radioButton18"
+                        android:layout_weight="1"
+                        android:checked="false" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의4"
+                        android:id="@+id/radioButton19"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의5"
+                        android:id="@+id/radioButton20"
+                        android:layout_weight="1"
+                        android:checked="false" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="하의6"
+                        android:id="@+id/radioButton21"
+                        android:layout_weight="1"
+                        android:checked="false" />
+            </TableRow>
+        </com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="피팅하기"
+            android:id="@+id/btn_fitting"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutGone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp" />
-
-    <ImageView
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="103dp"
-        android:layout_height="133.67dp"
-        android:id="@+id/iv_etc"
-        android:layout_alignTop="@+id/iv_bottom"
-        android:layout_toRightOf="@+id/iv_bottom"
-        android:layout_toEndOf="@+id/iv_bottom"
-        android:layout_marginLeft="10dp" />
-
-    <ImageView
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="103dp"
-        android:layout_height="133.67dp"
-        android:id="@+id/lv_top"
-        android:layout_alignTop="@+id/iv_bottom"
-        android:layout_toLeftOf="@+id/iv_bottom"
-        android:layout_toStartOf="@+id/iv_bottom"
-        android:layout_marginRight="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="피팅할 의상의 사이즈를 입력해주세요"
-        android:id="@+id/textView25"
-        android:layout_below="@+id/iv_bottom"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginTop="13dp" />
+        android:visibility="gone">
 
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="131dp"
-        android:layout_height="wrap_content"
-        android:prompt="@string/spinnerClothes"
-        android:layout_below="@+id/textView25"
-        android:layout_alignLeft="@+id/textView25"
-        android:layout_alignStart="@+id/textView25"
-        android:layout_marginTop="7dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="피팅할 의상의 사이즈를 입력해주세요"
+            android:id="@+id/textView25"
+            android:layout_centerVertical="true" />
 
+        <Button
+            android:layout_width="211dp"
+            android:layout_height="45dp"
+            android:text=" 입력완료 "
+            android:id="@+id/btn_post"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="56dp" />
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="131dp"
-        android:layout_height="wrap_content"
-        android:prompt="@string/spinnerClothes"
-        android:layout_alignTop="@+id/spinner1"
-        android:layout_alignRight="@+id/textView25"
-        android:layout_alignEnd="@+id/textView25" />
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spinnerClothes"
+            android:layout_below="@+id/textView25"
+            android:layout_alignLeft="@+id/textView25"
+            android:layout_alignStart="@+id/textView25"
+            android:layout_marginTop="7dp" />
 
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:prompt="@string/spinnerClothes"
+            android:layout_alignTop="@+id/spinner1"
+            android:layout_alignRight="@+id/textView25"
+            android:layout_alignEnd="@+id/textView25" />
+    </RelativeLayout>
 </RelativeLayout>
