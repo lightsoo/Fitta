@@ -1,16 +1,21 @@
 package com.fitta.lightsoo.fitta.Intro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.fitta.lightsoo.fitta.MainActivity;
 import com.fitta.lightsoo.fitta.R;
 
 //여자 상세정보입력
@@ -27,6 +32,10 @@ public class SignupInfo2Fragment extends Fragment {
     private String age="", height="", weight="";
     //가슴둘레(컵), 허리둘레(inch)
     private String top="", bottom="";
+
+    private EditText et_bottom;
+    private Button btn_post;
+
 
     @Nullable
     @Override
@@ -45,6 +54,23 @@ public class SignupInfo2Fragment extends Fragment {
 
             }
         });
+
+        btn_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setInfo();
+                top = (String)spinner.getAdapter().getItem(spinner.getSelectedItemPosition());
+                bottom = et_bottom.getText().toString();
+                Log.d(TAG,"age : " + age + ", height : " + height + ", weight : " + weight + ", top : " + top + ", bottom : " + bottom);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+
+
+            }
+        });
+
+
         return view;
     }
 
@@ -54,9 +80,21 @@ public class SignupInfo2Fragment extends Fragment {
         arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, spinnerItem);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+
+        et_bottom = (EditText)view.findViewById(R.id.et_bottom);
+        btn_post = (Button)view.findViewById(R.id.btn_post);
+
+
+
 //        spinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
-
-
-
     }
+
+    //signUpInfo1으로 받은 정보!
+    public void setInfo(){
+        age = getArguments().getString("age");
+        height = getArguments().getString("height");
+        weight = getArguments().getString("weight");
+    }
+
+
 }
