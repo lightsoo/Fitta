@@ -37,7 +37,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
 
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
-
+    private int clothesImage = 0;//이미지 아이디값인가 R.drawable.top1 ...
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +51,16 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         Intent intent = new Intent(getIntent());
         clothesSize = intent.getExtras().getString("clothesSize");
         clothesUnit = intent.getExtras().getString("clothesUnit");
+        clothesImage = intent.getExtras().getInt("clothesImage");
 
-        initCameraPreview();
+        Log.d(TAG, "clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit + ", clothesImage : " + clothesImage);
+
+        //초기화할때 이미지경로를 넣어주자
+        initCameraPreview(clothesImage);
     }
 
     // Show the camera view on the activity
-    private void initCameraPreview() {
+    private void initCameraPreview(int clothesImage) {
         Log.d(TAG, "===initCameraPreview()===");
         takePhotoLayout =(RelativeLayout)findViewById(R.id.take_photo_layout);//기본화면
         photoResultLayout = (RelativeLayout)findViewById(R.id.photo_result_layout);//촬영결과 화면
@@ -65,14 +69,28 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         cameraPreview.setOnCameraStatusListener(this);
 
         Clothes = (ImageView)findViewById(R.id.clothes);
+
+
         Glide.with(getApplicationContext())
-                .load(R.drawable.t_90)
+                .load(clothesImage)
                 .crossFade()
                 .centerCrop()
 //                .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(Clothes);
+        /*Glide.with(getApplicationContext())
+                .load(R.drawable.t_90)
+                .crossFade()
+                .centerCrop()
+//                .fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(Clothes);*/
+
+
+
+
     }
 
     //촬영이후 결과화면에서 결과화면에서 재촬영 버튼 클릭스

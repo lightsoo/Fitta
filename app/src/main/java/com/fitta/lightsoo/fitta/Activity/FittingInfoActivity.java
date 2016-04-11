@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -38,6 +39,17 @@ public class FittingInfoActivity extends AppCompatActivity {
     private static int flag=0 ;
 
     private RadioButtonWithTableLayout tableLayoutTop, tableLayoutBottom, tableLayoutEtc;
+    public static final int top_id[] = {R.id.top1, R.id.top2,R.id.top3,R.id.top4,R.id.top5,R.id.top6,R.id.top7,R.id.top8,R.id.top9};
+    public static final int bottom_id[] = {R.id.bottom1, R.id.bottom2, R.id.bottom3, R.id.bottom4, R.id.bottom5, R.id.bottom6};
+    public static final int etc_id[] = {R.id.etc1, R.id.etc2, R.id.etc3, R.id.etc4, R.id.etc5, R.id.etc6};
+    RadioButton radioTop[] = new RadioButton[9];
+    RadioButton radioBottom[] = new RadioButton[6];
+    RadioButton radioEtc[] = new RadioButton[6];
+
+
+    private RadioButton mBtnCurrentRadio;
+
+
     private Button btn_fitting;
 
     private File mSavedFile;
@@ -131,25 +143,55 @@ public class FittingInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                tableLayoutTop.clearRadioButton();
-                Toast.makeText(FittingInfoActivity.this, tableLayoutTop.getChedRdioButtonText(), Toast.LENGTH_SHORT).show();
-                Log.d(TAG, tableLayoutTop.getChedRdioButtonText().toString());
+//                Toast.makeText(FittingInfoActivity.this, tableLayoutTop.getChedRdioButtonText(), Toast.LENGTH_SHORT).show();
+//                Log.d(TAG, tableLayoutTop.getChedRdioButtonText().toString());
+//                  if(tableLayoutTop.mB){
+//                  }
+
+                Log.d(TAG, String.valueOf(getCheckedRadioButtonId()));
+                //일단 테스트용이야 전송은 ,btn_post에서 할꺼야~!!!!!!
+                onUseCameraClick();
+
+
 //                getChedRdioButtonText
-//                Log.d(TAG, String.valueOf(tableLayoutTop.getCheckedRadioButtonId()));
+//                Log.d(TAG, String.valueOf(tableLayoutTop.getLayoutState()));
 //                Log.d(TAG, String.valueOf(tableLayoutBottom.getCheckedRadioButtonId()));
 //                Log.d(TAG, String.valueOf(tableLayoutEtc.getCheckedRadioButtonId()));
-
-                int cntCaptureImage = 0;
+//                int cntCaptureImage = 0;
 //                switch ()
-
-
             }
         });
+
     }
 
     public void init(){
         tableLayoutTop = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutTop);
         tableLayoutBottom = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutBottom);
         tableLayoutEtc = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutEtc);
+
+//        tableLayoutTop.getLayoutState();
+
+
+        //버튼 리스너 처리!!!
+        MyOnClickListener mcl = new MyOnClickListener();
+
+        for(int i = 0; i< top_id.length; i++){
+            radioTop[i] = (RadioButton)findViewById(top_id[i]);
+            radioTop[i].setOnClickListener(mcl);
+        }
+        for(int i = 0; i< bottom_id.length; i++){
+            radioBottom[i] = (RadioButton)findViewById(bottom_id[i]);
+            radioBottom[i].setOnClickListener(mcl);
+        }
+        for(int i = 0; i< etc_id.length; i++){
+            radioEtc[i] = (RadioButton)findViewById(etc_id[i]);
+            radioEtc[i].setOnClickListener(mcl);
+        }
+
+//        tableLayoutTop.setOnClickListener(mcl);
+//        tableLayoutBottom.setOnClickListener(mcl);
+//        tableLayoutEtc.setOnClickListener(mcl);
+
         btn_fitting = (Button)findViewById(R.id.btn_fitting);
 
 
@@ -188,16 +230,57 @@ public class FittingInfoActivity extends AppCompatActivity {
     }
 
     //어떠 이미지를 찍을건지 (상의9, 하의6, 기타6)
-    public int getCaptureImage(){
+    public int getCaptureImage(int checkedId){
+            switch (checkedId){
+                case R.id.top1 :
+                    return R.drawable.top1;
+//                    break;
+                case R.id.top2 :
+                    return R.drawable.top2;
+//                    break;
+                case R.id.top3 :
+                    break;
+                case R.id.top4 :
+                    break;
+                case R.id.top5 :
+                    break;
+                case R.id.top6 :
+                    break;
+                case R.id.top7 :
+                    break;
+                case R.id.top8 :
+                    break;
+                case R.id.top9 :
+                    break;
+                case R.id.bottom1 :
+                    break;
+                case R.id.bottom2 :
+                    break;
+                case R.id.bottom3 :
+                    break;
+                case R.id.bottom4 :
+                    break;
+                case R.id.bottom5 :
+                    break;
+                case R.id.bottom6 :
+                    break;
+                case R.id.etc1:
+                    break;
+                case R.id.etc2:
+                    break;
+                case R.id.etc3:
+                    break;
+                case R.id.etc4:
+                    break;
+                case R.id.etc5:
+                    break;
+                case R.id.etc6:
+                    break;
+            }
+
         return 0;
     }
 
-    public void getRadioItem(){
-
-
-
-
-    }
 
 
 
@@ -234,6 +317,9 @@ public class FittingInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra("clothesUnit",resultUnit);
         intent.putExtra("clothesSize", resultSize);
+        intent.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
+
+        Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId()) + ", resultUnit : " + resultUnit + ", resultSize : " + resultSize);
         startActivity(intent);
         finish();
 
@@ -258,7 +344,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     private Uri getTempUri() {
         //정해둔 경로에 파일객체를 만든 다음에 그 객체의 경로를 action_pick에 MediaStore.EXTRA_OUTPUT에 같이 넘겨준다.
         mSavedFile = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE);
-        Log.d(TAG, "getTempUri() : "+ Uri.fromFile(mSavedFile).toString());
+        Log.d(TAG, "getTempUri() : " + Uri.fromFile(mSavedFile).toString());
         return Uri.fromFile(mSavedFile);
     }
 
@@ -292,4 +378,81 @@ public class FittingInfoActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
+    //현재 체크되어있는지
+    public int getCheckedRadioButtonId() {
+        if ( mBtnCurrentRadio != null ) {
+//            mBtnCurrentRadio.getText();
+            return mBtnCurrentRadio.getId();
+        }
+
+        return -1;
+    }
+
+
+//분리된 레이아웃들의 리스너를 주기위해서 하는건데...되려나
+    class MyOnClickListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            final RadioButton mBtnRadio = (RadioButton) v;
+
+            // select only one radio button at any given time
+            if (mBtnCurrentRadio != null) {
+                mBtnCurrentRadio.setChecked(false);
+            }
+            mBtnRadio.setChecked(true);
+            mBtnCurrentRadio = mBtnRadio;
+
+
+           /* switch (v.getId()){
+                case R.id.top1 :
+                case R.id.top2 :
+                case R.id.top3 :
+                case R.id.top4 :
+                case R.id.top5 :
+                case R.id.top6 :
+                case R.id.top7 :
+                case R.id.top8 :
+                case R.id.top9 :
+                    if(tableLayoutBottom.getLayoutState())
+                        tableLayoutBottom.clearRadioButton();
+                    if (tableLayoutEtc.getLayoutState())
+                        tableLayoutEtc.clearRadioButton();
+//                    tableLayoutBottom.clearRadioButton();
+//                    tableLayoutEtc.clearRadioButton();
+                    break;
+                case R.id.bottom1 :
+                case R.id.bottom2 :
+                case R.id.bottom3 :
+                case R.id.bottom4 :
+                case R.id.bottom5 :
+                case R.id.bottom6 :
+                    if(tableLayoutTop.getLayoutState())
+                        tableLayoutTop.clearRadioButton();
+                    if (tableLayoutEtc.getLayoutState())
+                        tableLayoutEtc.clearRadioButton();
+
+//                    tableLayoutTop.clearRadioButton();
+//                    tableLayoutEtc.clearRadioButton();
+                    break;
+                case R.id.etc1:
+                case R.id.etc2:
+                case R.id.etc3:
+                case R.id.etc4:
+                case R.id.etc5:
+                case R.id.etc6:
+                    if(tableLayoutTop.getLayoutState())
+                        tableLayoutTop.clearRadioButton();
+                    if (tableLayoutBottom.getLayoutState())
+                        tableLayoutBottom.clearRadioButton();
+//                    tableLayoutTop.clearRadioButton();
+//                    tableLayoutBottom.clearRadioButton();
+                    break;
+            }*/
+        }
+    }
+
 }

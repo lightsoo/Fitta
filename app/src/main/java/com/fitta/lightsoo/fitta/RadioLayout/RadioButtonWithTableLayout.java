@@ -53,25 +53,35 @@ public class RadioButtonWithTableLayout extends TableLayout implements View.OnCl
         }
     }
 
+    //체크되어 있으면 true리턴
+    public boolean getLayoutState(){
+        if (mBtnCurrentRadio == null) {
+            return false;
+        }else{
+            if(mBtnCurrentRadio.isChecked()){
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+    }
+
+
+    //현재 클릭된거 false로
     public void clearRadioButton(){
-        mBtnCurrentRadio.setChecked(false);
+        if(mBtnCurrentRadio != null) {
+            mBtnCurrentRadio.setChecked(false);
+        }
     }
     //현재 체크되어있는지
     public int getCheckedRadioButtonId() {
         if ( mBtnCurrentRadio != null ) {
-            mBtnCurrentRadio.getText();
+//            mBtnCurrentRadio.getText();
             return mBtnCurrentRadio.getId();
         }
 
         return -1;
-    }
-
-    public CharSequence getChedRdioButtonText(){
-        if ( mBtnCurrentRadio != null ) {
-            return mBtnCurrentRadio.getText();
-        }
-
-        return null;
     }
 
 }
