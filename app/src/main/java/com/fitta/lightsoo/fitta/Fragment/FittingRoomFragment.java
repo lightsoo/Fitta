@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,16 +29,66 @@ public class FittingRoomFragment extends Fragment {
     View view;
     private ClothesAdapter topAdapter, bottomAdapter,etcAdapter;
 
+    private Button btn_fitting_control;
+
+    LinearLayout layoutControll;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fittingroom, container, false);
-        init();
+        init(view);
+
+        //바깥 영역 클릭시!
+        layoutControll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutControll.setVisibility(View.GONE);
+
+            }
+        });
+
+        //조작 버튼 눌렸을때
+        btn_fitting_control.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (layoutControll.getVisibility() == View.VISIBLE) {
+                    layoutControll.setVisibility(View.GONE);
+
+//                    Glide.with(getContext())
+//                            .load(R.drawable.btn_fitting_control_on)
+//                            .asBitmap().into(new SimpleTarget<Bitmap>() {
+//                        @Override
+//                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                            Drawable drawable = new BitmapDrawable(resource);
+//                            btn_fitting_control.setBackground(drawable);
+//                        }
+//                    });
+
+//                    btn_fitting_control.setBackground(getResources().getDrawable(R.drawable.btn_fitting_control_on));
+                } else {
+                    layoutControll.setVisibility(View.VISIBLE);
+
+//                    Glide.with(getContext())
+//                            .load(R.drawable.btn_fitting_control_off)
+//                            .asBitmap().into(new SimpleTarget<Bitmap>() {
+//                        @Override
+//                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                            Drawable drawable = new BitmapDrawable(resource);
+//                            btn_fitting_control.setBackground(drawable);
+//                        }
+//                    });
+
+//                    btn_fitting_control.setBackground(getResources().getDrawable(R.drawable.btn_fitting_control_off));
+                }
+
+            }
+        });
 //        getClothes();
         return view;
     }
 
 
-    public void init(){
+    public void init(View view){
+
         /*lv_top = (ListView) view.findViewById(R.id.lv_top);
         lv_bottom = (ListView) view.findViewById(R.id.lv_bottom);
         lv_etc = (ListView) view.findViewById(R.id.lv_etc);
@@ -45,6 +97,9 @@ public class FittingRoomFragment extends Fragment {
         etcAdapter = new ClothesAdapter();*/
 
 
+
+        btn_fitting_control = (Button)view.findViewById(R.id.btn_fitting_control);
+        layoutControll = (LinearLayout)view.findViewById(R.id.layout_controll);
 
 
     }
@@ -74,6 +129,7 @@ public class FittingRoomFragment extends Fragment {
                     topAdapter.add(temp);
 //                    topAdapter.add(response.body().clotheTop.get(i));
                 }*/
+
 //                Log.d("please", "response = " +response.body().clotheTop);
 //                Log.d("please", "response = " +response.body().clotheBottom);
 //                Log.d("please", "response = " +response.body().clotheEtc);
@@ -81,7 +137,7 @@ public class FittingRoomFragment extends Fragment {
                 topAdapter.addAll(clotheTop);
                 bottomAdapter.addAll(clotheBottom);
                 etcAdapter.addAll(clotheEtc);
-
+                //리스트뷰 1개만 써서  '상의', '하의', '원피스', '즐겨찾기' 클릭시 어댑터랑 set해주는걸로 하자
                 lv_top.setAdapter(topAdapter);
                 lv_bottom.setAdapter(bottomAdapter);
                 lv_etc.setAdapter(etcAdapter);

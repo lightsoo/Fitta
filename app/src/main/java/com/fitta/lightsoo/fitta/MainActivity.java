@@ -3,6 +3,7 @@ package com.fitta.lightsoo.fitta;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -14,6 +15,7 @@ import com.fitta.lightsoo.fitta.Handler.BackPressCloseHandler;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     private FragmentTabHost tabHost;
     //드로우 메뉴를 하기위한 clicked리스너였는데 일단은 제외한다.
 //    private TabWidget tabWidget;
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //false해서 기존 title을 없애
         getSupportActionBar().setDisplayShowTitleEnabled(false);*/
+
+        Log.d(TAG, "메인액티비티 호출!!");
+
         init();
     }
 

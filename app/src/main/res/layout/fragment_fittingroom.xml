@@ -1,44 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="horizontal"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <RelativeLayout
-            android:layout_weight="33"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/lv_top"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-        </RelativeLayout>
+    <Button
+        android:layout_width="160.67dp"
+        android:layout_height="47.33dp"
+        android:text="다시 피팅하기"
+        android:id="@+id/btn_refresh"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="14.67dp"
+        android:layout_marginStart="14.67dp"
+        android:layout_marginBottom="55.33dp" />
 
-        <RelativeLayout
-            android:layout_weight="33"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/lv_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-        </RelativeLayout>
+    <Button
+        android:layout_width="160.67dp"
+        android:layout_height="47.33dp"
+        android:text="즐겨찾기에 저장"
+        android:id="@+id/button"
+        android:layout_alignTop="@+id/btn_refresh"
+        android:layout_toRightOf="@+id/btn_refresh"
+        android:layout_toEndOf="@+id/btn_refresh"
+        android:layout_marginLeft="9.33dp" />
 
-        <RelativeLayout
-            android:layout_weight="33"
+    <RelativeLayout
+
+        android:background="@drawable/shape_layout_border"
+        android:layout_width="332.33dp"
+        android:layout_height="378.3dp"
+        android:layout_above="@+id/btn_refresh"
+        android:layout_alignLeft="@+id/btn_refresh"
+        android:layout_alignStart="@+id/btn_refresh"
+        android:layout_marginBottom="12.67dp">
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/lv_etc"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-        </RelativeLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            android:src="@mipmap/ic_launcher" />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_fitting_control"
+        android:layout_width="71dp"
+        android:layout_height="71dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_fittingroom_control_button" />
+
+    <LinearLayout
+        android:id="@+id/layout_controll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80696969"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingBottom="100dp"
+        android:paddingRight="18dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btn_top"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_gravity="right"
+            android:background="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/btn_bottom"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="17dp"
+            android:background="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/btn_etc"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="17dp"
+            android:background="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/btn_like"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="17dp"
+            android:background="@mipmap/ic_launcher" />
+
     </LinearLayout>
+
+
+</RelativeLayout>
 

@@ -142,23 +142,12 @@ public class FittingInfoActivity extends AppCompatActivity {
         btn_fitting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                tableLayoutTop.clearRadioButton();
-//                Toast.makeText(FittingInfoActivity.this, tableLayoutTop.getChedRdioButtonText(), Toast.LENGTH_SHORT).show();
-//                Log.d(TAG, tableLayoutTop.getChedRdioButtonText().toString());
-//                  if(tableLayoutTop.mB){
-//                  }
 
                 Log.d(TAG, String.valueOf(getCheckedRadioButtonId()));
                 //일단 테스트용이야 전송은 ,btn_post에서 할꺼야~!!!!!!
                 onUseCameraClick();
 
 
-//                getChedRdioButtonText
-//                Log.d(TAG, String.valueOf(tableLayoutTop.getLayoutState()));
-//                Log.d(TAG, String.valueOf(tableLayoutBottom.getCheckedRadioButtonId()));
-//                Log.d(TAG, String.valueOf(tableLayoutEtc.getCheckedRadioButtonId()));
-//                int cntCaptureImage = 0;
-//                switch ()
             }
         });
 
@@ -168,8 +157,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         tableLayoutTop = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutTop);
         tableLayoutBottom = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutBottom);
         tableLayoutEtc = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutEtc);
-
-//        tableLayoutTop.getLayoutState();
 
 
         //버튼 리스너 처리!!!
@@ -277,12 +264,8 @@ public class FittingInfoActivity extends AppCompatActivity {
                 case R.id.etc6:
                     break;
             }
-
         return 0;
     }
-
-
-
 
     //입력체크
     public boolean preInspection(){
@@ -296,8 +279,6 @@ public class FittingInfoActivity extends AppCompatActivity {
     }
 
 
-
-
     public void setSpinnerData(View v, int position){
         resultUnit = (String)spinner1.getAdapter().getItem(spinner1.getSelectedItemPosition());
         resultSize = (String)spinner2.getAdapter().getItem(spinner2.getSelectedItemPosition());
@@ -308,8 +289,6 @@ public class FittingInfoActivity extends AppCompatActivity {
 //            resultSize="";
 //        }
         Log.d(TAG, "resultUnit : " +resultUnit + ", resultSize : " +resultSize);
-
-
     }
 
     //카메라 액티비티 실행
