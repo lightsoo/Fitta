@@ -25,8 +25,8 @@ import static com.fitta.lightsoo.fitta.Util.MediaHelper.saveToFile;
 
 public class CameraActivity extends Activity implements CameraPreview.OnCameraStatusListener {
 
+    private static final int TEST = 10;
     private static final String TAG = "CameraActivity";
-//    public static final String EXTRA_IMAGE_PATH = "com.fitta.lightsoo.MyCustomCamera.Camera.CameraActivity.EXTRA_IMAGE_PATH";
     private CameraPreview cameraPreview;
     private ImageView Clothes, capturedImage;
     private File mSaveFile;
@@ -43,9 +43,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "===onCreate()===");
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_camera);
 
         Intent intent = new Intent(getIntent());
@@ -203,9 +200,10 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                     Intent intent = new Intent(CameraActivity.this, FittingResultActivity.class);
                     intent.putExtra("clothesUrl", imgPath);
                     intent.putExtra("clothesSize", clothesSize);
-                    intent.putExtra("clothesUnit",clothesUnit);
+                    intent.putExtra("clothesUnit", clothesUnit);
                     Log.d("data ", "filePath : " + imgPath + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
-                    startActivity(intent);
+                    startActivityForResult(intent , TEST);
+//                    startActivity(intent);
                 } else if (resultCode == RESULT_CANCELED) {
                     Log.i(TAG,"User didn't take an image");
                 }

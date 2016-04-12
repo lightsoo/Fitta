@@ -309,6 +309,7 @@ public class FittingInfoActivity extends AppCompatActivity {
 //        startActivity(intent);
     }
 
+    //갤러리 인텐트 시작하고 종료시 REQUEST_GALLERY를 리턴
     private void getGalleryImage(){
         Intent photoPickerIntent = new Intent(
                 Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -327,6 +328,7 @@ public class FittingInfoActivity extends AppCompatActivity {
         return Uri.fromFile(mSavedFile);
     }
 
+    //
    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

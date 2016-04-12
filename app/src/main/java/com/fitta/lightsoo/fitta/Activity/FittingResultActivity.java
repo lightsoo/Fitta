@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.fitta.lightsoo.fitta.MainActivity;
 import com.fitta.lightsoo.fitta.R;
 
 public class FittingResultActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class FittingResultActivity extends AppCompatActivity {
     private Button btn_refitting, btn_fittingroom;
 
 
+    private static final int TEST = 10;
     private static final String TAG = "FittingResultActivity";
 
     @Override
@@ -55,11 +57,19 @@ public class FittingResultActivity extends AppCompatActivity {
         btn_fittingroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                setResult(10);
+//                MainActivity.getInstance().switchTab(1);
+//                MainActivity.getCurrentTabHost().setCurrentTab(1);
+//                MainActivity.getInstance().switchTab(1);
+//                MainActivity.getInstance().setFragment2();
+
+                //이건 아닌듯하다...
+                Intent intent = new Intent(FittingResultActivity.this, MainActivity.class);
+                startActivityForResult(intent, TEST);
                 //프레그먼트 이동!
                 finish();
             }
         });
-
 
         /*layoutPlace = (LinearLayout)findViewById(R.id.login_background);
         Glide.with(getApplicationContext())
@@ -71,11 +81,6 @@ public class FittingResultActivity extends AppCompatActivity {
                 layoutPlace.setBackground(drawable);
             }
         });*/
-
-
-
-
-
     }
 
     public void init(){
@@ -90,9 +95,7 @@ public class FittingResultActivity extends AppCompatActivity {
 
         btn_refitting = (Button)findViewById(R.id.btn_refitting);
         btn_fittingroom = (Button)findViewById(R.id.btn_fittingroom);
-
     }
-
 
     public void setClothes(String clothesUrl){
         Glide.with(getApplicationContext())
@@ -103,4 +106,15 @@ public class FittingResultActivity extends AppCompatActivity {
                 .into(clothes);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "===onActivityResult()===");
+        switch (requestCode){
+            case TEST :
+                Log.d(TAG, "===TEST===");
+                break;
+        }
+
+    }
 }

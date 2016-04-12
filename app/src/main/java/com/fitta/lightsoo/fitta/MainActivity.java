@@ -1,6 +1,9 @@
 package com.fitta.lightsoo.fitta;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,9 +19,15 @@ import com.fitta.lightsoo.fitta.Handler.BackPressCloseHandler;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private FragmentTabHost tabHost;
+    private static FragmentTabHost tabHost;
     //드로우 메뉴를 하기위한 clicked리스너였는데 일단은 제외한다.
 //    private TabWidget tabWidget;
+
+    //싱글톤 패턴, 프로그램 종료시점까지 하나의 인스턴스만을 생성해서 관리한다.
+    public static class InstanceHolder{
+        public static final MainActivity INSTANCE = new MainActivity();
+    }
+    public static MainActivity getInstance(){return InstanceHolder.INSTANCE;}
 
 
     private BackPressCloseHandler backPressCloseHandler;
@@ -35,15 +44,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);*/
 
         Log.d(TAG, "메인액티비티 호출!!");
-
         init();
     }
 
     public void init(){
         tabHost = (FragmentTabHost)findViewById(R.id.tabhost);
         tabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
-//        tabWidget = (TabWidget)tabHost.getTabWidget();
-
 
         View home = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_home_btn, null);
         tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator(home), FittingFragment.class, null);
@@ -68,6 +74,34 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
 
+    public static FragmentTabHost getCurrentTabHost(){
+        return tabHost;
+    }
+    public void switchTab(int tab){
+        tabHost.getTabWidget().setCurrentTab(tab);
+    }
+
+    public void setFragment2(){
+
+        Fragment fittingRoomFragment = new FittingRoomFragment();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(android.R.id.tabcontent, fittingRoomFragment).commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult()");
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode){
+            case 10 :tabHost.setCurrentTab(1);
+                break;
+
+
+        }
+
+
+    }
 
     @Override
     public void onBackPressed() {backPressCloseHandler.onBackPressed();  }
