@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,6 +31,14 @@ public class FittingInfoActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA = 100;
     private static final int REQUEST_GALLERY = 101;
 
+
+    private static final int FITTING_RESULT = 10;
+    private static final int TEST = 10;
+
+
+    private RelativeLayout relativeLayout2, relativeLayoutGone;
+    private Button btn_Layout2, btn_Gone;
+
     private String resultSize = "", resultUnit = ""; //사이즈, 단위
     private Spinner spinner1, spinner2;          //사이즈, 단위 스피너
     private String[] spinner1Item, spinner2Item;
@@ -45,10 +54,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     RadioButton radioTop[] = new RadioButton[9];
     RadioButton radioBottom[] = new RadioButton[6];
     RadioButton radioEtc[] = new RadioButton[6];
-
-
     private RadioButton mBtnCurrentRadio;
-
 
     private Button btn_fitting;
 
@@ -139,15 +145,32 @@ public class FittingInfoActivity extends AppCompatActivity {
             }
         });
 
-        btn_fitting.setOnClickListener(new View.OnClickListener() {
+//        btn_fitting.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Log.d(TAG, String.valueOf(getCheckedRadioButtonId()));
+//                //일단 테스트용이야 전송은 ,btn_post에서 할꺼야~!!!!!!
+//                onUseCameraClick();
+//
+//
+//            }
+//        });
+        //GoneLayout으로 화면 전환
+        btn_Layout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayout2.setVisibility(View.GONE);
+                relativeLayoutGone.setVisibility(View.VISIBLE);
+            }
+        });
+        //기존의 화면으로 전환
+        btn_Gone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Log.d(TAG, String.valueOf(getCheckedRadioButtonId()));
-                //일단 테스트용이야 전송은 ,btn_post에서 할꺼야~!!!!!!
-                onUseCameraClick();
-
-
+                relativeLayout2.setVisibility(View.VISIBLE);
+                relativeLayoutGone.setVisibility(View.GONE);
             }
         });
 
@@ -157,7 +180,11 @@ public class FittingInfoActivity extends AppCompatActivity {
         tableLayoutTop = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutTop);
         tableLayoutBottom = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutBottom);
         tableLayoutEtc = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutEtc);
-
+        relativeLayout2 = (RelativeLayout)findViewById(R.id.relativeLayout2);
+        relativeLayoutGone = (RelativeLayout)findViewById(R.id.relativeLayoutGone);
+        //각
+        btn_Layout2 = (Button)findViewById(R.id.btn_Layout2);
+        btn_Gone = (Button)findViewById(R.id.btn_gone);
 
         //버튼 리스너 처리!!!
         MyOnClickListener mcl = new MyOnClickListener();
@@ -179,9 +206,7 @@ public class FittingInfoActivity extends AppCompatActivity {
 //        tableLayoutBottom.setOnClickListener(mcl);
 //        tableLayoutEtc.setOnClickListener(mcl);
 
-        btn_fitting = (Button)findViewById(R.id.btn_fitting);
-
-
+//        btn_fitting = (Button)findViewById(R.id.btn_fitting);
 
 //        editSize = (EditText)findViewById(R.id.editSize);
         spinner1 = (Spinner)findViewById(R.id.spinner1);
@@ -291,22 +316,21 @@ public class FittingInfoActivity extends AppCompatActivity {
         Log.d(TAG, "resultUnit : " +resultUnit + ", resultSize : " +resultSize);
     }
 
+
+
     //카메라 액티비티 실행
     public void onUseCameraClick() {
         Intent intent = new Intent(this, CameraActivity.class);
-        intent.putExtra("clothesUnit",resultUnit);
+        intent.putExtra("clothesUnit", resultUnit);
         intent.putExtra("clothesSize", resultSize);
         intent.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
 
         Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId()) + ", resultUnit : " + resultUnit + ", resultSize : " + resultSize);
-        startActivity(intent);
-        finish();
-
-        //그냥 스타트인텐트할까나...
-//        Log.d(TAG , "clothesSize : " + resultSize1 + ", clothesUnit : " + resultSize2);
-//        intent.putExtra("clothesSize", resultSize1);
-//        intent.putExtra("clothesUnit",resultSize2);
 //        startActivity(intent);
+//        finish();
+
+        startActivityForResult(intent, FITTING_RESULT);
+//        finish();
     }
 
     //갤러리 인텐트 시작하고 종료시 REQUEST_GALLERY를 리턴
@@ -333,6 +357,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+       Log.d(TAG, "111requestCode : " + requestCode);
         //액티비티 결과가 이상는경우
         if(resultCode != RESULT_OK){return;}
        /**
@@ -341,13 +366,13 @@ public class FittingInfoActivity extends AppCompatActivity {
         * FittingResult액티비티로 화면이동을 해줘야 될것 같다
         * 공통으로는 파일의 경로를 putExtra()해서 FittingResultActivity를 호출하자!!!!
         */
+       if(requestCode == 13){
+           Log.d(TAG, "IF requestCode!! : " + requestCode);
+       }
+
+
         switch (requestCode){
-//            case REQUEST_CAMERA :
-//                break;
-            /**
-             * 갤러리 인텐트 호출해서 getGalleryImage()함수에서 갤러리 인텐트를 부른 다음
-             * 갤러리인텐트 종료 이후의 작업을 여기서 한다.
-             */
+
             case REQUEST_GALLERY :
                 String filePath = Environment.getExternalStorageDirectory() + "/" + TEMP_PHOTO_FILE;
                 Intent intent = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
@@ -357,10 +382,23 @@ public class FittingInfoActivity extends AppCompatActivity {
                 intent.putExtra("clothesUnit",resultUnit);
                 startActivity(intent);
                 break;
+
+
+            case FITTING_RESULT:
+                int ret = data.getIntExtra("retVal", 12345);
+//                String ret = data.getStringExtra("retVal");
+                Log.d(TAG, "return msg : "+  ret);
+                Intent retIntent = new Intent();
+                retIntent.putExtra("retVal", ret);
+                setResult(RESULT_OK, retIntent);
+                finish();
+
         }
     }
 
-
+//    private void setRelativeLayoutGone(){
+//        if()
+//    }
 
     //현재 체크되어있는지
     public int getCheckedRadioButtonId() {

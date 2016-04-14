@@ -9,8 +9,9 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
+        android:layout_above="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -295,19 +296,20 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="visible"
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/relativeLayout1"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true" >
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="피팅하기"
-            android:id="@+id/btn_fitting"
-            android:layout_alignParentBottom="true"
+            android:text="화면전환"
+            android:id="@+id/btn_Layout2"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
@@ -317,11 +319,11 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="사이즈 입력하기"
             android:id="@+id/textView26"
-            android:layout_centerVertical="true"
+            android:layout_marginLeft="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="60dp"
-            android:layout_marginStart="60dp" />
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
 
@@ -329,7 +331,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayoutGone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:visibility="gone">
@@ -341,15 +343,17 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="피팅할 의상의 사이즈를 입력해주세요"
             android:id="@+id/textView25"
-            android:layout_centerVertical="true" />
+            android:layout_alignBottom="@+id/btn_gone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="211dp"
             android:layout_height="45dp"
             android:text=" 입력완료 "
             android:id="@+id/btn_post"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="56dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
         <Spinner
             android:id="@+id/spinner1"
@@ -367,7 +371,16 @@
             android:layout_height="wrap_content"
             android:prompt="@string/spinnerClothes"
             android:layout_alignTop="@+id/spinner1"
-            android:layout_alignRight="@+id/textView25"
-            android:layout_alignEnd="@+id/textView25" />
+            android:layout_alignRight="@+id/btn_post"
+            android:layout_alignEnd="@+id/btn_post" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="^"
+            android:id="@+id/btn_gone"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 </RelativeLayout>

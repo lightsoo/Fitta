@@ -10,7 +10,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.fitta.lightsoo.fitta.MainActivity;
 import com.fitta.lightsoo.fitta.R;
 
 public class FittingResultActivity extends AppCompatActivity {
@@ -49,6 +48,11 @@ public class FittingResultActivity extends AppCompatActivity {
         btn_refitting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent retIntent = new Intent();
+//                retIntent.putExtra("retVal", "555");
+                retIntent.putExtra("retVal", 1);
+                setResult(RESULT_OK, retIntent);
                 finish();
             }
         });
@@ -57,6 +61,12 @@ public class FittingResultActivity extends AppCompatActivity {
         btn_fittingroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent retIntent = new Intent();
+//                retIntent.putExtra("retVal", "555");
+                retIntent.putExtra("retVal", 2);
+                setResult(RESULT_OK, retIntent);
+                finish();
 //                setResult(10);
 //                MainActivity.getInstance().switchTab(1);
 //                MainActivity.getCurrentTabHost().setCurrentTab(1);
@@ -64,10 +74,9 @@ public class FittingResultActivity extends AppCompatActivity {
 //                MainActivity.getInstance().setFragment2();
 
                 //이건 아닌듯하다...
-                Intent intent = new Intent(FittingResultActivity.this, MainActivity.class);
-                startActivityForResult(intent, TEST);
+//                Intent intent = new Intent(FittingResultActivity.this, MainActivity.class);
+//                startActivityForResult(intent, TEST);
                 //프레그먼트 이동!
-                finish();
             }
         });
 
@@ -106,15 +115,5 @@ public class FittingResultActivity extends AppCompatActivity {
                 .into(clothes);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "===onActivityResult()===");
-        switch (requestCode){
-            case TEST :
-                Log.d(TAG, "===TEST===");
-                break;
-        }
 
-    }
 }

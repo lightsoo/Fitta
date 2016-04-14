@@ -35,6 +35,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
 
     private static final int REQUEST_CROP = 2;
 
+    private static final int FITTING_RESULT = 10;
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
     private int clothesImage = 0;//이미지 아이디값인가 R.drawable.top1 ...
@@ -67,7 +68,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
 
         Clothes = (ImageView)findViewById(R.id.clothes);
 
-
         Glide.with(getApplicationContext())
                 .load(clothesImage)
                 .crossFade()
@@ -84,10 +84,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(Clothes);*/
-
-
-
-
     }
 
     //촬영이후 결과화면에서 결과화면에서 재촬영 버튼 클릭스
@@ -182,6 +178,9 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
+
+
         //액티비티 결과가 이상는경우
         if(resultCode != RESULT_OK){return;}
 
@@ -202,13 +201,29 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                     intent.putExtra("clothesSize", clothesSize);
                     intent.putExtra("clothesUnit", clothesUnit);
                     Log.d("data ", "filePath : " + imgPath + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
-                    startActivityForResult(intent , TEST);
+                    startActivityForResult(intent , FITTING_RESULT);
 //                    startActivity(intent);
                 } else if (resultCode == RESULT_CANCELED) {
                     Log.i(TAG,"User didn't take an image");
                 }
+//                finish();
+                break;
+
+            case FITTING_RESULT:
+//                String ret = data.getStringExtra("retVal");
+                int ret = data.getIntExtra("retVal", 12345);
+                Log.d(TAG, "return msg : "+  ret);
+                Intent retIntent = new Intent();
+                retIntent.putExtra("retVal", ret);
+                setResult(RESULT_OK, retIntent);
                 finish();
                 break;
         }
+
+
+
+
+
+
     }
 }

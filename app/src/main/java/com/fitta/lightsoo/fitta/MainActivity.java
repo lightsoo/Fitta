@@ -2,8 +2,6 @@ package com.fitta.lightsoo.fitta;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -22,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private static FragmentTabHost tabHost;
     //드로우 메뉴를 하기위한 clicked리스너였는데 일단은 제외한다.
 //    private TabWidget tabWidget;
+
+    private static final int TEST= 10;
 
     //싱글톤 패턴, 프로그램 종료시점까지 하나의 인스턴스만을 생성해서 관리한다.
     public static class InstanceHolder{
@@ -78,29 +78,29 @@ public class MainActivity extends AppCompatActivity {
         return tabHost;
     }
     public void switchTab(int tab){
-        tabHost.getTabWidget().setCurrentTab(tab);
+        tabHost.setCurrentTab(tab);
     }
 
-    public void setFragment2(){
-
-        Fragment fittingRoomFragment = new FittingRoomFragment();
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(android.R.id.tabcontent, fittingRoomFragment).commit();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "onActivityResult()");
         super.onActivityResult(requestCode, resultCode, data);
-        switch (resultCode){
-            case 10 :tabHost.setCurrentTab(1);
-                break;
 
-
-        }
-
-
+//        Log.d(TAG, "====onActivityResult()====");
+//        //이게 되면 갤러리 시작할때는 그냥 startActivity()로하자...
+////        tabHost.setCurrentTab(1);
+//        Log.d(TAG, "requestCode : "+ requestCode);
+//
+//        switch (requestCode){
+////            case RESULT_OK :
+////                Log.d(TAG, "tabHost.setCurrentTab(1)");
+////                tabHost.setCurrentTab(1);
+////                break;
+//            case TEST :
+//                Log.d(TAG, "tabHost.setCurrentTab(1)");
+//                tabHost.setCurrentTab(1);
+//                break;
+//        }
     }
 
     @Override
