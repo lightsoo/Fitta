@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     private static final int FITTING_RESULT = 10;
     private static final int TEST = 10;
 
-
+    private ScrollView scrollView;
     private RelativeLayout relativeLayout2, relativeLayoutGone;
     private Button btn_Layout2, btn_Gone;
 
@@ -85,6 +86,9 @@ public class FittingInfoActivity extends AppCompatActivity {
         });
 
         init();
+        //
+        relativeLayout2.setVisibility(View.VISIBLE);
+        relativeLayoutGone.setVisibility(View.GONE);
 
         Intent intent = new Intent(getIntent());
         flag = intent.getExtras().getInt("flag");
@@ -168,6 +172,8 @@ public class FittingInfoActivity extends AppCompatActivity {
         btn_Gone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 relativeLayout2.setVisibility(View.VISIBLE);
                 relativeLayoutGone.setVisibility(View.GONE);
             }
@@ -181,6 +187,8 @@ public class FittingInfoActivity extends AppCompatActivity {
         tableLayoutEtc = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutEtc);
         relativeLayout2 = (RelativeLayout)findViewById(R.id.relativeLayout2);
         relativeLayoutGone = (RelativeLayout)findViewById(R.id.relativeLayoutGone);
+        scrollView = (ScrollView)findViewById(R.id.scrollView);
+
         //각
         btn_Layout2 = (Button)findViewById(R.id.btn_Layout2);
         btn_Gone = (Button)findViewById(R.id.btn_gone);

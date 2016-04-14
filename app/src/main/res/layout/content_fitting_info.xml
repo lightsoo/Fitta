@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context="com.fitta.lightsoo.fitta.Activity.FittingInfoActivity"
     tools:showIn="@layout/activity_fitting_info">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_above="@+id/relativeLayout2"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_above="@+id/relativeLayoutGone"
+        android:visibility="visible">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,7 +41,6 @@
             android:layout_marginTop="100dp"
             android:layout_marginLeft="38dp"
             android:layout_marginStart="38dp"/>
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,23 +68,23 @@
 
                     <RadioButton
                         android:layout_weight="1"
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의1"
                         android:id="@+id/top1"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의2"
                         android:id="@+id/top2"
                         android:layout_weight="1"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의3"
                         android:id="@+id/top3"
                         android:layout_weight="1"
@@ -94,23 +95,23 @@
 
                     <RadioButton
                         android:layout_weight="1"
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의4"
                         android:id="@+id/top4"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의5"
                         android:id="@+id/top5"
                         android:layout_weight="1"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의6"
                         android:id="@+id/top6"
                         android:layout_weight="1"
@@ -121,29 +122,30 @@
 
                     <RadioButton
                         android:layout_weight="1"
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의7"
                         android:id="@+id/top7"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의8"
                         android:id="@+id/top8"
                         android:layout_weight="1"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="60.33dp"
-                        android:layout_height="60.33dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="상의9"
                         android:id="@+id/top9"
                         android:layout_weight="1"
                         android:checked="false" />
             </TableRow>
         </com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout>
+
         <com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout
             android:layout_width="180.33dp"
             android:layout_height="120.66dp"
@@ -160,23 +162,23 @@
 
                 <RadioButton
                     android:layout_weight="1"
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="하의1"
                     android:id="@+id/bottom1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="하의2"
                     android:id="@+id/bottom2"
                     android:layout_weight="1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="하의3"
                     android:id="@+id/bottom3"
                     android:layout_weight="1"
@@ -230,23 +232,23 @@
 
                 <RadioButton
                     android:layout_weight="1"
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="기타2"
                     android:id="@+id/etc1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="기타2"
                     android:id="@+id/etc2"
                     android:layout_weight="1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="기타3"
                     android:id="@+id/etc3"
                     android:layout_weight="1"
@@ -260,23 +262,23 @@
 
                 <RadioButton
                     android:layout_weight="1"
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="기타4"
                     android:id="@+id/etc4"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="기타5"
                     android:id="@+id/etc5"
                     android:layout_weight="1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="기타6"
                     android:id="@+id/etc6"
                     android:layout_weight="1"
@@ -295,60 +297,56 @@
             android:layout_alignStart="@+id/tv_bottom"
             android:layout_marginTop="110.67dp" />
 
-
     </RelativeLayout>
+    </ScrollView>
 
 
     <RelativeLayout
-        android:visibility="visible"
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:background="@drawable/shape_layout_border"
-        android:layout_height="37dp"
+    android:visibility="visible"
+    android:id="@+id/relativeLayout2"
+    android:layout_width="match_parent"
+    android:background="@drawable/shape_layout_border"
+    android:layout_height="37dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" >
+        android:layout_alignParentStart="true">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="화면전환"
-            android:id="@+id/btn_Layout2"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+    <Button
+        android:layout_width="64.67dp"
+        android:layout_height="37dp"
+        android:text="화면전환"
+        android:id="@+id/btn_Layout2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="사이즈 입력하기"
-            android:id="@+id/textView26"
-            android:layout_marginLeft="69dp"
-            android:layout_marginStart="69dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50px"
+                android:text="사이즈 입력하기"
+                android:id="@+id/textView26"
+                android:layout_marginLeft="69dp"
+                android:layout_marginStart="69dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relativeLayoutGone"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="187dp"
+        android:visibility="gone"
+        android:background="@drawable/shape_layout_border"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="피팅할 의상의 사이즈를 입력해주세요"
-            android:id="@+id/textView25"
-            android:layout_alignBottom="@+id/btn_gone"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <Button
             android:layout_width="211dp"
@@ -363,10 +361,9 @@
             android:layout_width="131dp"
             android:layout_height="wrap_content"
             android:prompt="@string/spinnerClothes"
-            android:layout_below="@+id/textView25"
-            android:layout_alignLeft="@+id/textView25"
-            android:layout_alignStart="@+id/textView25"
-            android:layout_marginTop="7dp" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Spinner
             android:id="@+id/spinner2"
@@ -378,13 +375,32 @@
             android:layout_alignEnd="@+id/btn_post" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64.67dp"
+            android:layout_height="37dp"
             android:text="^"
             android:id="@+id/btn_gone"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/spinner2"
+            android:layout_alignEnd="@+id/spinner2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50px"
+                android:text="사이즈 입력하기"
+                android:id="@+id/textView25"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
     </RelativeLayout>
+
+
 
 </RelativeLayout>
