@@ -1,6 +1,5 @@
 package com.fitta.lightsoo.fitta;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         public static final MainActivity INSTANCE = new MainActivity();
     }
     public static MainActivity getInstance(){return InstanceHolder.INSTANCE;}
-
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -63,15 +61,6 @@ public class MainActivity extends AppCompatActivity {
         View write = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_write_btn, null);
         tabHost.addTab(tabHost.newTabSpec("tab4").setIndicator(write), SettingFragment.class, null);
         tabHost.setCurrentTab(0);
-
-        //클릭리스너야
-       /* View tabwidgetgetview = (View)tabWidget.getChildTabViewAt(0);
-        tabwidgetgetview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "cliked", Toast.LENGTH_SHORT).show();
-            }
-        });*/
     }
 
     public static FragmentTabHost getCurrentTabHost(){
@@ -82,26 +71,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-//        Log.d(TAG, "====onActivityResult()====");
-//        //이게 되면 갤러리 시작할때는 그냥 startActivity()로하자...
-////        tabHost.setCurrentTab(1);
-//        Log.d(TAG, "requestCode : "+ requestCode);
-//
-//        switch (requestCode){
-////            case RESULT_OK :
-////                Log.d(TAG, "tabHost.setCurrentTab(1)");
-////                tabHost.setCurrentTab(1);
-////                break;
-//            case TEST :
-//                Log.d(TAG, "tabHost.setCurrentTab(1)");
-//                tabHost.setCurrentTab(1);
-//                break;
-//        }
-    }
 
     @Override
     public void onBackPressed() {backPressCloseHandler.onBackPressed();  }

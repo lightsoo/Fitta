@@ -17,6 +17,7 @@ public class FittingFragment extends Fragment {
 
 
     private static final String TAG = "FittingFragment";
+    private static final int RESULT_OK = -1;
 
     private View view ;
     private ImageButton btn_camera, btn_gallery;
@@ -65,7 +66,8 @@ public class FittingFragment extends Fragment {
 
         Log.d(TAG, "===onActivityResult()===");
 //        Log.d(TAG, "REQUSESTCODE : " + requestCode);
-
+        //액티비티 결과가 이상는경우, 이거 필수!!!!!
+        if(resultCode != RESULT_OK){return;}
 //        String ret = data.getStringExtra("retVal");
         int ret = data.getIntExtra("retVal", 12345);
         Log.d(TAG, "return msg : "+  ret);

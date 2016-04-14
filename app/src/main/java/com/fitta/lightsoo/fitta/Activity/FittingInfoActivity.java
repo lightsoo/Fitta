@@ -168,7 +168,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         btn_Gone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 relativeLayout2.setVisibility(View.VISIBLE);
                 relativeLayoutGone.setVisibility(View.GONE);
             }
@@ -303,7 +302,6 @@ public class FittingInfoActivity extends AppCompatActivity {
 //        }
     }
 
-
     public void setSpinnerData(View v, int position){
         resultUnit = (String)spinner1.getAdapter().getItem(spinner1.getSelectedItemPosition());
         resultSize = (String)spinner2.getAdapter().getItem(spinner2.getSelectedItemPosition());
@@ -397,7 +395,6 @@ public class FittingInfoActivity extends AppCompatActivity {
 //            mBtnCurrentRadio.getText();
             return mBtnCurrentRadio.getId();
         }
-
         return -1;
     }
 
