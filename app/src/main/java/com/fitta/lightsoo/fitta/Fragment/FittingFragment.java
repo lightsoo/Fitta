@@ -62,7 +62,6 @@ public class FittingFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         Log.d(TAG, "===onActivityResult()===");
 //        Log.d(TAG, "REQUSESTCODE : " + requestCode);
 
