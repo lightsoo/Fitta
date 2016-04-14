@@ -316,8 +316,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         Log.d(TAG, "resultUnit : " +resultUnit + ", resultSize : " +resultSize);
     }
 
-
-
     //카메라 액티비티 실행
     public void onUseCameraClick() {
         Intent intent = new Intent(this, CameraActivity.class);
@@ -357,7 +355,6 @@ public class FittingInfoActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-       Log.d(TAG, "111requestCode : " + requestCode);
         //액티비티 결과가 이상는경우
         if(resultCode != RESULT_OK){return;}
        /**
@@ -366,10 +363,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         * FittingResult액티비티로 화면이동을 해줘야 될것 같다
         * 공통으로는 파일의 경로를 putExtra()해서 FittingResultActivity를 호출하자!!!!
         */
-       if(requestCode == 13){
-           Log.d(TAG, "IF requestCode!! : " + requestCode);
-       }
-
 
         switch (requestCode){
 
@@ -380,10 +373,9 @@ public class FittingInfoActivity extends AppCompatActivity {
                 Log.d(TAG, "filePath : " + filePath + ", clothesSize : " + resultSize + ", clothesUnit : " + resultUnit);
                 intent.putExtra("clothesSize", resultSize);
                 intent.putExtra("clothesUnit",resultUnit);
-                startActivity(intent);
+                startActivityForResult(intent, FITTING_RESULT);
+//                startActivity(intent);
                 break;
-
-
             case FITTING_RESULT:
                 int ret = data.getIntExtra("retVal", 12345);
 //                String ret = data.getStringExtra("retVal");
@@ -392,7 +384,6 @@ public class FittingInfoActivity extends AppCompatActivity {
                 retIntent.putExtra("retVal", ret);
                 setResult(RESULT_OK, retIntent);
                 finish();
-
         }
     }
 

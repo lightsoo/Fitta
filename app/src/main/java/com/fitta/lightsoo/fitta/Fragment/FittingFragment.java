@@ -46,7 +46,8 @@ public class FittingFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FittingInfoActivity.class);
                 intent.putExtra("flag", REQUEST_GALLERY);
-                startActivity(intent);
+                startActivityForResult(intent, FITTING_RESULT);
+//                startActivity(intent);
             }
         });
         return view;
