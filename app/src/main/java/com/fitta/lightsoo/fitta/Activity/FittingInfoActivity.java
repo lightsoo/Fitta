@@ -258,37 +258,37 @@ public class FittingInfoActivity extends AppCompatActivity {
                     return R.drawable.top2;
 //                    break;
                 case R.id.top3 :
-                    break;
+                    return R.drawable.top3;
                 case R.id.top4 :
-                    break;
+                    return R.drawable.top4;
                 case R.id.top5 :
-                    break;
+                    return R.drawable.top5;
                 case R.id.top6 :
-                    break;
+                    return R.drawable.top6;
                 case R.id.top7 :
-                    break;
+                    return R.drawable.top7;
                 case R.id.top8 :
-                    break;
+                    return R.drawable.top8;
                 case R.id.top9 :
                     break;
                 case R.id.bottom1 :
-                    break;
+                    return R.drawable.bottom1;
                 case R.id.bottom2 :
-                    break;
+                    return R.drawable.bottom2;
                 case R.id.bottom3 :
-                    break;
+                    return R.drawable.bottom3;
                 case R.id.bottom4 :
-                    break;
+                    return R.drawable.bottom4;
                 case R.id.bottom5 :
-                    break;
+                    return R.drawable.bottom5;
                 case R.id.bottom6 :
-                    break;
+                    return R.drawable.bottom6;
                 case R.id.etc1:
-                    break;
+                    return R.drawable.etc1;
                 case R.id.etc2:
-                    break;
+                    return R.drawable.etc2;
                 case R.id.etc3:
-                    break;
+                    return R.drawable.etc3;
                 case R.id.etc4:
                     break;
                 case R.id.etc5:

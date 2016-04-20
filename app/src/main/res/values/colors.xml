@@ -6,4 +6,10 @@
 
     <color name="blue">#0000FF</color>
     <color name="transparent">#00000000</color>
+
+
+    <color name="loader_extra">#43A047</color>
+    <color name="loader_prime">#7CB342</color>
+
+
 </resources>

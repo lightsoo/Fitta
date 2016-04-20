@@ -47,6 +47,12 @@ public class SignupInfo3Fragment extends Fragment {
                 top = et_top.getText().toString();
                 bottom = et_bottom.getText().toString();
                 Log.d(TAG,"age : " + age + ", height : " + height + ", weight : " + weight + ", top : " + top + ", bottom : " + bottom);
+                //입력받은 값들을 이제 서버에 보내줘야해 그리고 나서
+
+
+
+
+
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
