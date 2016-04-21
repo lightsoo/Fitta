@@ -2,6 +2,8 @@ package com.fitta.lightsoo.fitta.Intro;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
 import com.fitta.lightsoo.fitta.MainActivity;
 import com.fitta.lightsoo.fitta.R;
 
@@ -21,6 +24,7 @@ public class SignupInfo3Fragment extends Fragment {
 
     private static final String TAG = "SignupInfo3Fragment";
 
+      Handler mHandler = new Handler(Looper.getMainLooper());
 
     private String age="", height="", weight="";
     //가슴둘레(cm), 허리둘레(inch)
@@ -49,13 +53,25 @@ public class SignupInfo3Fragment extends Fragment {
                 Log.d(TAG,"age : " + age + ", height : " + height + ", weight : " + weight + ", top : " + top + ", bottom : " + bottom);
                 //입력받은 값들을 이제 서버에 보내줘야해 그리고 나서
 
+                //로딩 다이얼로그
+                final DialogSignupFragment dialog = new DialogSignupFragment();
+                dialog.show(getActivity().getSupportFragmentManager(), "loading");
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d(TAG, "로딩바 테스트 ");
+
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                        dialog.dismiss();
+                    }
+                }, 4500);
 
 
-
-
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+//                Intent intent = new Intent(getActivity(), MainActivity.class);
+//                startActivity(intent);
+//                getActivity().finish();
             }
         });
         return view;

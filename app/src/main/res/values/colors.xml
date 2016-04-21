@@ -5,7 +5,10 @@
     <color name="colorAccent">#F14081</color>
 
     <color name="blue">#0000FF</color>
+    <color name="black">#000000</color>
+
     <color name="transparent">#00000000</color>
+
 
 
     <color name="loader_extra">#43A047</color>

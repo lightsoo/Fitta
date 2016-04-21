@@ -19,7 +19,7 @@ public class DialogLoadingFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCancelable(false);
-        setStyle(STYLE_NO_TITLE, R.style.custom_full_dialog);
+        setStyle(STYLE_NO_TITLE, R.style.custom_loading_dialog);
     }
 
     @Nullable
