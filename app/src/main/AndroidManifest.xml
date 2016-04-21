@@ -51,7 +51,6 @@
         <activity android:name=".Intro.SignupInfo1Fragment" />
         <activity android:name=".Intro.SignupInfo2Fragment" />
         <activity android:name=".Intro.SignupInfo3Fragment" />
-        <activity android:name=".Intro.AvatarActivity"></activity>
     </application>
 
 </manifest>

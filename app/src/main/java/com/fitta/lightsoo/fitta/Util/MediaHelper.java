@@ -24,7 +24,7 @@ public class MediaHelper {
         // using Environment.getExternalStorageState() before doing this.
         //파일 저장 디렉토리명
         File mediaStorageDir =
-                new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Fitta");
+                new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "FittaAPI");
         // This location works best if you want the created images to be shared
         // between applications and persist after your app has been uninstalled.
 

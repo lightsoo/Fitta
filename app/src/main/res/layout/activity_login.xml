@@ -34,21 +34,12 @@
         android:src="@mipmap/ic_launcher"
         android:layout_width="295.33dp"
         android:layout_height="47.67dp"
-        android:id="@+id/btn_naver"
+        android:id="@+id/btn_kakao"
         android:layout_marginTop="54.67dp"
         android:layout_alignTop="@+id/btn_fb"
         android:layout_alignLeft="@+id/btn_fb"
         android:layout_alignStart="@+id/btn_fb" />
 
-    <ImageButton
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="295.33dp"
-        android:layout_height="47.67dp"
-        android:id="@+id/btn_kakao"
-        android:layout_below="@+id/btn_naver"
-        android:layout_alignLeft="@+id/btn_naver"
-        android:layout_alignStart="@+id/btn_naver"
-        android:layout_marginTop="7dp" />
 
 
 </RelativeLayout>

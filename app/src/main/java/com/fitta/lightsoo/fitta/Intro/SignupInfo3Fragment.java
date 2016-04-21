@@ -1,11 +1,11 @@
 package com.fitta.lightsoo.fitta.Intro;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,10 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.fitta.lightsoo.fitta.Data.Fitta;
+import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
-import com.fitta.lightsoo.fitta.MainActivity;
+import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.R;
+import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 
 //남자 상세정보입력
@@ -31,6 +40,8 @@ public class SignupInfo3Fragment extends Fragment {
     private String top="", bottom="";
     private EditText et_top, et_bottom;
     private Button btn_post;
+
+    Fragment result;
 
     @Nullable
     @Override
@@ -53,20 +64,82 @@ public class SignupInfo3Fragment extends Fragment {
                 Log.d(TAG,"age : " + age + ", height : " + height + ", weight : " + weight + ", top : " + top + ", bottom : " + bottom);
                 //입력받은 값들을 이제 서버에 보내줘야해 그리고 나서
 
+
                 //로딩 다이얼로그
                 final DialogSignupFragment dialog = new DialogSignupFragment();
                 dialog.show(getActivity().getSupportFragmentManager(), "loading");
-                mHandler.postDelayed(new Runnable() {
+
+                Fitta fitta = new Fitta(age, height, weight, top, bottom) ;
+
+                Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).signup(fitta);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Response response, Retrofit retrofit) {
+                        if (response.isSuccess()) {//이전에 가입되었던 사람이라면 OK,
+                            Toast.makeText(getActivity(), "서버전송 성공", Toast.LENGTH_SHORT).show();
+
+                            Message msg = (Message)response.body();
+                            Log.d(TAG, msg.toString());
+
+                            Bundle bundle = new Bundle();
+                            bundle.putString("age", age);
+                            bundle.putString("weight", weight);
+                            bundle.putString("height", height);
+                            bundle.putString("top", top);
+                            bundle.putString("bottom", bottom);
+                            bundle.putString("url", msg.url);
+
+                            result = new SignupResultFragment();
+                            result.setArguments(bundle);
+
+                            FragmentManager fragmentManager = getFragmentManager();
+                            fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, result).commit();
+
+                        /*Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();*/
+
+                            dialog.dismiss();
+
+
+                        } else {
+                            //아니라면 not registered
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Toast.makeText(getActivity(), "서버전송 실패 : " + result, Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+
+
+               /* mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         Log.d(TAG, "로딩바 테스트 ");
 
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("age",age);
+                        bundle.putString("weight", weight);
+                        bundle.putString("height", height);
+                        bundle.putString("top", top);
+                        bundle.putString("bottom", bottom);
+
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, result).commit();
+
+
+                        *//*Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
-                        getActivity().finish();
+                        getActivity().finish();*//*
+
+
                         dialog.dismiss();
                     }
-                }, 4500);
+                }, 4500);*/
 
 
 //                Intent intent = new Intent(getActivity(), MainActivity.class);
