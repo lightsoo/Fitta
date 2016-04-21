@@ -2,8 +2,11 @@ package com.fitta.lightsoo.fitta.View;
 
 import android.content.Context;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fitta.lightsoo.fitta.R;
 
 /**
@@ -13,7 +16,7 @@ import com.fitta.lightsoo.fitta.R;
 
 public class ClothesImageItemView extends FrameLayout{
 
-//    ImageView imageView;
+    ImageView imageView;
 
     TextView urlView;
     public ClothesImageItemView(Context context) {
@@ -23,14 +26,21 @@ public class ClothesImageItemView extends FrameLayout{
 
     public void init(){
         inflate(getContext(), R.layout.view_clothimage_item, this);
-//        imageView = (ImageView)findViewById(R.id.image_clothes);
-        urlView = (TextView)findViewById(R.id.url);
+        imageView = (ImageView)findViewById(R.id.image_clothes);
+//        urlView = (TextView)findViewById(R.id.url);
     }
 
     //일단 텍스트로 하고 이미지로 바꾼다.
     public void setClotheImageView(String url){
-        urlView.setText(url);
-//Glide
+//        urlView.setText(url);
+
+        //Glide
+        Glide.with(getContext())
+                .load(url)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(imageView);
 
 
     }

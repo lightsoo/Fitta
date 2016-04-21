@@ -11,7 +11,7 @@ import com.fitta.lightsoo.fitta.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-   private ImageButton btn_fb, btn_naver, btn_kakao;
+   private ImageButton btn_fb, btn_kakao;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -38,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
     public void init(){
         btn_fb = (ImageButton)findViewById(R.id.btn_fb);
         btn_kakao = (ImageButton)findViewById(R.id.btn_kakao);
-        btn_naver=(ImageButton)findViewById(R.id.btn_naver);
 
 
     }

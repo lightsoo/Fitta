@@ -1,5 +1,6 @@
 package com.fitta.lightsoo.fitta.Adapter;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by LG on 2016-03-22.
  */
 public class ClothesAdapter extends BaseAdapter {
+    private static final String TAG = "ClothesAdapter";
 
     List<String> items = new ArrayList<String>();
 
@@ -49,6 +51,8 @@ public class ClothesAdapter extends BaseAdapter {
         }else{
             view = (ClothesImageItemView)convertView;
         }
+
+        Log.d(TAG, items.get(position));
         //객체리턴했어
         view.setClotheImageView(items.get(position));
         return view;

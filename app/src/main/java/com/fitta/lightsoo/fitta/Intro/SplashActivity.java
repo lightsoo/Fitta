@@ -37,7 +37,9 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        goLoginActivity();
+
+        goMainActivity();
+//        goLoginActivity();
 
     }
 

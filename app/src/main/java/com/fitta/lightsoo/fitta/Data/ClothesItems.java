@@ -12,4 +12,7 @@ public class ClothesItems implements Serializable{
     public List<String> clotheBottom;
     public List<String> clotheEtc;
 
+
+
+
 }

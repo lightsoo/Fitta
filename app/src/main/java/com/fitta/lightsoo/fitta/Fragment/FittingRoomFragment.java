@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,81 +24,67 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 public class FittingRoomFragment extends Fragment {
-    ListView lv_top, lv_bottom, lv_etc;
+
+    private static final String TAG = "FittingRoomFragment";
+
+    ListView lv_top, lv_bottom, lv_etc, lv_clothes;
     View view;
     private ClothesAdapter topAdapter, bottomAdapter,etcAdapter;
+    Button btn_top, btn_bottom, btn_etc, btn_like;
 
-    private Button btn_fitting_control;
-
-    LinearLayout layoutControll;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fittingroom, container, false);
         init(view);
+        getClothes();
 
-        //바깥 영역 클릭시!
-        layoutControll.setOnClickListener(new View.OnClickListener() {
+        //리스트뷰에 어댑터 세팅
+        btn_top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                layoutControll.setVisibility(View.GONE);
-
+                lv_clothes.setAdapter(topAdapter);
+            }
+        });
+        btn_bottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lv_clothes.setAdapter(bottomAdapter);
+            }
+        });
+        btn_etc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lv_clothes.setAdapter(etcAdapter);
+            }
+        });
+        btn_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lv_clothes.setAdapter(topAdapter);
             }
         });
 
-        //조작 버튼 눌렸을때
-        btn_fitting_control.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (layoutControll.getVisibility() == View.VISIBLE) {
-                    layoutControll.setVisibility(View.GONE);
-
-//                    Glide.with(getContext())
-//                            .load(R.drawable.btn_fitting_control_on)
-//                            .asBitmap().into(new SimpleTarget<Bitmap>() {
-//                        @Override
-//                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                            Drawable drawable = new BitmapDrawable(resource);
-//                            btn_fitting_control.setBackground(drawable);
-//                        }
-//                    });
-
-//                    btn_fitting_control.setBackground(getResources().getDrawable(R.drawable.btn_fitting_control_on));
-                } else {
-                    layoutControll.setVisibility(View.VISIBLE);
-
-//                    Glide.with(getContext())
-//                            .load(R.drawable.btn_fitting_control_off)
-//                            .asBitmap().into(new SimpleTarget<Bitmap>() {
-//                        @Override
-//                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                            Drawable drawable = new BitmapDrawable(resource);
-//                            btn_fitting_control.setBackground(drawable);
-//                        }
-//                    });
-
-//                    btn_fitting_control.setBackground(getResources().getDrawable(R.drawable.btn_fitting_control_off));
-                }
-
-            }
-        });
-//        getClothes();
         return view;
     }
 
 
     public void init(View view){
 
-        /*lv_top = (ListView) view.findViewById(R.id.lv_top);
-        lv_bottom = (ListView) view.findViewById(R.id.lv_bottom);
-        lv_etc = (ListView) view.findViewById(R.id.lv_etc);
+//        lv_top = (ListView) view.findViewById(R.id.lv_top);
+//        lv_bottom = (ListView) view.findViewById(R.id.lv_bottom);
+//        lv_etc = (ListView) view.findViewById(R.id.lv_etc);
+
+        lv_clothes = (ListView)view.findViewById(R.id.lv_clothes);
+
         topAdapter = new ClothesAdapter();
         bottomAdapter = new ClothesAdapter();
-        etcAdapter = new ClothesAdapter();*/
+        etcAdapter = new ClothesAdapter();
 
+        btn_top = (Button)view.findViewById(R.id.btn_lv_top);
+        btn_bottom = (Button)view.findViewById(R.id.btn_lv_bottom);
+        btn_etc = (Button)view.findViewById(R.id.btn_lv_etc);
+        btn_like = (Button)view.findViewById(R.id.btn_lv_like);
 
-
-        btn_fitting_control = (Button)view.findViewById(R.id.btn_fitting_control);
-        layoutControll = (LinearLayout)view.findViewById(R.id.layout_controll);
 
 
     }
@@ -134,13 +119,17 @@ public class FittingRoomFragment extends Fragment {
 //                Log.d("please", "response = " +response.body().clotheBottom);
 //                Log.d("please", "response = " +response.body().clotheEtc);
 
+                //한번의 통신으로 어댑터들에 데이터를 저장해둬 그리고
                 topAdapter.addAll(clotheTop);
                 bottomAdapter.addAll(clotheBottom);
                 etcAdapter.addAll(clotheEtc);
+
                 //리스트뷰 1개만 써서  '상의', '하의', '원피스', '즐겨찾기' 클릭시 어댑터랑 set해주는걸로 하자
-                lv_top.setAdapter(topAdapter);
-                lv_bottom.setAdapter(bottomAdapter);
-                lv_etc.setAdapter(etcAdapter);
+                //이걸 이해해야되!!! 한개만 써서 버튼 누를때마다 어댑터를 설정해주자
+                lv_clothes.setAdapter(topAdapter);
+//                lv_top.setAdapter(topAdapter);
+//                lv_bottom.setAdapter(bottomAdapter);
+//                lv_etc.setAdapter(etcAdapter);
 
 //                topAdapter.addAll(response.body().clotheTop);
 //                bottomAdapter.addAll(response.body().clotheBottom);
@@ -154,4 +143,10 @@ public class FittingRoomFragment extends Fragment {
             }
         });
     }
+
+
+
+
+
+
 }
