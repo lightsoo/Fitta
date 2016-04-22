@@ -27,6 +27,7 @@ public class ClothesAdapter extends BaseAdapter {
         items.addAll(url);
         notifyDataSetChanged();
     }
+
     @Override
     public int getCount() {
         return items.size();

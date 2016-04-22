@@ -30,8 +30,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        android:src="@mipmap/ic_launcher"
+    <com.kakao.usermgmt.LoginButton
         android:layout_width="295.33dp"
         android:layout_height="47.67dp"
         android:id="@+id/btn_kakao"

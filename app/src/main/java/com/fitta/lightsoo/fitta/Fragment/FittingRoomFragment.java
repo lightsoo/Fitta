@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,13 +31,19 @@ public class FittingRoomFragment extends Fragment {
 
     ListView lv_top, lv_bottom, lv_etc, lv_clothes;
     View view;
-    private ClothesAdapter topAdapter, bottomAdapter,etcAdapter;
-    Button btn_top, btn_bottom, btn_etc, btn_like;
+    private ClothesAdapter topAdapter, bottomAdapter,etcAdapter, likeAdapter;
+    Button btn_top, btn_bottom, btn_etc, btn_like, btn_add_like;
+    private ImageView iv_fittingroom_top, iv_fittingroom_bottom, iv_fittingroom_etc, iv_fittingroom_like;
+    //1 : top, 2 : bottom, 3 : etc, 4 : like 플래그를 둬서 리스트뷰 클릭시 구별하자!!!
+    private int cntAdapterFlag=1;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fittingroom, container, false);
         init(view);
+        //서버로부터 의상 이미지를 받는다.
         getClothes();
 
         //리스트뷰에 어댑터 세팅
@@ -43,26 +51,59 @@ public class FittingRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 lv_clothes.setAdapter(topAdapter);
+                cntAdapterFlag =1;
             }
         });
         btn_bottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lv_clothes.setAdapter(bottomAdapter);
+                cntAdapterFlag = 2;
             }
         });
         btn_etc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lv_clothes.setAdapter(etcAdapter);
+                cntAdapterFlag =3;
             }
         });
         btn_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lv_clothes.setAdapter(topAdapter);
+                cntAdapterFlag =4 ;
             }
         });
+
+
+        //리스트뷰에 아이템 클릭시
+        lv_clothes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object data = lv_clothes.getItemAtPosition(position);
+                if (data instanceof String) {
+                    if(cntAdapterFlag == 1){
+                        Toast.makeText(getActivity(), "top : " + (String) data, Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "top의 positon : " + position);
+                    }else if(cntAdapterFlag ==2){
+                        Toast.makeText(getActivity(), "bottom : " + (String) data, Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "bottom의 positon : " + position);
+                    }else if(cntAdapterFlag ==3){
+                        Toast.makeText(getActivity(), "etc : " + (String) data, Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "etc의 positon : " + position);
+                    }else if(cntAdapterFlag ==4){
+                        Toast.makeText(getActivity(), "like : " + (String) data, Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "like의 positon : " + position);
+                    }else {
+                        Toast.makeText(getActivity(), "Header : " + (String) data, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+
+
 
         return view;
     }
@@ -85,8 +126,10 @@ public class FittingRoomFragment extends Fragment {
         btn_etc = (Button)view.findViewById(R.id.btn_lv_etc);
         btn_like = (Button)view.findViewById(R.id.btn_lv_like);
 
-
-
+        iv_fittingroom_top = (ImageView)view.findViewById(R.id.iv_fittingroom_top);
+        iv_fittingroom_bottom = (ImageView)view.findViewById(R.id.iv_fittingroom_bottom);
+        iv_fittingroom_etc = (ImageView)view.findViewById(R.id.iv_fittingroom_etc);
+        iv_fittingroom_like = (ImageView)view.findViewById(R.id.iv_fittingroom_like);
     }
 
     public void getClothes(){

@@ -10,4 +10,6 @@
 
 
     <string name="facebook_app_id">1570292836633910</string>
+
+    <string name="kakao_app_key">0fc24320ce48cf9f1f9f8933bf2e24b6</string>
 </resources>

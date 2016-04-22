@@ -40,8 +40,32 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/imageView"
+            android:id="@+id/iv_fittingroom_avatar"
             android:src="@mipmap/ic_launcher" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_fittingroom_top"
+            android:src="@mipmap/ic_launcher" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_fittingroom_bottom"
+            android:src="@mipmap/ic_launcher" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_fittingroom_etc"
+            android:src="@mipmap/ic_launcher" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_fittingroom_like"
+            android:src="@mipmap/ic_launcher" />
+
+
+
+
     </RelativeLayout>
 
     <RelativeLayout

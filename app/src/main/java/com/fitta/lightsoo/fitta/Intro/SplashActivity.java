@@ -6,12 +6,26 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
+import com.fitta.lightsoo.fitta.Data.User;
 import com.fitta.lightsoo.fitta.MainActivity;
+import com.fitta.lightsoo.fitta.Manager.NetworkManager;
+import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
+import com.fitta.lightsoo.fitta.RestAPI.LoginAPI;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 
 /**
@@ -21,15 +35,15 @@ import com.fitta.lightsoo.fitta.R;
  */
 
 public class SplashActivity extends AppCompatActivity {
+    private static final String TAG = "SplashActivity";
     Handler mHandler = new Handler(Looper.getMainLooper());
 
-    private String id;
-    private String flag;
+    String loginType;
+    String userLoginId;
 
     CallbackManager callbackManager = CallbackManager.Factory.create();
     LoginManager mLoginManager = LoginManager.getInstance();
     AccessTokenTracker mTokenTracker;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +52,133 @@ public class SplashActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        goMainActivity();
+//        goMainActivity();
 //        goLoginActivity();
+
+        doRealStart();
+
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+    private void doRealStart(){
+        loginType = PropertyManager.getInstance().getLoginType();
+        userLoginId = PropertyManager.getInstance().getUserLoginId();
+        //로그인 한적이 없을 경우 혹은 로그아웃했을 경우 → 로그인 액티비티로 이동
+        if(TextUtils.isEmpty(loginType)){
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG, "로그인 한적이 없어서 로그인페이지로 이동");
+                    goLoginActivity();
+                }
+            }, 500);
+        }else {
+            switch (loginType){
+                case PropertyManager.LOGIN_TYPE_FACEBOOK:
+                    //로그인 id가 존재할경우
+                    if(!TextUtils.isEmpty(userLoginId)){
+
+                        Log.d(TAG, "id가 있는경우 :!TextUtils.isEmpty(userLoginId))");
+                        Log.d(TAG, "userLoginId : " + userLoginId );
+
+
+                        loginType = PropertyManager.getInstance().getLoginType();
+                        User user = new User(userLoginId, loginType);
+
+                        Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);
+                        call.enqueue(new Callback() {
+                            @Override
+                            public void onResponse(Response response, Retrofit retrofit) {
+                                if (response.isSuccess()) {//이전에 가입되었던 사람이라면 OK,
+                                    Toast.makeText(SplashActivity.this, "페이스북 연동 로그인으로 입장 합니다.", Toast.LENGTH_SHORT).show();
+                                    goMainActivity();
+                                } else {
+                                    //아니라면 not registered
+                                    mLoginManager.logOut();
+                                    goLoginActivity();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Throwable t) {
+                                Toast.makeText(SplashActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+                                goLoginActivity();
+                            }
+                        });
+
+
+
+
+                        mLoginManager.logInWithReadPermissions(this, null);
+                    }else{//id가 없을경우에 로그인 페이지로 이동!!!
+                        Log.d(TAG, "id가 없는경우 : !TextUtils.isEmpty(userLoginId))");
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(SplashActivity.this, "Welcome! please log-in!", Toast.LENGTH_SHORT).show();
+
+                                goLoginActivity();
+                            }
+                        }, 1500);
+                    }
+                    break;
+                case PropertyManager.LOGIN_TYPE_KAKAO:
+                    Log.d(TAG, "case PropertyManager.LOGIN_TYPE_KAKAO:");
+                    //로그인 id가 존재할 경우
+                    if(!TextUtils.isEmpty(userLoginId)){
+
+                        Log.d(TAG, "id가 있는경우 :!TextUtils.isEmpty(userLoginId))");
+                        Log.d(TAG, "userLoginId : " + userLoginId );
+
+                        loginType = PropertyManager.getInstance().getLoginType();
+                        User user = new User(userLoginId, loginType);
+
+                        Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);
+                        call.enqueue(new Callback() {
+                            @Override
+                            public void onResponse(Response response, Retrofit retrofit) {
+                                if (response.isSuccess()) {//이전에 가입되었던 사람이라면 OK,
+                                    Toast.makeText(SplashActivity.this, "카카오톡 연동 로그인으로 입장 합니다.", Toast.LENGTH_SHORT).show();
+                                    goMainActivity();
+                                } else {
+                                    //아니라면 not registered
+                                    UserManagement.requestLogout(new LogoutResponseCallback() {
+                                        @Override
+                                        public void onCompleteLogout() {
+                                            //기존에 카카오앱에 로그인 되어있던 id를 로그아웃한다.
+                                            goLoginActivity();
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Throwable t) {
+                                Toast.makeText(SplashActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+                                goLoginActivity();
+                            }
+                        });
+                    }else{
+                        Log.d(TAG, "id가 없는경우 : !TextUtils.isEmpty(userLoginId))");
+                        //페북 로그인 했는데 일전에 레몬클립에서 페북으로 로그인한 id와 다를 경우
+                        //즉, 이앱으로 페북로그인했다가 다른 페북id로 페북 앱을 로그인 했을 경우
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(SplashActivity.this, "Welcome! please log-in!", Toast.LENGTH_SHORT).show();
+                                UserManagement.requestLogout(new LogoutResponseCallback() {
+                                    @Override
+                                    public void onCompleteLogout() {
+                                        goLoginActivity();
+                                    }
+                                });
+                            }
+                        }, 1500);
+                    }
+                    break;
+            }
+        }
     }
 
     private void goMainActivity(){
@@ -59,14 +191,4 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(mTokenTracker != null){
-            mTokenTracker.stopTracking();;
-            mTokenTracker = null; //이거안해도됨?
-        }
-    }
 }

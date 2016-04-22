@@ -35,6 +35,9 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
+    compile group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+
+
     //for facebook
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
 //    progressbar
