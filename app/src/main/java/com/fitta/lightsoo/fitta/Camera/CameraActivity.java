@@ -34,6 +34,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     RelativeLayout takePhotoLayout, photoResultLayout;
 
     private static final int REQUEST_CROP = 2;
+    private static final int REQUEST_CAMERA = 3;
 
     private static final int FITTING_RESULT = 10;
     private String clothesSize = ""; //사이즈
@@ -113,6 +114,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         mSaveFile = getOutputMediaFile();
         //파일저장
         saveToFile(data, mSaveFile);
+
         //만든 파일의 절대 경로
         cameraPath = savePictureToFileSystem(data);
 //        setResult(cameraPath);
@@ -128,9 +130,26 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         showPhotoResultLayout();
     }
 
+
+    //크롭처리를 하지않고 원본파일을 넘겨준다.
+    public void getCameraImage(View button){
+//        Uri fileUri = Uri.fromFile(mSaveFile);
+        Log.d(TAG, "REQUEST_CAMERA");
+        String imgPath1 = Uri.fromFile(mSaveFile).toString();
+        Log.i(TAG, "Got image path1: " + imgPath1);
+        Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
+        intent1.putExtra("clothesUrl", imgPath1);
+        intent1.putExtra("clothesSize", clothesSize);
+        intent1.putExtra("clothesUnit", clothesUnit);
+        Log.d("data ", "filePath : " + imgPath1 + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+        startActivityForResult(intent1, FITTING_RESULT);
+        finish();
+
+    }
+
+
     //사진촬영 이후 결과화면에서 확인 누른 다면 이후, 사진 크롭 처리로 이동할 함수
     public void cropImage(View button){
-
         try {
             String url = MediaStore.Images.Media.insertImage(getContentResolver(), cameraPath, "카메라 이미지", "기존 이미지");
             Uri photouri = Uri.parse(url);
@@ -149,7 +168,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                 photoPickerIntent.putExtra("outputFormat",
                         Bitmap.CompressFormat.JPEG.toString());
                 startActivityForResult(photoPickerIntent, REQUEST_CROP);
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -174,17 +192,29 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         if(resultCode != RESULT_OK){return;}
 
         switch (requestCode){
+            //원본파일 사용시
+            case REQUEST_CAMERA :
+                Log.d(TAG, "REQUEST_CAMERA");
+                String imgPath1 = Uri.fromFile(mSaveFile).toString();
+                Log.i(TAG, "Got image path1: " + imgPath1);
+                Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
+                intent1.putExtra("clothesUrl", imgPath1);
+                intent1.putExtra("clothesSize", clothesSize);
+                intent1.putExtra("clothesUnit", clothesUnit);
+                Log.d("data ", "filePath : " + imgPath1 + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+                startActivityForResult(intent1, FITTING_RESULT);
+                finish();
+                break;
+
+
             //여기서 크롭이미지 처리된걸 받아온다
             case  REQUEST_CROP :
                 //사용하기 누르면 여기로 온다.
                 Log.d(TAG, "REQUEST_CROP");
-//                이미지를 가지고 FiittingInfo로 이동한다
-                Log.d(TAG, "카메라");
                 //여기서 이미지경로를 받아와서 FittingResultActivity로 이동한다.
                 if ( resultCode == RESULT_OK) {
                     String imgPath = Uri.fromFile(mSaveFile).toString();
                     Log.i(TAG, "Got image path: " + imgPath);
-
                     Intent intent = new Intent(CameraActivity.this, FittingResultActivity.class);
                     intent.putExtra("clothesUrl", imgPath);
                     intent.putExtra("clothesSize", clothesSize);

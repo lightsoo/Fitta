@@ -328,11 +328,9 @@ public class FittingInfoActivity extends AppCompatActivity {
         intent.putExtra("clothesUnit", resultUnit);
         intent.putExtra("clothesSize", resultSize);
         intent.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
-
         Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId()) + ", resultUnit : " + resultUnit + ", resultSize : " + resultSize);
 //        startActivity(intent);
 //        finish();
-
         startActivityForResult(intent, FITTING_RESULT);
 //        finish();
     }

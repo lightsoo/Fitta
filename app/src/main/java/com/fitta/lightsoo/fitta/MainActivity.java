@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         View fitting = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_fitting_btn, null);
         tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator(fitting), FittingFragment.class, null);
 
-        View fittingroom = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_fittingroom_btn, null);
+        View fittingroom = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_fittingroom2_btn, null);
         tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator(fittingroom), FittingRoomFragment.class, null);
 
         View store = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_store_btn, null);
