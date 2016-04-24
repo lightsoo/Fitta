@@ -340,7 +340,9 @@ public class FittingInfoActivity extends AppCompatActivity {
         Intent photoPickerIntent = new Intent(
                 Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         photoPickerIntent.setType("image/*");
-        photoPickerIntent.putExtra("crop", "true");
+        //크롭처리할지 말지 선택
+//        photoPickerIntent.putExtra("crop", "true");
+
         photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
         photoPickerIntent.putExtra("outputFormat",
                 Bitmap.CompressFormat.JPEG.toString());

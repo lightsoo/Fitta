@@ -143,8 +143,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         intent1.putExtra("clothesUnit", clothesUnit);
         Log.d("data ", "filePath : " + imgPath1 + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
         startActivityForResult(intent1, FITTING_RESULT);
-        finish();
-
     }
 
 
@@ -238,11 +236,5 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                 finish();
                 break;
         }
-
-
-
-
-
-
     }
 }
