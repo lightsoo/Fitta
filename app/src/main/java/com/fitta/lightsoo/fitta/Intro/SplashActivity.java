@@ -8,8 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
@@ -45,19 +48,30 @@ public class SplashActivity extends AppCompatActivity {
     LoginManager mLoginManager = LoginManager.getInstance();
     AccessTokenTracker mTokenTracker;
 
+    ImageView splash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        goMainActivity();
+        init();
+        goMainActivity();
 //        goLoginActivity();
 
-        doRealStart();
+        //완성 했는데 테스트할때는 바로 메인으로 가게끔해서 하자 그래야 디버그가 편해
+//        doRealStart();
+    }
 
-
+    public void init(){
+        splash = (ImageView)findViewById(R.id.splash);
+        Glide.with(getApplicationContext())
+                .load(R.drawable.splash)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(splash);
     }
 
 
@@ -72,7 +86,7 @@ public class SplashActivity extends AppCompatActivity {
                     Log.d(TAG, "로그인 한적이 없어서 로그인페이지로 이동");
                     goLoginActivity();
                 }
-            }, 500);
+            }, 2500);
         }else {
             switch (loginType){
                 case PropertyManager.LOGIN_TYPE_FACEBOOK:
@@ -106,10 +120,6 @@ public class SplashActivity extends AppCompatActivity {
                                 goLoginActivity();
                             }
                         });
-
-
-
-
                         mLoginManager.logInWithReadPermissions(this, null);
                     }else{//id가 없을경우에 로그인 페이지로 이동!!!
                         Log.d(TAG, "id가 없는경우 : !TextUtils.isEmpty(userLoginId))");
@@ -139,8 +149,14 @@ public class SplashActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Response response, Retrofit retrofit) {
                                 if (response.isSuccess()) {//이전에 가입되었던 사람이라면 OK,
-                                    Toast.makeText(SplashActivity.this, "카카오톡 연동 로그인으로 입장 합니다.", Toast.LENGTH_SHORT).show();
-                                    goMainActivity();
+
+                                    mHandler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(SplashActivity.this, "카카오톡 연동 로그인으로 입장 합니다.", Toast.LENGTH_SHORT).show();
+                                            goMainActivity();
+                                        }
+                                    }, 2000);
                                 } else {
                                     //아니라면 not registered
                                     UserManagement.requestLogout(new LogoutResponseCallback() {

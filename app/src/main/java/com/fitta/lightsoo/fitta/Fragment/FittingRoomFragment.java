@@ -33,7 +33,7 @@ public class FittingRoomFragment extends Fragment {
     View view;
     private ClothesAdapter topAdapter, bottomAdapter,etcAdapter, likeAdapter;
     Button btn_top, btn_bottom, btn_etc, btn_like, btn_add_like;
-    private ImageView iv_fittingroom_top, iv_fittingroom_bottom, iv_fittingroom_etc, iv_fittingroom_like;
+    private ImageView iv_fittingroom_avatar,  iv_fittingroom_top, iv_fittingroom_bottom, iv_fittingroom_etc, iv_fittingroom_like;
     //1 : top, 2 : bottom, 3 : etc, 4 : like 플래그를 둬서 리스트뷰 클릭시 구별하자!!!
     private int cntAdapterFlag=1;
 
@@ -126,6 +126,8 @@ public class FittingRoomFragment extends Fragment {
         btn_etc = (Button)view.findViewById(R.id.btn_lv_etc);
         btn_like = (Button)view.findViewById(R.id.btn_lv_like);
 
+
+        iv_fittingroom_avatar = (ImageView)view.findViewById(R.id.iv_fittingroom_avatar);
         iv_fittingroom_top = (ImageView)view.findViewById(R.id.iv_fittingroom_top);
         iv_fittingroom_bottom = (ImageView)view.findViewById(R.id.iv_fittingroom_bottom);
         iv_fittingroom_etc = (ImageView)view.findViewById(R.id.iv_fittingroom_etc);

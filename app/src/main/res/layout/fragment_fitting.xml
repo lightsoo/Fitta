@@ -13,12 +13,14 @@
 
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_width="189.67dp"
+            android:layout_height="136.33dp"
             android:id="@+id/btn_camera"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/btn_camera"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -28,11 +30,14 @@
 
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_width="189.67dp"
+            android:layout_height="136.33dp"
             android:id="@+id/btn_gallery"
-            android:src="@mipmap/ic_launcher"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:src="@drawable/btn_camera"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp" />
     </RelativeLayout>
 </LinearLayout>

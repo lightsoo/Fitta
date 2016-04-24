@@ -76,14 +76,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(Clothes);
-        /*Glide.with(getApplicationContext())
-                .load(R.drawable.t_90)
-                .crossFade()
-                .centerCrop()
-//                .fitCenter()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(Clothes);*/
+
     }
 
     //촬영이후 결과화면에서 결과화면에서 재촬영 버튼 클릭스
@@ -177,10 +170,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
-
-
         //액티비티 결과가 이상는경우
         if(resultCode != RESULT_OK){return;}
 

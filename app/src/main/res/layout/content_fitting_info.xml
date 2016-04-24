@@ -64,28 +64,29 @@
             android:layout_marginLeft="39.33dp"
             android:layout_marginStart="39.33dp">
             <TableRow>
-
-
                     <RadioButton
                         android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의1"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top1"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의2"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top2"
                         android:layout_weight="1"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의3"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top3"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -95,24 +96,27 @@
 
                     <RadioButton
                         android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의4"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top4"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의5"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top5"
                         android:layout_weight="1"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의6"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top6"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -122,24 +126,27 @@
 
                     <RadioButton
                         android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의7"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top7"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의8"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top8"
                         android:layout_weight="1"
                         android:checked="false" />
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상의9"
+                        android:layout_width="60.33dp"
+                        android:layout_height="60.33dp"
+                        android:button="@null"
+                        android:background="@drawable/seletor_radio_top1"
                         android:id="@+id/top9"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -162,24 +169,27 @@
 
                 <RadioButton
                     android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="하의1"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/bottom1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="하의2"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/bottom2"
                     android:layout_weight="1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="하의3"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/bottom3"
                     android:layout_weight="1"
                     android:checked="false" />
@@ -194,14 +204,16 @@
                     android:layout_weight="1"
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
-                    android:text="하의4"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/bottom4"
                     android:checked="false" />
 
                 <RadioButton
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
-                    android:text="하의5"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/bottom5"
                     android:layout_weight="1"
                     android:checked="false" />
@@ -209,7 +221,8 @@
                 <RadioButton
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
-                    android:text="하의6"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/bottom6"
                     android:layout_weight="1"
                     android:checked="false" />
@@ -232,24 +245,27 @@
 
                 <RadioButton
                     android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타2"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/etc1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타2"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/etc2"
                     android:layout_weight="1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타3"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/etc3"
                     android:layout_weight="1"
                     android:checked="false" />
@@ -262,24 +278,27 @@
 
                 <RadioButton
                     android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타4"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/etc4"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타5"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/etc5"
                     android:layout_weight="1"
                     android:checked="false" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타6"
+                    android:layout_width="60.33dp"
+                    android:layout_height="60.33dp"
+                    android:button="@null"
+                    android:background="@drawable/seletor_radio_top1"
                     android:id="@+id/etc6"
                     android:layout_weight="1"
                     android:checked="false" />

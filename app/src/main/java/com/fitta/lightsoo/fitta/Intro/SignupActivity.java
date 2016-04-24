@@ -25,8 +25,6 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-
-
         Fragment info1 = new SignupInfo1Fragment();
 //        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 //        ft.add(R.id.container, info1, info1_TAG);
@@ -35,11 +33,5 @@ public class SignupActivity extends AppCompatActivity {
 
 //        ft.commit();
 //        current = info1;
-
     }
-
-
-
-
-
 }

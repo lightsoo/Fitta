@@ -49,17 +49,18 @@ public class MainActivity extends AppCompatActivity {
         tabHost = (FragmentTabHost)findViewById(R.id.tabhost);
         tabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-        View home = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_home_btn, null);
-        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator(home), FittingFragment.class, null);
+        //위젯의 크기를 바꾸려면 xml가서 tabWidget크기를 바꿔라
+        View fitting = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_fitting_btn, null);
+        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator(fitting), FittingFragment.class, null);
 
-        View chat = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_chat_btn, null);
-        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator(chat), FittingRoomFragment.class, null);
+        View fittingroom = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_fittingroom_btn, null);
+        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator(fittingroom), FittingRoomFragment.class, null);
 
-        View myinfo = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_myinfo_btn, null);
-        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator(myinfo), StoreFragment.class, null);
+        View store = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_store_btn, null);
+        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator(store), StoreFragment.class, null);
 
-        View write = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_write_btn, null);
-        tabHost.addTab(tabHost.newTabSpec("tab4").setIndicator(write), SettingFragment.class, null);
+        View setting = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_setting_btn, null);
+        tabHost.addTab(tabHost.newTabSpec("tab4").setIndicator(setting), SettingFragment.class, null);
         tabHost.setCurrentTab(0);
     }
 

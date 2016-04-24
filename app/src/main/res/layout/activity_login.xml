@@ -22,13 +22,15 @@
         android:layout_marginTop="119.33dp" />
 
     <ImageButton
-        android:src="@mipmap/ic_launcher"
+        android:background="@null"
+        android:src="@drawable/logo_facebook"
         android:layout_width="295.33dp"
         android:layout_height="47.67dp"
         android:id="@+id/btn_fb"
         android:layout_marginBottom="211dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"/>
 
     <com.kakao.usermgmt.LoginButton
         android:layout_width="295.33dp"

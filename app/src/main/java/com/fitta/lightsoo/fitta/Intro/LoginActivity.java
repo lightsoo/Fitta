@@ -63,9 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         backPressCloseHandler = new BackPressCloseHandler(this);
         init();
 
-
-
-
         btn_fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,9 +118,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-
-
-
         Session.getCurrentSession().addCallback(new ISessionCallback() {
             @Override
             public void onSessionOpened() {
@@ -173,8 +167,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         });
-
-
                     }
                 });
             }
@@ -182,7 +174,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSessionOpenFailed(KakaoException exception) {
                 Toast.makeText(LoginActivity.this, "실패 ", Toast.LENGTH_SHORT).show();
-//                Log.i("SessionCallback", exception.toString());
                 if (exception != null) {
                     Logger.e(exception);
                 }
@@ -195,6 +186,16 @@ public class LoginActivity extends AppCompatActivity {
 
     public void init(){
         btn_fb = (ImageButton)findViewById(R.id.btn_fb);
+//        Glide.with(getApplicationContext())
+//                .load(R.drawable.logo_facebook2)
+//                .crossFade()
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .skipMemoryCache(true)
+//
+//                .into(btn_fb);
+
+
+
 //        btn_kakao = (ImageButton)findViewById(R.id.btn_kakao);
 
         mLoginManager = LoginManager.getInstance();
