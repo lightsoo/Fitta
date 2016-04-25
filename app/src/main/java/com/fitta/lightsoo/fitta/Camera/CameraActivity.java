@@ -40,7 +40,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     private static final String TAG = "CameraActivity";
     private CameraPreview cameraPreview;
     private ImageView Clothes, capturedImage;
-    private File mSaveFile;
+    private static File mSaveFile;
     private String cameraPath;
     RelativeLayout takePhotoLayout, photoResultLayout;
 
@@ -122,41 +122,12 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
 
     @Override
     public void onCameraStopped(byte[] data) {
-        Log.i("TAG", "===onCameraStopped===");
+        Log.i(TAG, "===onCameraStopped===");
         //지정해둔 디렉토리에 현재 시간으로 파일객체 생성
-
-
-
-        mSaveFile = getOutputMediaFile();
-        //파일저장
-        //saveToFile(data, mSaveFile);
-
-
-
-
+//        mSaveFile = getOutputMediaFile();
 
         //만든 파일의 절대 경로
         cameraPath = savePictureToFileSystem(data);
-
-
-
-       /* String url = null;
-        try {
-            url = MediaStore.Images.Media.insertImage(getContentResolver(), cameraPath, "카메라 이미지", "기존 이미지");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Uri photouri = Uri.parse(url);
-
-        //ContentResolver가 처리할수있는 value들을 저장하는데 사용
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.ORIENTATION, 90);
-        //뭔지 잘모르겟지만, URL의 value로 대체한다
-        getContentResolver().update(photouri, values, null, null);*/
-
-
-
-//        setResult(cameraPath);
         Log.d(TAG, "cameraPath : " + cameraPath);
 
         //한번 촬영이후 찍힌이미지를 출력하기위해 저장을 한다. savePicureToFileSystem
@@ -169,15 +140,11 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         showPhotoResultLayout();
     }
 
-
     //크롭처리를 하지않고 원본파일을 넘겨준다.
     public void getCameraImage(View button){
 //        Uri fileUri = Uri.fromFile(mSaveFile);
         Log.d(TAG, "REQUEST_CAMERA");
 //        String imgPath1 = Uri.fromFile(mSaveFile).toString();
-
-
-
 
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
@@ -203,9 +170,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                     intent1.putExtra("clothesUnit", clothesUnit);
                     Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
                     startActivityForResult(intent1, FITTING_RESULT);
-                    //통신하고 결과값 받으면 화면에 출력하자!!!
-
-
                 } else {
                     Toast.makeText(CameraActivity.this, "파일업로드 실패는 아닌데 다른 코드..",
                             Toast.LENGTH_SHORT).show();
@@ -248,10 +212,10 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     }
 
     private static String savePictureToFileSystem(byte[] data) {
-        File file = getOutputMediaFile();
-        saveToFile(data, file);
+        mSaveFile = getOutputMediaFile();
+        saveToFile(data, mSaveFile);
 
-        return file.getAbsolutePath();
+        return mSaveFile.getAbsolutePath();
     }
 
     public void close(View view) {
@@ -264,21 +228,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         super.onActivityResult(requestCode, resultCode, data);
         //액티비티 결과가 이상는경우
         if(resultCode != RESULT_OK){return;}
-
         switch (requestCode){
-            //원본파일 사용시
-            case REQUEST_CAMERA :
-//                Log.d(TAG, "REQUEST_CAMERA");
-//                String imgPath1 = Uri.fromFile(mSaveFile).toString();
-//                Log.i(TAG, "Got image path1: " + imgPath1);
-//                Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
-//                intent1.putExtra("clothesUrl", imgPath1);
-//                intent1.putExtra("clothesSize", clothesSize);
-//                intent1.putExtra("clothesUnit", clothesUnit);
-//                Log.d(TAG, "filePath : " + imgPath1 + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
-//                startActivityForResult(intent1, FITTING_RESULT);
-//                finish();
-                break;
             //여기서 크롭이미지 처리된걸 받아온다
             case  REQUEST_CROP :
                 //사용하기 누르면 여기로 온다.
@@ -293,7 +243,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                     intent.putExtra("clothesUnit", clothesUnit);
                     Log.d(TAG, "filePath : " + imgPath + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
                     startActivityForResult(intent , FITTING_RESULT);
-//                    startActivity(intent);
                 } else if (resultCode == RESULT_CANCELED) {
                     Log.i(TAG,"User didn't take an image");
                 }

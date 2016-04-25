@@ -471,10 +471,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         }
     }
 
-//    private void setRelativeLayoutGone(){
-//        if()
-//    }
-
     //bitmapToFile
     private void SaveBitmapToFileCache(Bitmap bitmap) {
 
@@ -487,7 +483,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         {
             mSaveFile.createNewFile();
             out = new FileOutputStream(mSaveFile);
-
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
         }
         catch (Exception e)

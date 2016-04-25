@@ -10,11 +10,7 @@ import retrofit.http.Multipart;
 import retrofit.http.POST;
 import retrofit.http.Part;
 
-/**
- * Created by LG on 2016-04-21.
- */
 public interface FittaAPI {
-
 
     @POST("/signup")
     Call<Message> signup(@Body Fitta fitta);
