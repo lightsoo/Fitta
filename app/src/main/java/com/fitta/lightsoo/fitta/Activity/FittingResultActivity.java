@@ -16,16 +16,19 @@ public class FittingResultActivity extends AppCompatActivity {
     private ImageView avatar, clothes;
     private Button btn_refitting, btn_fittingroom;
 
-
-    private static final int TEST = 10;
     private static final String TAG = "FittingResultActivity";
+
+    private String clothesSize = ""; //사이즈
+    private String clothesUnit = ""; //단위 결과
+    private int clothesImage =0;
+
+    private String imagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fitting_result);
         init();
-        Intent intent = new Intent(getIntent());
 
         /**
          * 1. 나중에는 서버에서 이미지 처리하기위해 받으면 액티비티 생성후 데이터를 보내서
@@ -36,10 +39,14 @@ public class FittingResultActivity extends AppCompatActivity {
          *
          */
 
+        Intent intent = new Intent(getIntent());
         String clothesUrl = intent.getExtras().getString("clothesUrl");
+
+
+
         String clothesSize = intent.getExtras().getString("clothesSize");
         String clohthesUnit = intent.getExtras().getString("clothesUnit");
-        Log.d(TAG, clothesUrl);
+        Log.d(TAG, "FittingResultActivity에서 이미지 받은 유알엘 : "+clothesUrl);
 
         //아바타에 입힐 옷을 세팅하는거야!!
         setClothes(clothesUrl);
@@ -93,19 +100,19 @@ public class FittingResultActivity extends AppCompatActivity {
     }
 
     public void init(){
-        clothes = (ImageView)findViewById(R.id.clothes);
-        avatar = (ImageView)findViewById(R.id.avatar);
+        clothes = (ImageView)findViewById(R.id.result_clothes);
+        avatar = (ImageView)findViewById(R.id.result_avatar);
         Glide.with(getApplicationContext())
                 .load(R.drawable.body100cf)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(avatar);
-
         btn_refitting = (Button)findViewById(R.id.btn_refitting);
         btn_fittingroom = (Button)findViewById(R.id.btn_fittingroom);
     }
 
+    //아바타에 입힐옷 세팅
     public void setClothes(String clothesUrl){
         Glide.with(getApplicationContext())
                 .load(clothesUrl)
@@ -116,4 +123,12 @@ public class FittingResultActivity extends AppCompatActivity {
     }
 
 
+
+ /*   //카메라or갤러리를 통해 입력받은 정보들을 받은다음 서버에 보낼꺼야
+    //카메라나 갤러리에서 작업을 하면 2번의 작업을 거치게될테니 여기서 한번만 해서 보내주는게 맞다
+    public void setInfo(){
+        age = getArguments().getString("age");
+        height = getArguments().getString("height");
+        weight = getArguments().getString("weight");
+    }*/
 }

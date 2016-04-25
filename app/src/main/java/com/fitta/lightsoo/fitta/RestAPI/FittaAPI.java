@@ -6,6 +6,7 @@ import com.squareup.okhttp.RequestBody;
 
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
 import retrofit.http.Part;
 
@@ -18,7 +19,7 @@ public interface FittaAPI {
     @POST("/signup")
     Call<Message> signup(@Body Fitta fitta);
 
-
+    @Multipart
     @POST("/uploadImage")
     Call<Message> uploadImage(
             @Part("movie_img\"; filename=\"image.jpg\" ")RequestBody file1);

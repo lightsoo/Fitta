@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,10 +19,26 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.fitta.lightsoo.fitta.Camera.CameraActivity;
+import com.fitta.lightsoo.fitta.Data.Message;
+import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout;
+import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
+import com.google.gson.Gson;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.RequestBody;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+
+import static com.fitta.lightsoo.fitta.Util.MediaHelper.getOutputMediaFile;
 
 public class FittingInfoActivity extends AppCompatActivity {
 
@@ -31,16 +46,18 @@ public class FittingInfoActivity extends AppCompatActivity {
 
     private static final int REQUEST_CAMERA = 100;
     private static final int REQUEST_GALLERY = 101;
-
-
     private static final int FITTING_RESULT = 10;
-    private static final int TEST = 10;
 
     private ScrollView scrollView;
     private RelativeLayout relativeLayout2, relativeLayoutGone;
     private Button btn_Layout2, btn_Gone;
 
-    private String resultSize = "", resultUnit = ""; //사이즈, 단위
+    private String clothesSize = ""; //사이즈
+    private String clothesUnit = ""; //단위 결과
+    private String clothesUrl = ""; //이미지 결과
+
+
+
     private Spinner spinner1, spinner2;          //사이즈, 단위 스피너
     private String[] spinner1Item, spinner2Item;
     private ArrayAdapter spinner1Adapter, spinner2Adapter;
@@ -57,14 +74,12 @@ public class FittingInfoActivity extends AppCompatActivity {
     RadioButton radioEtc[] = new RadioButton[6];
     private RadioButton mBtnCurrentRadio;
 
-    private Button btn_fitting;
-
-    private File mSavedFile;
+    private File mSaveFile;
 
     //카메라를 찍은 다음 사진을 임시로 저장해서 이후에 크롭 인텐트를 이용해서
     // THEMP_PHOTO_FILE로 명명해서 크롭된 이미지를 사용
     private static final String TEMP_CAMERA_FILE = "temp_camera.jpg";
-    private static final String TEMP_PHOTO_FILE = "temp_album.jpg";
+    private static String TEMP_PHOTO_FILE = "temp_album.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +101,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         });
 
         init();
-        //
         relativeLayout2.setVisibility(View.VISIBLE);
         relativeLayoutGone.setVisibility(View.GONE);
 
@@ -130,8 +144,6 @@ public class FittingInfoActivity extends AppCompatActivity {
 
             }
         });
-
-
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,17 +161,6 @@ public class FittingInfoActivity extends AppCompatActivity {
             }
         });
 
-//        btn_fitting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Log.d(TAG, String.valueOf(getCheckedRadioButtonId()));
-//                //일단 테스트용이야 전송은 ,btn_post에서 할꺼야~!!!!!!
-//                onUseCameraClick();
-//
-//
-//            }
-//        });
         //GoneLayout으로 화면 전환
         btn_Layout2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,8 +173,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         btn_Gone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 relativeLayout2.setVisibility(View.VISIBLE);
                 relativeLayoutGone.setVisibility(View.GONE);
             }
@@ -311,24 +310,24 @@ public class FittingInfoActivity extends AppCompatActivity {
     }
 
     public void setSpinnerData(View v, int position){
-        resultUnit = (String)spinner1.getAdapter().getItem(spinner1.getSelectedItemPosition());
-        resultSize = (String)spinner2.getAdapter().getItem(spinner2.getSelectedItemPosition());
+        clothesUnit = (String)spinner1.getAdapter().getItem(spinner1.getSelectedItemPosition());
+        clothesSize = (String)spinner2.getAdapter().getItem(spinner2.getSelectedItemPosition());
         //바로 0번 position이 눌리면 어댑터 추가하자
 //        if(spinner1.getSelectedItemPosition()>0){
 //            resultSize = (String)spinner1.getAdapter().getItem(spinner1.getSelectedItemPosition());
 //        }else {
 //            resultSize="";
 //        }
-        Log.d(TAG, "resultUnit : " +resultUnit + ", resultSize : " +resultSize);
+        Log.d(TAG, "clothesUnit : " +clothesUnit + ", clothesSize : " +clothesSize);
     }
 
     //카메라 액티비티 실행
     public void onUseCameraClick() {
         Intent intent = new Intent(this, CameraActivity.class);
-        intent.putExtra("clothesUnit", resultUnit);
-        intent.putExtra("clothesSize", resultSize);
+        intent.putExtra("clothesUnit", clothesUnit);
+        intent.putExtra("clothesSize", clothesSize);
         intent.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
-        Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId()) + ", resultUnit : " + resultUnit + ", resultSize : " + resultSize);
+        Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId()) + ", clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize);
 //        startActivity(intent);
 //        finish();
         startActivityForResult(intent, FITTING_RESULT);
@@ -341,8 +340,7 @@ public class FittingInfoActivity extends AppCompatActivity {
                 Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         photoPickerIntent.setType("image/*");
         //크롭처리할지 말지 선택
-//        photoPickerIntent.putExtra("crop", "true");
-
+        photoPickerIntent.putExtra("crop", "true");
         photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
         photoPickerIntent.putExtra("outputFormat",
                 Bitmap.CompressFormat.JPEG.toString());
@@ -350,10 +348,27 @@ public class FittingInfoActivity extends AppCompatActivity {
     }
 
     private Uri getTempUri() {
+
+        //파일객체 생성
+        mSaveFile = getOutputMediaFile();
         //정해둔 경로에 파일객체를 만든 다음에 그 객체의 경로를 action_pick에 MediaStore.EXTRA_OUTPUT에 같이 넘겨준다.
-        mSavedFile = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE);
-        Log.d(TAG, "getTempUri() : " + Uri.fromFile(mSavedFile).toString());
-        return Uri.fromFile(mSavedFile);
+
+       /* //디렉토리
+        File mediaStorageDir =
+                new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "FittaAPI");
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        mSaveFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg" );*/
+
+
+//        mSaveFile = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE);
+        Log.d(TAG, "getTempUri() : " + Uri.fromFile(mSaveFile).toString());
+//        Bitmap selectedImage = BitmapFactory.decodeFile(mSaveFile.getAbsolutePath());
+        //mSaveFile에 bitmap을 파일에 넣어줘
+//        SaveBitmapToFileCache(selectedImage);
+
+
+        return Uri.fromFile(mSaveFile);
     }
 
     //
@@ -371,15 +386,70 @@ public class FittingInfoActivity extends AppCompatActivity {
         */
 
         switch (requestCode){
-
+            //크롭처리를 안한다면 여기서 프리뷰레이아웃을 보여줘서 다시 갤러리 선택하게 하거나 확인 누르게 하거나 해야될것 같다!
             case REQUEST_GALLERY :
-                String filePath = Environment.getExternalStorageDirectory() + "/" + TEMP_PHOTO_FILE;
+                Log.d(TAG, "REQUEST_GALLERY");
+
+//                mSaveFile = getOutputMediaFile();
+//                String filePath = Environment.getExternalStorageDirectory() + "/" + TEMP_PHOTO_FILE;
+//                Log.d(TAG, "getPath() : " + mSaveFile.getPath()) ;
+//                Log.d(TAG, "getAbsolutePath() : " + mSaveFile.getAbsolutePath()) ;
+
+
+
+
+                ////////////////////////////////////////////////////////////////////////////////////////////////////
+                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
+                Call call = NetworkManager.getInstance()
+                        .getAPI(FittaAPI.class)
+                        .uploadImage(requestBody);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Response response, Retrofit retrofit) {
+                        if (response.isSuccess()) {
+
+                            Message message = (Message) response.body();
+                            clothesUrl = message.url;
+                            Log.d(TAG, "response = " + new Gson().toJson(message));
+                            Toast.makeText(FittingInfoActivity.this, "파일업로드 성공인경우code(200~300)" + message.getMsg(),
+                                    Toast.LENGTH_SHORT).show();
+//                    Log.i(TAG, "Got image path1: " + imgPath1);
+                            Intent intent1 = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
+                            intent1.putExtra("clothesUrl", clothesUrl);
+                            intent1.putExtra("clothesSize", clothesSize);
+                            intent1.putExtra("clothesUnit", clothesUnit);
+                            Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+                            startActivityForResult(intent1, FITTING_RESULT);
+                            //통신하고 결과값 받으면 화면에 출력하자!!!
+
+
+                        } else {
+                            Toast.makeText(FittingInfoActivity.this, "파일업로드 실패는 아닌데 다른 코드..",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
+
+                ////////////////////////////////////////////////////////////////////////////////////////////////////
+//                String imgPath1 = Uri.fromFile(mSaveFile).toString();
+
+
+                /*Log.i(TAG, "Got image path1: " + filePath);
                 Intent intent = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
                 intent.putExtra("clothesUrl", filePath);
-                Log.d(TAG, "filePath : " + filePath + ", clothesSize : " + resultSize + ", clothesUnit : " + resultUnit);
-                intent.putExtra("clothesSize", resultSize);
-                intent.putExtra("clothesUnit",resultUnit);
-                startActivityForResult(intent, FITTING_RESULT);
+                intent.putExtra("clothesSize", clothesSize);
+                intent.putExtra("clothesUnit", clothesUnit);
+                Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId()) +
+                        ", clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize);
+                Log.d(TAG, "filePath : " + filePath + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+                startActivityForResult(intent, FITTING_RESULT);*/
+
+
 //                startActivity(intent);
                 break;
             case FITTING_RESULT:
@@ -396,6 +466,37 @@ public class FittingInfoActivity extends AppCompatActivity {
 //    private void setRelativeLayoutGone(){
 //        if()
 //    }
+
+    //bitmapToFile
+    private void SaveBitmapToFileCache(Bitmap bitmap) {
+
+//        File fileCacheItem = new File(strFilePath);
+        OutputStream out = null;
+
+        try
+        {
+            mSaveFile.createNewFile();
+            out = new FileOutputStream(mSaveFile);
+
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                out.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     //현재 체크되어있는지
     public int getCheckedRadioButtonId() {

@@ -11,21 +11,32 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fitta.lightsoo.fitta.Activity.FittingResultActivity;
+import com.fitta.lightsoo.fitta.Data.Message;
+import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.R;
+import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
+import com.google.gson.Gson;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.RequestBody;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 import static com.fitta.lightsoo.fitta.Util.MediaHelper.getOutputMediaFile;
 import static com.fitta.lightsoo.fitta.Util.MediaHelper.saveToFile;
 
 public class CameraActivity extends Activity implements CameraPreview.OnCameraStatusListener {
 
-    private static final int TEST = 10;
     private static final String TAG = "CameraActivity";
     private CameraPreview cameraPreview;
     private ImageView Clothes, capturedImage;
@@ -39,6 +50,8 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     private static final int FITTING_RESULT = 10;
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
+    private String clothesUrl = ""; //이미지 결과
+
     private int clothesImage = 0;//이미지 아이디값인가 R.drawable.top1 ...
 
     @Override
@@ -111,16 +124,42 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     public void onCameraStopped(byte[] data) {
         Log.i("TAG", "===onCameraStopped===");
         //지정해둔 디렉토리에 현재 시간으로 파일객체 생성
+
+
+
         mSaveFile = getOutputMediaFile();
         //파일저장
-        saveToFile(data, mSaveFile);
+        //saveToFile(data, mSaveFile);
+
+
+
+
 
         //만든 파일의 절대 경로
         cameraPath = savePictureToFileSystem(data);
-//        setResult(cameraPath);
 
+
+
+       /* String url = null;
+        try {
+            url = MediaStore.Images.Media.insertImage(getContentResolver(), cameraPath, "카메라 이미지", "기존 이미지");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Uri photouri = Uri.parse(url);
+
+        //ContentResolver가 처리할수있는 value들을 저장하는데 사용
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.ORIENTATION, 90);
+        //뭔지 잘모르겟지만, URL의 value로 대체한다
+        getContentResolver().update(photouri, values, null, null);*/
+
+
+
+//        setResult(cameraPath);
         Log.d(TAG, "cameraPath : " + cameraPath);
 
+        //한번 촬영이후 찍힌이미지를 출력하기위해 저장을 한다. savePicureToFileSystem
         Glide.with(getApplicationContext())
                 .load(cameraPath)
                 .crossFade()
@@ -135,14 +174,50 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     public void getCameraImage(View button){
 //        Uri fileUri = Uri.fromFile(mSaveFile);
         Log.d(TAG, "REQUEST_CAMERA");
-        String imgPath1 = Uri.fromFile(mSaveFile).toString();
-        Log.i(TAG, "Got image path1: " + imgPath1);
-        Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
-        intent1.putExtra("clothesUrl", imgPath1);
-        intent1.putExtra("clothesSize", clothesSize);
-        intent1.putExtra("clothesUnit", clothesUnit);
-        Log.d("data ", "filePath : " + imgPath1 + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
-        startActivityForResult(intent1, FITTING_RESULT);
+//        String imgPath1 = Uri.fromFile(mSaveFile).toString();
+
+
+
+
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
+        Call call = NetworkManager.getInstance()
+                .getAPI(FittaAPI.class)
+                .uploadImage(requestBody);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Response response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+
+                    Message message = (Message) response.body();
+                    clothesUrl = message.url;
+                    Log.d(TAG, "response = " + new Gson().toJson(message));
+                    Toast.makeText(CameraActivity.this, "파일업로드 성공인경우code(200~300)" + message.getMsg(),
+                            Toast.LENGTH_SHORT).show();
+
+
+//                    Log.i(TAG, "Got image path1: " + imgPath1);
+                    Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
+                    intent1.putExtra("clothesUrl", clothesUrl);
+                    intent1.putExtra("clothesSize", clothesSize);
+                    intent1.putExtra("clothesUnit", clothesUnit);
+                    Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+                    startActivityForResult(intent1, FITTING_RESULT);
+                    //통신하고 결과값 받으면 화면에 출력하자!!!
+
+
+                } else {
+                    Toast.makeText(CameraActivity.this, "파일업로드 실패는 아닌데 다른 코드..",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+
     }
 
 
@@ -175,6 +250,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     private static String savePictureToFileSystem(byte[] data) {
         File file = getOutputMediaFile();
         saveToFile(data, file);
+
         return file.getAbsolutePath();
     }
 
@@ -192,19 +268,17 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         switch (requestCode){
             //원본파일 사용시
             case REQUEST_CAMERA :
-                Log.d(TAG, "REQUEST_CAMERA");
-                String imgPath1 = Uri.fromFile(mSaveFile).toString();
-                Log.i(TAG, "Got image path1: " + imgPath1);
-                Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
-                intent1.putExtra("clothesUrl", imgPath1);
-                intent1.putExtra("clothesSize", clothesSize);
-                intent1.putExtra("clothesUnit", clothesUnit);
-                Log.d("data ", "filePath : " + imgPath1 + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
-                startActivityForResult(intent1, FITTING_RESULT);
-                finish();
+//                Log.d(TAG, "REQUEST_CAMERA");
+//                String imgPath1 = Uri.fromFile(mSaveFile).toString();
+//                Log.i(TAG, "Got image path1: " + imgPath1);
+//                Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
+//                intent1.putExtra("clothesUrl", imgPath1);
+//                intent1.putExtra("clothesSize", clothesSize);
+//                intent1.putExtra("clothesUnit", clothesUnit);
+//                Log.d(TAG, "filePath : " + imgPath1 + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+//                startActivityForResult(intent1, FITTING_RESULT);
+//                finish();
                 break;
-
-
             //여기서 크롭이미지 처리된걸 받아온다
             case  REQUEST_CROP :
                 //사용하기 누르면 여기로 온다.
@@ -217,7 +291,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                     intent.putExtra("clothesUrl", imgPath);
                     intent.putExtra("clothesSize", clothesSize);
                     intent.putExtra("clothesUnit", clothesUnit);
-                    Log.d("data ", "filePath : " + imgPath + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+                    Log.d(TAG, "filePath : " + imgPath + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
                     startActivityForResult(intent , FITTING_RESULT);
 //                    startActivity(intent);
                 } else if (resultCode == RESULT_CANCELED) {

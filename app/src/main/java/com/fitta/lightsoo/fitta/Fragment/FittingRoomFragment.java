@@ -188,10 +188,4 @@ public class FittingRoomFragment extends Fragment {
             }
         });
     }
-
-
-
-
-
-
 }

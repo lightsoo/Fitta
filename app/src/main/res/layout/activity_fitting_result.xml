@@ -132,15 +132,14 @@ android:textSize="33.33px"
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/avatar"
+            android:id="@+id/result_avatar"
             android:src="@mipmap/ic_launcher"
             android:layout_alignParentEnd="false" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/clothes"
-            android:src="@mipmap/ic_launcher"
+            android:id="@+id/result_clothes"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
     </RelativeLayout>
