@@ -20,7 +20,11 @@ public class FittingResultActivity extends AppCompatActivity {
 
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
+
+    private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
     private int clothesImage =0;
+
+    private String clothesUrl = ""; //이미지 결과
 
     private String imagePath;
 
@@ -40,12 +44,11 @@ public class FittingResultActivity extends AppCompatActivity {
          */
 
         Intent intent = new Intent(getIntent());
-        String clothesUrl = intent.getExtras().getString("clothesUrl");
+        clothesUrl = intent.getExtras().getString("clothesUrl");
+        clothesSize = intent.getExtras().getString("clothesSize");
+        clothesUnit = intent.getExtras().getString("clothesUnit");
+        clothesImageName = intent.getExtras().getString("clothesImageName");
 
-
-
-        String clothesSize = intent.getExtras().getString("clothesSize");
-        String clohthesUnit = intent.getExtras().getString("clothesUnit");
         Log.d(TAG, "FittingResultActivity에서 이미지 받은 유알엘 : "+clothesUrl);
 
         //아바타에 입힐 옷을 세팅하는거야!!

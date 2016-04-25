@@ -1,6 +1,5 @@
 package com.fitta.lightsoo.fitta.Camera;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +8,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fitta.lightsoo.fitta.Activity.FittingResultActivity;
 import com.fitta.lightsoo.fitta.Data.Message;
+import com.fitta.lightsoo.fitta.Dialog.DialogLoadingFragment;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
@@ -38,14 +39,13 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 import static com.fitta.lightsoo.fitta.Util.MediaHelper.getOutputMediaFile;
-import static com.fitta.lightsoo.fitta.Util.MediaHelper.saveToFile;
 
-public class CameraActivity extends Activity implements CameraPreview.OnCameraStatusListener {
+public class CameraActivity extends AppCompatActivity implements CameraPreview.OnCameraStatusListener {
 
     private static final String TAG = "CameraActivity";
     private CameraPreview cameraPreview;
     private ImageView Clothes, capturedImage;
-    private static File mSaveFile;
+    private File mSaveFile;
     private String cameraPath;
     RelativeLayout takePhotoLayout, photoResultLayout;
 
@@ -56,6 +56,8 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
     private String clothesUrl = ""; //이미지 결과
+    private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
+
 
     private int clothesImage = 0;//이미지 아이디값인가 R.drawable.top1 ...
 
@@ -69,6 +71,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         clothesSize = intent.getExtras().getString("clothesSize");
         clothesUnit = intent.getExtras().getString("clothesUnit");
         clothesImage = intent.getExtras().getInt("clothesImage");
+        clothesImageName = intent.getExtras().getString("clothesImageName");
 
         Log.d(TAG, "clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit + ", clothesImage : " + clothesImage);
 
@@ -90,7 +93,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         Glide.with(getApplicationContext())
                 .load(clothesImage)
                 .crossFade()
-                .centerCrop()
+//                .centerCrop()
 //                .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
@@ -159,6 +162,15 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         Log.d(TAG, "REQUEST_CAMERA");
 //        String imgPath1 = Uri.fromFile(mSaveFile).toString();
 
+
+        //로딩 다이얼로그
+        final DialogLoadingFragment dialog = new DialogLoadingFragment();
+
+        dialog.show(getSupportFragmentManager(), "loading");
+
+//        dialog.show(getActivity().getSupportFragmentManager(), "loading");
+
+
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
         Call call = NetworkManager.getInstance()
                 .getAPI(FittaAPI.class)
@@ -182,6 +194,8 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                     intent1.putExtra("clothesUnit", clothesUnit);
                     Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
                     startActivityForResult(intent1, FITTING_RESULT);
+
+                    dialog.dismiss();
                 } else {
                     Toast.makeText(CameraActivity.this, "파일업로드 실패는 아닌데 다른 코드..",
                             Toast.LENGTH_SHORT).show();
@@ -193,9 +207,7 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
 
             }
         });
-
     }
-
 
     //사진촬영 이후 결과화면에서 확인 누른 다면 이후, 사진 크롭 처리로 이동할 함수
     public void cropImage(View button){
@@ -223,12 +235,14 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
         }
     }
 
-    private static String savePictureToFileSystem(byte[] data) {
-        mSaveFile = getOutputMediaFile();
-        saveToFile(data, mSaveFile);
 
-        return mSaveFile.getAbsolutePath();
-    }
+    //사용하려면 mSaveFile을 static으로 바꿔야해
+//    private static String savePictureToFileSystem(byte[] data) {
+//        mSaveFile = getOutputMediaFile();
+//        saveToFile(data, mSaveFile);
+//
+//        return mSaveFile.getAbsolutePath();
+//    }
 
     public void close(View view) {
         finish();
@@ -303,8 +317,4 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
             }
         }
     }
-
-
-
-
 }

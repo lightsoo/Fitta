@@ -39,7 +39,9 @@
             android:name=".Camera.CameraActivity"
             android:label="@string/title_activity_camera"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
         <activity android:name=".Fragment.StoreFragment" />
         <activity android:name=".Activity.FittingResultActivity" />
         <activity

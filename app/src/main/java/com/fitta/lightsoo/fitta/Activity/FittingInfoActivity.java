@@ -55,7 +55,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
     private String clothesUrl = ""; //이미지 결과
-
+    private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
 
 
     private Spinner spinner1, spinner2;          //사이즈, 단위 스피너
@@ -251,48 +251,67 @@ public class FittingInfoActivity extends AppCompatActivity {
     public int getCaptureImage(int checkedId){
             switch (checkedId){
                 case R.id.top1 :
+                    clothesImageName ="top1";
                     return R.drawable.top1;
-//                    break;
                 case R.id.top2 :
+                    clothesImageName ="top2";
                     return R.drawable.top2;
-//                    break;
                 case R.id.top3 :
+                    clothesImageName ="top3";
                     return R.drawable.top3;
                 case R.id.top4 :
+                    clothesImageName ="top4";
                     return R.drawable.top4;
                 case R.id.top5 :
+                    clothesImageName ="top5";
                     return R.drawable.top5;
                 case R.id.top6 :
+                    clothesImageName ="top6";
                     return R.drawable.top6;
                 case R.id.top7 :
+                    clothesImageName ="top7";
                     return R.drawable.top7;
                 case R.id.top8 :
+                    clothesImageName ="top8";
                     return R.drawable.top8;
                 case R.id.top9 :
+                    clothesImageName ="top9";
                     break;
                 case R.id.bottom1 :
+                    clothesImageName ="bottom1";
                     return R.drawable.bottom1;
                 case R.id.bottom2 :
+                    clothesImageName ="bottom2";
                     return R.drawable.bottom2;
                 case R.id.bottom3 :
+                    clothesImageName ="bottom3";
                     return R.drawable.bottom3;
                 case R.id.bottom4 :
+                    clothesImageName ="bottom4";
                     return R.drawable.bottom4;
                 case R.id.bottom5 :
+                    clothesImageName ="bottom5";
                     return R.drawable.bottom5;
                 case R.id.bottom6 :
+                    clothesImageName ="bottom6";
                     return R.drawable.bottom6;
                 case R.id.etc1:
+                    clothesImageName ="etc1";
                     return R.drawable.etc1;
                 case R.id.etc2:
+                    clothesImageName ="etc2";
                     return R.drawable.etc2;
                 case R.id.etc3:
+                    clothesImageName ="etc3";
                     return R.drawable.etc3;
                 case R.id.etc4:
+                    clothesImageName ="etc4";
                     break;
                 case R.id.etc5:
+                    clothesImageName ="etc5";
                     break;
                 case R.id.etc6:
+                    clothesImageName ="etc6";
                     break;
             }
         return 0;
@@ -323,11 +342,16 @@ public class FittingInfoActivity extends AppCompatActivity {
 
     //카메라 액티비티 실행
     public void onUseCameraClick() {
+
         Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra("clothesUnit", clothesUnit);
         intent.putExtra("clothesSize", clothesSize);
         intent.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
-        Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId()) + ", clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize);
+        intent.putExtra("clothesImageName", clothesImageName);
+
+        Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId())
+                + ", clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize
+         + ", clothesImageName : " + clothesImageName);
 //        startActivity(intent);
 //        finish();
         startActivityForResult(intent, FITTING_RESULT);
@@ -372,7 +396,7 @@ public class FittingInfoActivity extends AppCompatActivity {
         return Uri.fromFile(mSaveFile);
     }
 
-    //
+
    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -396,7 +420,6 @@ public class FittingInfoActivity extends AppCompatActivity {
 //                Log.d(TAG, "getPath() : " + mSaveFile.getPath()) ;
 //                Log.d(TAG, "getAbsolutePath() : " + mSaveFile.getAbsolutePath()) ;
 
-
                 //이미지 데이터를 비트맵으로 받아온다.
                 try {
                     Bitmap image_bitmap 	= MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
@@ -404,13 +427,14 @@ public class FittingInfoActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
                 ////////////////////////////////////////////////////////////////////////////////////////////////////
+                //여기서 어떤 사이즈옷인지, 분류할 어떤 데이터인지도 같이 보내줘서 서버에서 처리한다.
                 RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
                 Call call = NetworkManager.getInstance()
                         .getAPI(FittaAPI.class)
                         .uploadImage(requestBody);
+
+
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Response response, Retrofit retrofit) {
@@ -421,16 +445,18 @@ public class FittingInfoActivity extends AppCompatActivity {
                             Log.d(TAG, "response = " + new Gson().toJson(message));
                             Toast.makeText(FittingInfoActivity.this, "파일업로드 성공인경우code(200~300)" + message.getMsg(),
                                     Toast.LENGTH_SHORT).show();
-//                    Log.i(TAG, "Got image path1: " + imgPath1);
                             Intent intent1 = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
                             intent1.putExtra("clothesUrl", clothesUrl);
                             intent1.putExtra("clothesSize", clothesSize);
                             intent1.putExtra("clothesUnit", clothesUnit);
-                            Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+
+//                            intent1.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
+                            intent1.putExtra("clothesImageName", clothesImageName);
+
+                            Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit
+                            + ", clothesImageName : " + clothesImageName );
+
                             startActivityForResult(intent1, FITTING_RESULT);
-                            //통신하고 결과값 받으면 화면에 출력하자!!!
-
-
                         } else {
                             Toast.makeText(FittingInfoActivity.this, "파일업로드 실패는 아닌데 다른 코드..",
                                     Toast.LENGTH_SHORT).show();
