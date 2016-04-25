@@ -1,6 +1,9 @@
 package com.fitta.lightsoo.fitta.Fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,7 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Activity.FittingInfoActivity;
 import com.fitta.lightsoo.fitta.MainActivity;
 import com.fitta.lightsoo.fitta.R;
@@ -18,6 +25,8 @@ public class FittingFragment extends Fragment {
 
     private static final String TAG = "FittingFragment";
     private static final int RESULT_OK = -1;
+
+    LinearLayout layoutPlace ;
 
     private View view ;
     private ImageButton btn_camera, btn_gallery;
@@ -57,6 +66,21 @@ public class FittingFragment extends Fragment {
     public void init() {
         btn_camera = (ImageButton)view.findViewById(R.id.btn_camera);
         btn_gallery = (ImageButton)view.findViewById(R.id.btn_gallery);
+
+
+        layoutPlace = (LinearLayout)view.findViewById(R.id.background);
+        Glide.with(getContext())
+                .load(R.drawable.background)
+                .asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                Drawable drawable = new BitmapDrawable(resource);
+                layoutPlace.setBackground(drawable);
+            }
+        });
+
+
+
     }
 
 

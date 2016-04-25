@@ -2,6 +2,8 @@ package com.fitta.lightsoo.fitta.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,6 +20,9 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Camera.CameraActivity;
 import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
@@ -57,6 +62,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     private String clothesUrl = ""; //이미지 결과
     private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
 
+    RelativeLayout layoutPlace ;
 
     private Spinner spinner1, spinner2;          //사이즈, 단위 스피너
     private String[] spinner1Item, spinner2Item;
@@ -223,6 +229,25 @@ public class FittingInfoActivity extends AppCompatActivity {
 
         spinner2 = (Spinner)findViewById(R.id.spinner2);
         btn_post = (Button)findViewById(R.id.btn_post);
+
+
+
+        layoutPlace = (RelativeLayout)findViewById(R.id.background);
+        Glide.with(getApplicationContext())
+                .load(R.drawable.background)
+                .asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                Drawable drawable = new BitmapDrawable(resource);
+                layoutPlace.setBackground(drawable);
+            }
+        });
+
+
+
+
+
+
     }
     //spinner2데이터 세팅!
     public void setSpinnerItme(int pos){
