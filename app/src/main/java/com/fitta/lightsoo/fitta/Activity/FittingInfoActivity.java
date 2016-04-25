@@ -338,12 +338,13 @@ public class FittingInfoActivity extends AppCompatActivity {
     private void getGalleryImage(){
         Intent photoPickerIntent = new Intent(
                 Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
         photoPickerIntent.setType("image/*");
         //크롭처리할지 말지 선택
-        photoPickerIntent.putExtra("crop", "true");
-        photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
-        photoPickerIntent.putExtra("outputFormat",
-                Bitmap.CompressFormat.JPEG.toString());
+//        photoPickerIntent.putExtra("crop", "true");
+//        photoPickerIntent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
+//        photoPickerIntent.putExtra("outputFormat",
+//                Bitmap.CompressFormat.JPEG.toString());
         startActivityForResult(photoPickerIntent, REQUEST_GALLERY);
     }
 
@@ -396,6 +397,13 @@ public class FittingInfoActivity extends AppCompatActivity {
 //                Log.d(TAG, "getAbsolutePath() : " + mSaveFile.getAbsolutePath()) ;
 
 
+                //이미지 데이터를 비트맵으로 받아온다.
+                try {
+                    Bitmap image_bitmap 	= MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    SaveBitmapToFileCache(image_bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
                 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -471,6 +479,8 @@ public class FittingInfoActivity extends AppCompatActivity {
     private void SaveBitmapToFileCache(Bitmap bitmap) {
 
 //        File fileCacheItem = new File(strFilePath);
+        mSaveFile = getOutputMediaFile();
+
         OutputStream out = null;
 
         try
