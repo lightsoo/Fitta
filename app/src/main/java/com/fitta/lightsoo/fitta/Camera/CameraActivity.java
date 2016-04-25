@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,6 +28,9 @@ import com.squareup.okhttp.RequestBody;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -124,10 +129,18 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
     public void onCameraStopped(byte[] data) {
         Log.i(TAG, "===onCameraStopped===");
         //지정해둔 디렉토리에 현재 시간으로 파일객체 생성
-//        mSaveFile = getOutputMediaFile();
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
 
-        //만든 파일의 절대 경로
-        cameraPath = savePictureToFileSystem(data);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+
+        mSaveFile = getOutputMediaFile();
+        SaveBitmapToFileCache(rotatedBitmap);
+        cameraPath = mSaveFile.getAbsolutePath();
+
+        /*//만든 파일의 절대 경로리턴턴 + 파일객체생성후 data저장
+        cameraPath = savePictureToFileSystem(data);*/
         Log.d(TAG, "cameraPath : " + cameraPath);
 
         //한번 촬영이후 찍힌이미지를 출력하기위해 저장을 한다. savePicureToFileSystem
@@ -145,7 +158,6 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
 //        Uri fileUri = Uri.fromFile(mSaveFile);
         Log.d(TAG, "REQUEST_CAMERA");
 //        String imgPath1 = Uri.fromFile(mSaveFile).toString();
-
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
         Call call = NetworkManager.getInstance()
@@ -260,4 +272,39 @@ public class CameraActivity extends Activity implements CameraPreview.OnCameraSt
                 break;
         }
     }
+
+    //bitmapToFile
+    private void SaveBitmapToFileCache(Bitmap bitmap) {
+
+//        File fileCacheItem = new File(strFilePath);
+        mSaveFile = getOutputMediaFile();
+
+        OutputStream out = null;
+
+        try
+        {
+            mSaveFile.createNewFile();
+            out = new FileOutputStream(mSaveFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                out.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
 }
