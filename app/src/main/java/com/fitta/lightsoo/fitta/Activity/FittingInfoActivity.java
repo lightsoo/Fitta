@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -62,7 +63,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     private String clothesUrl = ""; //이미지 결과
     private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
 
-    RelativeLayout layoutPlace ;
+    LinearLayout layoutPlace ;
 
     private Spinner spinner1, spinner2;          //사이즈, 단위 스피너
     private String[] spinner1Item, spinner2Item;
@@ -98,6 +99,7 @@ public class FittingInfoActivity extends AppCompatActivity {
         //백키가 나온다.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         //백키 이벤트
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +107,7 @@ public class FittingInfoActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
+//        toolbar.getBackground().setAlpha(0);
         init();
         relativeLayout2.setVisibility(View.VISIBLE);
         relativeLayoutGone.setVisibility(View.GONE);
@@ -230,9 +232,7 @@ public class FittingInfoActivity extends AppCompatActivity {
         spinner2 = (Spinner)findViewById(R.id.spinner2);
         btn_post = (Button)findViewById(R.id.btn_post);
 
-
-
-        layoutPlace = (RelativeLayout)findViewById(R.id.background);
+        layoutPlace = (LinearLayout)findViewById(R.id.background);
         Glide.with(getApplicationContext())
                 .load(R.drawable.background)
                 .asBitmap().into(new SimpleTarget<Bitmap>() {
@@ -242,13 +242,8 @@ public class FittingInfoActivity extends AppCompatActivity {
                 layoutPlace.setBackground(drawable);
             }
         });
-
-
-
-
-
-
     }
+
     //spinner2데이터 세팅!
     public void setSpinnerItme(int pos){
         switch (pos){

@@ -4,8 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context="com.fitta.lightsoo.fitta.Activity.FittingInfoActivity"
-    android:id="@+id/background"
-    tools:showIn="@layout/activity_fitting_info">
+     tools:showIn="@layout/activity_fitting_info">
 
     <ScrollView
         android:id="@+id/scrollView"
