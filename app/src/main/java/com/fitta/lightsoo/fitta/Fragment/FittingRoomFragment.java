@@ -44,8 +44,8 @@ public class FittingRoomFragment extends Fragment {
     Button btn_top, btn_bottom, btn_etc, btn_like;
     Button btn_refresh, btn_add_like;
     private ImageView iv_fittingroom_avatar,  iv_fittingroom_top, iv_fittingroom_bottom, iv_fittingroom_etc, iv_fittingroom_like;
-    //서버에 번호만 넘겨줘서 통신을 간단하게 한다.
-    private int like_top, like_bottom, like_etc;
+    //입력된 url
+    private String fittingroom_top, fittingroom_bottom, fittingroom_etc;
     //1 : top, 2 : bottom, 3 : etc, 4 : like 플래그를 둬서 리스트뷰 클릭시 구별하자!!!
     private int cntAdapterFlag=1;
 
@@ -99,16 +99,19 @@ public class FittingRoomFragment extends Fragment {
                         Toast.makeText(getActivity(), "top : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "top의 positon : " + position);
                         setFitting(iv_fittingroom_top, (String) data);
+                        fittingroom_top=(String)data;
                         setClearFitting();
                     } else if (cntAdapterFlag == 2) {
                         Toast.makeText(getActivity(), "bottom : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "bottom의 positon : " + position);
                         setFitting(iv_fittingroom_bottom, (String) data);
+                        fittingroom_bottom = (String)data;
                         setClearFitting();
                     } else if (cntAdapterFlag == 3) {
                         Toast.makeText(getActivity(), "etc : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "etc의 positon : " + position);
                         setFitting(iv_fittingroom_etc, (String) data);
+                        fittingroom_etc = (String)data;
                         setClearFitting();
                     } else if (cntAdapterFlag == 4) {
                         //1,2,3번은 중복이 되는데 4번을 누를경우에는 이전에 입힌게 리셋되도록 하자
@@ -137,9 +140,13 @@ public class FittingRoomFragment extends Fragment {
         btn_add_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Call call = NetworkManager.getInstance()
                         .getAPI(FittaAPI.class)
-                        .uploadLikeImage(like_top,like_bottom,like_etc);
+//                        .uploadLikeImage(like_top,like_bottom,like_etc);
+                        .uploadLikeImage2(fittingroom_top, fittingroom_bottom,fittingroom_etc);
+
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Response response, Retrofit retrofit) {
@@ -206,9 +213,9 @@ public class FittingRoomFragment extends Fragment {
 
     public void setClearFitting(){
         if(cntAdapterFlag==4){
-            iv_fittingroom_top.setImageResource(0);
-            iv_fittingroom_bottom.setImageResource(0);
-            iv_fittingroom_etc.setImageResource(0);
+            iv_fittingroom_top.setImageResource(0);fittingroom_top="";
+            iv_fittingroom_bottom.setImageResource(0);fittingroom_bottom="";
+            iv_fittingroom_etc.setImageResource(0);fittingroom_etc="";
             iv_fittingroom_like.setImageResource(0);
         }else {
             iv_fittingroom_like.setImageResource(0);

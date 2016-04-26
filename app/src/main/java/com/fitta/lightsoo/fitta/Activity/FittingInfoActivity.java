@@ -55,14 +55,14 @@ public class FittingInfoActivity extends AppCompatActivity {
     private static final int FITTING_RESULT = 10;
 
     private ScrollView scrollView;
-    private RelativeLayout relativeLayout2, relativeLayoutGone;
+    private RelativeLayout relativeLayout2, relativeLayoutGone, relativeLayoutGone2;
     private Button btn_Layout2, btn_Gone;
 
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
     private String clothesUrl = ""; //이미지 결과
     private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
-
+    //배경화면 세팅
     LinearLayout layoutPlace ;
 
     private Spinner spinner1, spinner2;          //사이즈, 단위 스피너
@@ -170,11 +170,29 @@ public class FittingInfoActivity extends AppCompatActivity {
         });
 
         //GoneLayout으로 화면 전환
+        relativeLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayout2.setVisibility(View.GONE);
+                relativeLayoutGone.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //GoneLayout으로 화면 전환
         btn_Layout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 relativeLayout2.setVisibility(View.GONE);
                 relativeLayoutGone.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //기존의 화면으로 전환
+        relativeLayoutGone2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayout2.setVisibility(View.VISIBLE);
+                relativeLayoutGone.setVisibility(View.GONE);
             }
         });
         //기존의 화면으로 전환
@@ -194,6 +212,7 @@ public class FittingInfoActivity extends AppCompatActivity {
         tableLayoutEtc = (RadioButtonWithTableLayout)findViewById(R.id.tableLayoutEtc);
         relativeLayout2 = (RelativeLayout)findViewById(R.id.relativeLayout2);
         relativeLayoutGone = (RelativeLayout)findViewById(R.id.relativeLayoutGone);
+        relativeLayoutGone2 = (RelativeLayout)findViewById(R.id.relativeLayoutGone2);
         scrollView = (ScrollView)findViewById(R.id.scrollView);
 
         //각

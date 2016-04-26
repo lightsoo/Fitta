@@ -30,5 +30,14 @@ public interface FittaAPI {
                                   @Field("like_bottom")int like_bottom,
                                   @Field("like_etc")int like_etc );
 
+    //배열로 전송된다.
+    @FormUrlEncoded
+    @POST("/uploadLikeImage")
+    Call<Message> uploadLikeImage2(@Field("like")String like_top,
+                                   @Field("like")String like_bottom,
+                                   @Field("like")String like_etc );
+
+
+
 
 }
