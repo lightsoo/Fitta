@@ -17,12 +17,14 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Adapter.ClothesAdapter;
 import com.fitta.lightsoo.fitta.Data.ClothesItems;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.R;
+import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
 import com.fitta.lightsoo.fitta.RestAPI.FittingRoomAPI;
 
 import java.util.List;
@@ -39,8 +41,11 @@ public class FittingRoomFragment extends Fragment {
     ListView lv_top, lv_bottom, lv_etc, lv_clothes;
     View view;
     private ClothesAdapter topAdapter, bottomAdapter,etcAdapter, likeAdapter;
-    Button btn_top, btn_bottom, btn_etc, btn_like, btn_add_like;
+    Button btn_top, btn_bottom, btn_etc, btn_like;
+    Button btn_refresh, btn_add_like;
     private ImageView iv_fittingroom_avatar,  iv_fittingroom_top, iv_fittingroom_bottom, iv_fittingroom_etc, iv_fittingroom_like;
+    //서버에 번호만 넘겨줘서 통신을 간단하게 한다.
+    private int like_top, like_bottom, like_etc;
     //1 : top, 2 : bottom, 3 : etc, 4 : like 플래그를 둬서 리스트뷰 클릭시 구별하자!!!
     private int cntAdapterFlag=1;
 
@@ -78,7 +83,7 @@ public class FittingRoomFragment extends Fragment {
         btn_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lv_clothes.setAdapter(topAdapter);
+                lv_clothes.setAdapter(likeAdapter);
                 cntAdapterFlag =4 ;
             }
         });
@@ -90,28 +95,64 @@ public class FittingRoomFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object data = lv_clothes.getItemAtPosition(position);
                 if (data instanceof String) {
-                    if(cntAdapterFlag == 1){
+                    if (cntAdapterFlag == 1) {
                         Toast.makeText(getActivity(), "top : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "top의 positon : " + position);
-                    }else if(cntAdapterFlag ==2){
+                        setFitting(iv_fittingroom_top, (String) data);
+                        setClearFitting();
+                    } else if (cntAdapterFlag == 2) {
                         Toast.makeText(getActivity(), "bottom : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "bottom의 positon : " + position);
-                    }else if(cntAdapterFlag ==3){
+                        setFitting(iv_fittingroom_bottom, (String) data);
+                        setClearFitting();
+                    } else if (cntAdapterFlag == 3) {
                         Toast.makeText(getActivity(), "etc : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "etc의 positon : " + position);
-                    }else if(cntAdapterFlag ==4){
+                        setFitting(iv_fittingroom_etc, (String) data);
+                        setClearFitting();
+                    } else if (cntAdapterFlag == 4) {
+                        //1,2,3번은 중복이 되는데 4번을 누를경우에는 이전에 입힌게 리셋되도록 하자
                         Toast.makeText(getActivity(), "like : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "like의 positon : " + position);
-                    }else {
+                        setFitting(iv_fittingroom_like, (String) data);
+                        setClearFitting();
+                    } else {
                         Toast.makeText(getActivity(), "Header : " + (String) data, Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }
         });
 
+        btn_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_fittingroom_top.setImageResource(0);
+                iv_fittingroom_bottom.setImageResource(0);
+                iv_fittingroom_etc.setImageResource(0);
+                iv_fittingroom_like.setImageResource(0);
+            }
+        });
 
+        btn_add_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Call call = NetworkManager.getInstance()
+                        .getAPI(FittaAPI.class)
+                        .uploadLikeImage(like_top,like_bottom,like_etc);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Response response, Retrofit retrofit) {
 
+                    }
 
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
+            }
+        });
         return view;
     }
 
@@ -133,8 +174,18 @@ public class FittingRoomFragment extends Fragment {
         btn_etc = (Button)view.findViewById(R.id.btn_lv_etc);
         btn_like = (Button)view.findViewById(R.id.btn_lv_like);
 
+        btn_refresh = (Button)view.findViewById(R.id.btn_refresh);
+        btn_add_like = (Button)view.findViewById(R.id.btn_add_like);
 
         iv_fittingroom_avatar = (ImageView)view.findViewById(R.id.iv_fittingroom_avatar);
+        Glide.with(getContext())
+                .load(R.drawable.body100cf)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(iv_fittingroom_avatar);
+
+
         iv_fittingroom_top = (ImageView)view.findViewById(R.id.iv_fittingroom_top);
         iv_fittingroom_bottom = (ImageView)view.findViewById(R.id.iv_fittingroom_bottom);
         iv_fittingroom_etc = (ImageView)view.findViewById(R.id.iv_fittingroom_etc);
@@ -151,10 +202,30 @@ public class FittingRoomFragment extends Fragment {
             }
         });
 
-
-
-
     }
+
+    public void setClearFitting(){
+        if(cntAdapterFlag==4){
+            iv_fittingroom_top.setImageResource(0);
+            iv_fittingroom_bottom.setImageResource(0);
+            iv_fittingroom_etc.setImageResource(0);
+            iv_fittingroom_like.setImageResource(0);
+        }else {
+            iv_fittingroom_like.setImageResource(0);
+        }
+    }
+
+    //url을 해당 이미지뷰에 출력한다.!
+    public void setFitting(ImageView iv, String url){
+        Glide.with(getContext())
+                .load(url)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(iv);
+    }
+
+
 
     public void getClothes(){
         //리턴받을 데이터형을Call<리턴형>인거야

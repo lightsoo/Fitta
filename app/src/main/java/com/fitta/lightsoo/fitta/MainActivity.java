@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void init(){
         tabHost = (FragmentTabHost)findViewById(R.id.tabhost);
-        tabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
+        tabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
         //위젯의 크기를 바꾸려면 xml가서 tabWidget크기를 바꿔라
         View fitting = LayoutInflater.from(MainActivity.this).inflate(R.layout.tab_fitting_btn, null);
