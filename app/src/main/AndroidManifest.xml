@@ -32,7 +32,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Fragment.FittingFragment"
+            android:name=".TabFragment.FittingFragment"
             android:label="@string/title_activity_fitting_fragment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -42,8 +42,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
-        <activity android:name=".Fragment.StoreFragment" />
-        <activity android:name=".Activity.FittingResultActivity" />
+        <activity
+            android:name=".TabFragment.StoreFragment"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activity.FittingResultActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Activity.FittingInfoActivity"
             android:label="@string/title_activity_fitting_info"

@@ -23,8 +23,7 @@
     <ImageView
         android:layout_width="269dp"
         android:layout_height="144.33dp"
-        android:src="@mipmap/ic_launcher"
-        android:id="@+id/splash"
+        android:id="@+id/logo"
         android:layout_below="@+id/textView11"
         android:layout_alignLeft="@+id/textView11"
         android:layout_alignStart="@+id/textView11" />

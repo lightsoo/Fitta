@@ -19,7 +19,7 @@ import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
 
 public class DialogSignupFragment extends DialogFragment {
     private RelativeLayout layoutPlace;
-    private ImageView background;
+    private ImageView logo;
 
     /**
      * Colors

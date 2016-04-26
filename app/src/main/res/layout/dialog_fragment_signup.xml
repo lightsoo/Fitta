@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    xmlns:custom="http://schemas.android.com/tools" >
 
+    android:gravity="center_horizontal"
+    xmlns:custom="http://schemas.android.com/tools" >
+    <ImageView
+        android:layout_width="269dp"
+        android:layout_height="144.33dp"
+        android:id="@+id/logo"
+        android:background="@drawable/logo"/>
 
     <com.github.silvestrpredko.dotprogressbar.DotProgressBar
         android:id="@+id/dot_progress_bar"
@@ -16,8 +22,6 @@
         custom:duration="@android:integer/config_mediumAnimTime"
         custom:endColor="@color/black"
         custom:startColor="@color/black"
-
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -27,8 +31,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="아바타를 생성중입니다."
         android:id="@+id/textView27"
-        android:layout_below="@+id/dot_progress_bar"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/dot_progress_bar"  />
 
 
 </LinearLayout>

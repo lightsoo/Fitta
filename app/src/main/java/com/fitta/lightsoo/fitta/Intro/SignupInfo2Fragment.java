@@ -1,11 +1,10 @@
 package com.fitta.lightsoo.fitta.Intro;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,12 +26,12 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Data.Fitta;
 import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
+import com.fitta.lightsoo.fitta.MainActivity;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
 
 import retrofit.Call;
-import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -42,7 +41,6 @@ public class SignupInfo2Fragment extends Fragment {
     private static final String TAG = "SignupInfo2Fragment";
 
     RelativeLayout layoutPlace ;
-    Handler mHandler = new Handler(Looper.getMainLooper());
 
     private Spinner spinner;
     private String[] spinnerItem;
@@ -92,7 +90,7 @@ public class SignupInfo2Fragment extends Fragment {
                 Fitta fitta = new Fitta(age, height, weight, top, bottom) ;
 
                 Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).signup(fitta);
-                call.enqueue(new Callback() {
+                call.enqueue(new retrofit.Callback() {
                     @Override
                     public void onResponse(Response response, Retrofit retrofit) {
                         if (response.isSuccess()) {//이전에 가입되었던 사람이라면 OK,
@@ -114,9 +112,9 @@ public class SignupInfo2Fragment extends Fragment {
                             FragmentManager fragmentManager = getFragmentManager();
                             fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, result).commit();
 
-                        /*Intent intent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(intent);
-                        getActivity().finish();*/
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
 
                             dialog.dismiss();
 
@@ -133,32 +131,6 @@ public class SignupInfo2Fragment extends Fragment {
                         dialog.dismiss();
                     }
                 });
-
-                /*//지금 스레드로 해뒀는데, 나중에 통신으로 바꿔줘야된다.
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d(TAG, "로딩바 테스트 ");
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString("age", age);
-                        bundle.putString("weight", weight);
-                        bundle.putString("height", height);
-                        bundle.putString("top", top);
-                        bundle.putString("bottom", bottom);
-
-                        FragmentManager fragmentManager = getFragmentManager();
-                        fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, result).commit();
-
-                        *//*Intent intent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(intent);
-                        getActivity().finish();*//*
-
-                        dialog.dismiss();
-                    }
-                }, 4500);*/
-
-
             }
         });
         return view;

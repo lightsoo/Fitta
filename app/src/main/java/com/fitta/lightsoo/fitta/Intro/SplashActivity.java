@@ -54,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
     LoginManager mLoginManager = LoginManager.getInstance();
     AccessTokenTracker mTokenTracker;
 
-    ImageView splash;
+    ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +71,13 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void init(){
-        splash = (ImageView)findViewById(R.id.splash);
+        logo = (ImageView)findViewById(R.id.logo);
         Glide.with(getApplicationContext())
-                .load(R.drawable.splash)
+                .load(R.drawable.logo)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
-                .into(splash);
+                .into(logo);
 
         layoutPlace = (RelativeLayout)findViewById(R.id.background);
         Glide.with(getApplicationContext())
