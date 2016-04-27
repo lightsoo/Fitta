@@ -6,7 +6,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
-        android:background="@color/avatar_background"
+        android:background="@drawable/shape_layout_border4"
         android:layout_width="238.33dp"
         android:layout_height="404.33dp"
         android:id="@+id/fittingLayout"
@@ -52,7 +52,7 @@
 
         <RelativeLayout
 
-            android:background="@drawable/shape_layout_border3"
+            android:background="@drawable/shape_layout_border4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
