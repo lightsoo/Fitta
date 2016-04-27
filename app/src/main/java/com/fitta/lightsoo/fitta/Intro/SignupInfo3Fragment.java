@@ -58,24 +58,17 @@ public class SignupInfo3Fragment extends Fragment {
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //여기는 선택사항이니깐 나중에 입력해도되
-                //editText에 빈칸이 있다면!!
-//                if(!preInspection()){
-//                    Toast.makeText(getActivity(), "빈칸을 채워주세요", Toast.LENGTH_SHORT).show();
-//                }else{
-//
-//                }
                 setInfo();
                 top = et_top.getText().toString();
                 bottom = et_bottom.getText().toString();
                 Log.d(TAG,"age : " + age + ", height : " + height + ", weight : " + weight + ", top : " + top + ", bottom : " + bottom);
                 //입력받은 값들을 이제 서버에 보내줘야해 그리고 나서
 
-
                 //로딩 다이얼로그
                 final DialogSignupFragment dialog = new DialogSignupFragment();
                 dialog.show(getActivity().getSupportFragmentManager(), "loading");
-
+                //서버에 사용자의 정보를 입력한다음 디비에 저장하고
+                //해당되는 아바타 이미지url을 리턴받는다.
                 Fitta fitta = new Fitta(age, height, weight, top, bottom) ;
 
                 Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).signup(fitta);
@@ -84,16 +77,15 @@ public class SignupInfo3Fragment extends Fragment {
                     public void onResponse(Response response, Retrofit retrofit) {
                         if (response.isSuccess()) {//이전에 가입되었던 사람이라면 OK,
                             Toast.makeText(getActivity(), "서버전송 성공", Toast.LENGTH_SHORT).show();
-
                             Message msg = (Message)response.body();
                             Log.d(TAG, msg.toString());
 
                             Bundle bundle = new Bundle();
-                            bundle.putString("age", age);
-                            bundle.putString("weight", weight);
-                            bundle.putString("height", height);
-                            bundle.putString("top", top);
-                            bundle.putString("bottom", bottom);
+//                            bundle.putString("age", age);
+//                            bundle.putString("weight", weight);
+//                            bundle.putString("height", height);
+//                            bundle.putString("top", top);
+//                            bundle.putString("bottom", bottom);
                             bundle.putString("url", msg.url);
 
                             result = new SignupResultFragment();

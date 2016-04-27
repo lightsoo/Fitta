@@ -7,10 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.fitta.lightsoo.fitta.TabFragment.FittingFragment;
-import com.fitta.lightsoo.fitta.TabFragment.FittingRoomFragment;
-import com.fitta.lightsoo.fitta.TabFragment.SettingFragment;
-import com.fitta.lightsoo.fitta.TabFragment.StoreFragment;
+import com.fitta.lightsoo.fitta.MainFragment.FittingFragment;
+import com.fitta.lightsoo.fitta.MainFragment.FittingRoomFragment;
+import com.fitta.lightsoo.fitta.MainFragment.SettingFragment;
+import com.fitta.lightsoo.fitta.MainFragment.StoreFragment;
 import com.fitta.lightsoo.fitta.Handler.BackPressCloseHandler;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.fitta.lightsoo.fitta.TabFragment;
+package com.fitta.lightsoo.fitta.MainFragment;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class FittingRoomFragment extends Fragment {
     ListView lv_top, lv_bottom, lv_etc, lv_clothes;
     View view;
     private ClothesAdapter topAdapter, bottomAdapter,etcAdapter, likeAdapter;
-    Button btn_top, btn_bottom, btn_etc, btn_like;
+    RadioButton btn_top, btn_bottom, btn_etc, btn_like;
     Button btn_refresh, btn_add_like;
     private ImageView iv_fittingroom_avatar,  iv_fittingroom_top, iv_fittingroom_bottom, iv_fittingroom_etc, iv_fittingroom_like;
     //입력된 url
@@ -176,10 +177,10 @@ public class FittingRoomFragment extends Fragment {
         bottomAdapter = new ClothesAdapter();
         etcAdapter = new ClothesAdapter();
 
-        btn_top = (Button)view.findViewById(R.id.btn_lv_top);
-        btn_bottom = (Button)view.findViewById(R.id.btn_lv_bottom);
-        btn_etc = (Button)view.findViewById(R.id.btn_lv_etc);
-        btn_like = (Button)view.findViewById(R.id.btn_lv_like);
+        btn_top = (RadioButton)view.findViewById(R.id.btn_lv_top);
+        btn_bottom = (RadioButton)view.findViewById(R.id.btn_lv_bottom);
+        btn_etc = (RadioButton)view.findViewById(R.id.btn_lv_etc);
+        btn_like = (RadioButton)view.findViewById(R.id.btn_lv_like);
 
         btn_refresh = (Button)view.findViewById(R.id.btn_refresh);
         btn_add_like = (Button)view.findViewById(R.id.btn_add_like);
@@ -200,7 +201,7 @@ public class FittingRoomFragment extends Fragment {
 
         layoutPlace = (RelativeLayout)view.findViewById(R.id.background);
         Glide.with(getContext())
-                .load(R.drawable.background)
+                .load(R.drawable.avatar_background)
                 .asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -231,8 +232,6 @@ public class FittingRoomFragment extends Fragment {
                 .skipMemoryCache(true)
                 .into(iv);
     }
-
-
 
     public void getClothes(){
         //리턴받을 데이터형을Call<리턴형>인거야

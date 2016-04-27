@@ -1,4 +1,4 @@
-package com.fitta.lightsoo.fitta.TabFragment;
+package com.fitta.lightsoo.fitta.MainFragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
+import com.fitta.lightsoo.fitta.Dialog.DialogLoadingFragment;
 import com.fitta.lightsoo.fitta.R;
 public class StoreFragment extends Fragment {
 
@@ -35,9 +35,15 @@ public class StoreFragment extends Fragment {
             public void onClick(View v) {
 
 
+
                 //로딩 다이얼로그
-                final DialogSignupFragment dialog = new DialogSignupFragment();
+                final DialogLoadingFragment dialog = new DialogLoadingFragment();
+
                 dialog.show(getActivity().getSupportFragmentManager(), "loading");
+
+                //로딩 다이얼로그
+//                final DialogSignupFragment dialog = new DialogSignupFragment();
+//                dialog.show(getActivity().getSupportFragmentManager(), "loading");
                 Toast.makeText(getActivity(), "버튼클릭!", Toast.LENGTH_SHORT).show();
                 //지금 스레드로 해뒀는데, 나중에 통신으로 바꿔줘야된다.
                 mHandler.postDelayed(new Runnable() {
@@ -48,7 +54,7 @@ public class StoreFragment extends Fragment {
 //                        startActivityForResult(intent, FITTING_RESULT);
                         dialog.dismiss();
                     }
-                }, 4500);
+                }, 3500);
             }
         });
         return view;

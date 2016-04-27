@@ -54,9 +54,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="가슴둘레(상의사이즈)"
         android:id="@+id/textView21"
-        android:layout_alignTop="@+id/iv_top"
-        android:layout_toRightOf="@+id/textView19"
-        android:layout_toEndOf="@+id/textView19" />
+        android:layout_above="@+id/et_top"
+        android:layout_alignLeft="@+id/et_top"
+        android:layout_alignStart="@+id/et_top" />
 
     <EditText
         android:layout_width="131dp"
@@ -64,9 +64,9 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/et_top"
-        android:layout_below="@+id/textView21"
-        android:layout_alignLeft="@+id/textView21"
-        android:layout_alignStart="@+id/textView21" />
+        android:layout_alignBottom="@+id/iv_top"
+        android:layout_toRightOf="@+id/iv_top"
+        android:layout_toEndOf="@+id/iv_top" />
 
     <EditText
         android:layout_width="131dp"
@@ -83,9 +83,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="cm"
         android:id="@+id/textView22"
-        android:layout_below="@+id/textView21"
-        android:layout_toRightOf="@+id/et_top"
-        android:layout_toEndOf="@+id/et_top" />
+        android:layout_alignBottom="@+id/et_top"
+        android:layout_alignLeft="@+id/textView23"
+        android:layout_alignStart="@+id/textView23" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -98,8 +98,8 @@
         android:layout_toEndOf="@+id/et_bottom" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="211dp"
+        android:layout_height="45dp"
         android:text="입력완료"
         android:id="@+id/btn_post"
         android:layout_alignParentBottom="true"
@@ -112,7 +112,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="허리둘레(하의사이즈)"
         android:id="@+id/textView24"
-        android:layout_above="@+id/textView23"
+        android:layout_above="@+id/et_bottom"
         android:layout_alignLeft="@+id/et_bottom"
         android:layout_alignStart="@+id/et_bottom" />
 </RelativeLayout>

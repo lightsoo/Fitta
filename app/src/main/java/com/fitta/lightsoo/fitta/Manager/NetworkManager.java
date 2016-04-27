@@ -17,10 +17,10 @@ public class NetworkManager {
     // where my server lives.
 //    private static final String serverURL ="http://172.30.2.30:3000/";
     //aws 아이피주소
-//    private static final String serverURL ="http://52.192.180.38:3000/";
+    private static final String serverURL ="http://52.192.180.38:3000/";
 
     //피타사무실 아이피주소
-    private static final String serverURL ="http://192.168.0.13:3000/";
+//    private static final String serverURL ="http://192.168.0.13:3000/";
 
 
     //효돌 아이피주소

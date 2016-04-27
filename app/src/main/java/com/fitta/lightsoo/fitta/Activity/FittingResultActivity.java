@@ -1,15 +1,21 @@
 package com.fitta.lightsoo.fitta.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.R;
 
 public class FittingResultActivity extends AppCompatActivity {
@@ -20,14 +26,10 @@ public class FittingResultActivity extends AppCompatActivity {
 
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
-
     private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
-    private int clothesImage =0;
-
     private String clothesUrl = ""; //이미지 결과
-
-    private String imagePath;
-
+    //배경화면 세팅
+    RelativeLayout layoutPlace ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +113,19 @@ public class FittingResultActivity extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(avatar);
+
+        layoutPlace = (RelativeLayout)findViewById(R.id.background);
+        Glide.with(getApplicationContext())
+                .load(R.drawable.avatar_background)
+                .asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                Drawable drawable = new BitmapDrawable(resource);
+                layoutPlace.setBackground(drawable);
+            }
+        });
+
+
         btn_refitting = (Button)findViewById(R.id.btn_refitting);
         btn_fittingroom = (Button)findViewById(R.id.btn_fittingroom);
     }

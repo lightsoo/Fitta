@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:id="@+id/background"
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +34,7 @@
             android:layout_width="189.67dp"
             android:layout_height="136.33dp"
             android:id="@+id/btn_gallery"
-            android:src="@drawable/btn_camera"
+            android:src="@drawable/btn_gallery"
             android:scaleType="centerCrop"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"

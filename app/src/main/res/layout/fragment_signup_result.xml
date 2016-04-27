@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/background">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,9 +15,9 @@
         android:layout_marginTop="34.67dp" />
 
     <RelativeLayout
-        android:layout_width="240.67dp"
-        android:layout_height="293.33dp"
-        android:background="@drawable/shape_layout_border"
+        android:layout_width="228.3dp"
+        android:layout_height="404.33dp"
+        android:background="@color/avatar_background"
         android:id="@+id/relativeLayout4"
         android:layout_below="@+id/textView28"
         android:layout_centerHorizontal="true"
@@ -31,11 +34,11 @@
     </RelativeLayout>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="211dp"
+        android:layout_height="45dp"
         android:text="피팅 시작하기"
         android:id="@+id/btn_start2"
         android:layout_below="@+id/relativeLayout4"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48.67dp" />
+        android:layout_marginTop="30dp" />
 </RelativeLayout>

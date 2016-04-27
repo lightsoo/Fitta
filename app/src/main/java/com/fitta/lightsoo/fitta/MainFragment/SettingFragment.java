@@ -1,4 +1,4 @@
-package com.fitta.lightsoo.fitta.TabFragment;
+package com.fitta.lightsoo.fitta.MainFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

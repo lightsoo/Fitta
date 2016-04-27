@@ -165,7 +165,6 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
 
         //로딩 다이얼로그
         final DialogLoadingFragment dialog = new DialogLoadingFragment();
-
         dialog.show(getSupportFragmentManager(), "loading");
 
 //        dialog.show(getActivity().getSupportFragmentManager(), "loading");

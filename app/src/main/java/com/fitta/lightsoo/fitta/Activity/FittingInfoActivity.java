@@ -26,6 +26,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Camera.CameraActivity;
 import com.fitta.lightsoo.fitta.Data.Message;
+import com.fitta.lightsoo.fitta.Dialog.DialogLoadingFragment;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout;
@@ -58,10 +59,12 @@ public class FittingInfoActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout2, relativeLayoutGone, relativeLayoutGone2;
     private Button btn_Layout2, btn_Gone;
 
+    //서버에 전송할 데이터
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
-    private String clothesUrl = ""; //이미지 결과
     private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
+    //서버로 전송받을 데이터 + FittingResultActivity로 전달
+    private String clothesUrl = ""; //이미지 결과
     //배경화면 세팅
     LinearLayout layoutPlace ;
 
@@ -99,6 +102,12 @@ public class FittingInfoActivity extends AppCompatActivity {
         //백키가 나온다.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        //백키설정...
+//        final Drawable upArrow = getResources().getDrawable(android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material);
+//        upArrow.setColorFilter(getResources().getColor(R.color.avatar_background), PorterDuff.Mode.SRC_ATOP);
+//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
 
         //백키 이벤트
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -467,6 +476,12 @@ public class FittingInfoActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+                //로딩 다이얼로그
+                final DialogLoadingFragment dialog = new DialogLoadingFragment();
+                dialog.show(getSupportFragmentManager(), "loading");
+
                 //여기서 어떤 사이즈옷인지, 분류할 어떤 데이터인지도 같이 보내줘서 서버에서 처리한다.
                 RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
                 Call call = NetworkManager.getInstance()
@@ -496,6 +511,7 @@ public class FittingInfoActivity extends AppCompatActivity {
                             + ", clothesImageName : " + clothesImageName );
 
                             startActivityForResult(intent1, FITTING_RESULT);
+                            dialog.dismiss();
                         } else {
                             Toast.makeText(FittingInfoActivity.this, "파일업로드 실패는 아닌데 다른 코드..",
                                     Toast.LENGTH_SHORT).show();

@@ -1,4 +1,4 @@
-package com.fitta.lightsoo.fitta.TabFragment;
+package com.fitta.lightsoo.fitta.MainFragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

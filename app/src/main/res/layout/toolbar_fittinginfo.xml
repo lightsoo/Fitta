@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:background="@android:color/transparent"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    app:theme="@style/CustomToolBar">
 
 
 </android.support.v7.widget.Toolbar>

@@ -2,15 +2,16 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#F14081</color>
+    <color name="colorAccent">#EB1A7D</color>
 
     <color name="blue">#0000FF</color>
     <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
 
     <color name="transparent">#00000000</color>
 
 
-
+    <color name="avatar_background">#80FFFFFF</color>
     <color name="loader_extra">#43A047</color>
     <color name="loader_prime">#7CB342</color>
 

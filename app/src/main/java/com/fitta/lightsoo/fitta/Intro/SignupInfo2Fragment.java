@@ -1,6 +1,5 @@
 package com.fitta.lightsoo.fitta.Intro;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -26,7 +25,6 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Data.Fitta;
 import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
-import com.fitta.lightsoo.fitta.MainActivity;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
@@ -86,7 +84,8 @@ public class SignupInfo2Fragment extends Fragment {
                 //로딩 다이얼로그
                 final DialogSignupFragment dialog = new DialogSignupFragment();
                 dialog.show(getActivity().getSupportFragmentManager(), "loading");
-
+                //서버에 사용자의 정보를 입력한다음 디비에 저장하고
+                //해당되는 아바타 이미지url을 리턴받는다.
                 Fitta fitta = new Fitta(age, height, weight, top, bottom) ;
 
                 Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).signup(fitta);
@@ -99,22 +98,22 @@ public class SignupInfo2Fragment extends Fragment {
                             Log.d(TAG, msg.toString());
 
                             Bundle bundle = new Bundle();
-                            bundle.putString("age", age);
-                            bundle.putString("weight", weight);
-                            bundle.putString("height", height);
-                            bundle.putString("top", top);
-                            bundle.putString("bottom", bottom);
+//                            bundle.putString("age", age);
+//                            bundle.putString("weight", weight);
+//                            bundle.putString("height", height);
+//                            bundle.putString("top", top);
+//                            bundle.putString("bottom", bottom);
                             bundle.putString("url", msg.url);
-
+                            //결과화면을 보여준다
                             result = new SignupResultFragment();
                             result.setArguments(bundle);
 
                             FragmentManager fragmentManager = getFragmentManager();
                             fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container, result).commit();
 
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
+//                            Intent intent = new Intent(getActivity(), MainActivity.class);
+//                            startActivity(intent);
+//                            getActivity().finish();
 
                             dialog.dismiss();
 

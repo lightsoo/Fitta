@@ -21,9 +21,7 @@ public class DialogSignupFragment extends DialogFragment {
     private RelativeLayout layoutPlace;
     private ImageView logo;
 
-    /**
-     * Colors
-     */
+    // Colors
     private int startColor;
     private int endColor;
 
@@ -35,7 +33,6 @@ public class DialogSignupFragment extends DialogFragment {
         //여기서 전체 배경을 정한다음에 onCreateView에서 커스텀 로딩바를 만든다.
         setStyle(STYLE_NO_TITLE, R.style.custom_signup_dialog);
     }
-
 
     @Nullable
     @Override
