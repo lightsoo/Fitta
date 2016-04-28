@@ -383,8 +383,6 @@
                 android:id="@+id/textView25"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
-
-
         </RelativeLayout>
 
         <Button
@@ -395,7 +393,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
-
 
         <Spinner
             android:id="@+id/spinner1"
@@ -486,9 +483,5 @@
             android:layout_below="@+id/radioGroup2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp" />
-
     </RelativeLayout>
-
-
-
 </RelativeLayout>

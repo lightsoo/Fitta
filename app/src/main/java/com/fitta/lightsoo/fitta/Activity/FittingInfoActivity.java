@@ -2,10 +2,12 @@ package com.fitta.lightsoo.fitta.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -36,6 +38,7 @@ import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -445,6 +448,16 @@ public class FittingInfoActivity extends AppCompatActivity {
     }
 
 
+    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
+        ParcelFileDescriptor parcelFileDescriptor =
+                getContentResolver().openFileDescriptor(uri, "r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        parcelFileDescriptor.close();
+        return image;
+    }
+
+
    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -470,7 +483,12 @@ public class FittingInfoActivity extends AppCompatActivity {
 
                 //이미지 데이터를 비트맵으로 받아온다.
                 try {
-                    Bitmap image_bitmap 	= MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    Bitmap image_bitmap  = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+
+//                    getBitmapFromUri();
+
+
+
                     SaveBitmapToFileCache(image_bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -557,27 +575,18 @@ public class FittingInfoActivity extends AppCompatActivity {
 
 //        File fileCacheItem = new File(strFilePath);
         mSaveFile = getOutputMediaFile();
-
         OutputStream out = null;
 
-        try
-        {
+        try {
             mSaveFile.createNewFile();
             out = new FileOutputStream(mSaveFile);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
+        } finally {
+            try {
                 out.close();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

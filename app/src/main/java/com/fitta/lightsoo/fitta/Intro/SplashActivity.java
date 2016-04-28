@@ -63,8 +63,8 @@ public class SplashActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
-        goMainActivity();
-//        goLoginActivity();
+//        goMainActivity();
+        goLoginActivity();
 
         //완성 했는데 테스트할때는 바로 메인으로 가게끔해서 하자 그래야 디버그가 편해
 //        doRealStart();
@@ -89,9 +89,8 @@ public class SplashActivity extends AppCompatActivity {
                 layoutPlace.setBackground(drawable);
             }
         });
-
-
     }
+
 
 
     private void doRealStart(){
@@ -111,10 +110,8 @@ public class SplashActivity extends AppCompatActivity {
                 case PropertyManager.LOGIN_TYPE_FACEBOOK:
                     //로그인 id가 존재할경우
                     if(!TextUtils.isEmpty(userLoginId)){
-
                         Log.d(TAG, "id가 있는경우 :!TextUtils.isEmpty(userLoginId))");
                         Log.d(TAG, "userLoginId : " + userLoginId );
-
 
                         loginType = PropertyManager.getInstance().getLoginType();
                         User user = new User(userLoginId, loginType);

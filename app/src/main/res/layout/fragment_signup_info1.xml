@@ -6,6 +6,18 @@
     android:id="@+id/background"
     tools:context="com.fitta.lightsoo.fitta.Intro.SignupInfo1Fragment">
 
+
+
+    <ImageView
+        android:src="@drawable/logo"
+        android:layout_width="269dp"
+        android:layout_height="144.33dp"
+        android:id="@+id/signup_logo"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView13"
+        android:layout_marginTop="120dp" />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,11 +27,8 @@
         android:id="@+id/textView13"
 
         android:layout_marginLeft="61dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="61dp"
-        android:layout_marginTop="172dp" />
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/signup_logo" />
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -166,5 +175,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="39dp" />
+
 
 </RelativeLayout>

@@ -67,7 +67,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
-
     //surface생성시 카메라의 인스턴스를 받아온후 preview를 출력할 위치 설정
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
