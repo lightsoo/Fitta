@@ -108,7 +108,7 @@ public class FittingRoomFragment extends Fragment {
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true)
                                 .into(iv_fittingroom_top);
-
+                        iv_fittingroom_top.bringToFront();
                         fittingroom_top=(String)data;
                     } else if (cntAdapterFlag == 2) {
                         Toast.makeText(getActivity(), "bottom : " + (String) data, Toast.LENGTH_SHORT).show();
@@ -123,7 +123,7 @@ public class FittingRoomFragment extends Fragment {
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true)
                                 .into(iv_fittingroom_bottom);
-
+                        iv_fittingroom_bottom.bringToFront();
 
                         fittingroom_bottom = (String)data;
                     } else if (cntAdapterFlag == 3) {
@@ -138,8 +138,6 @@ public class FittingRoomFragment extends Fragment {
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true)
                                 .into(iv_fittingroom_etc);
-
-
                         fittingroom_etc = (String)data;
                     } else if (cntAdapterFlag == 4) {
                         //1,2,3번은 중복이 되는데 4번을 누를경우에는 이전에 입힌게 리셋되도록 하자
@@ -149,11 +147,25 @@ public class FittingRoomFragment extends Fragment {
                         setFitting(iv_fittingroom_like, (String) data);
                     } else {
                         Toast.makeText(getActivity(), "Header : " + (String) data, Toast.LENGTH_SHORT).show();
-
                     }
+
+                    //나중에 여기서 마지막에 표정이랑 머리가 출력되게한다
+                    Glide.with(getContext())
+                            .load(R.drawable.df55_etc)
+                            .crossFade()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .into(iv_fittingroom_etc);
+                    iv_fittingroom_etc.bringToFront();
+
                 }
             }
         });
+
+
+
+
+
 
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
