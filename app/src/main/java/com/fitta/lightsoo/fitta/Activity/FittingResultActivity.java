@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -22,10 +23,10 @@ public class FittingResultActivity extends AppCompatActivity {
     private Button btn_refitting, btn_fittingroom;
 
     private static final String TAG = "FittingResultActivity";
-
-    private String clothesSize = ""; //사이즈
-    private String clothesUnit = ""; //단위 결과
-    private String clothesUrl = ""; //사진촬영이후 서버에 이미지보낸다음 리턴받은 이미지의 경로
+    //이거 텍스트 뷰로 바꿔야해
+    private TextView tv_clothesFeedback;
+    private String clothesFeedback = ""; //서버로부터 리턴받은 피드백
+    private String clothesUrl = ""; //사진촬영 or 갤러리이미지를 서버에 보낸다음 리턴받은 이미지의 경로
 
     //배경화면 세팅
     RelativeLayout layoutPlace ;
@@ -46,9 +47,8 @@ public class FittingResultActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getIntent());
         clothesUrl = intent.getExtras().getString("clothesUrl");
-        clothesSize = intent.getExtras().getString("clothesSize");
-        clothesUnit = intent.getExtras().getString("clothesUnit");
-
+        clothesFeedback = intent.getExtras().getString("clothesFeedback");
+        tv_clothesFeedback.setText(clothesFeedback);
 //        Log.d(TAG, "FittingResultActivity에서 이미지 받은 유알엘 : "+clothesUrl);
 
         //아바타에 입힐 옷을 세팅하는거야!!
@@ -103,6 +103,8 @@ public class FittingResultActivity extends AppCompatActivity {
     }
 
     public void init(){
+        tv_clothesFeedback = (TextView)findViewById(R.id.tv_clothesFeedback);
+
         clothes = (ImageView)findViewById(R.id.result_clothes);
         avatar = (ImageView)findViewById(R.id.result_avatar);
         Glide.with(getApplicationContext())

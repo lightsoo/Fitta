@@ -8,12 +8,15 @@ public class Message {
     public String url;
     public String msg;
     public int code;
+    public String clothesFeedback;
+
 
     public Message(){}
-    public Message(int code, String msg, String url) {
+    public Message(int code, String msg, String url, String clothesFeedback) {
         this.url = url;
         this.code = code;
         this.msg = msg;
+        this.clothesFeedback= clothesFeedback;
     }
 
     public String getMsg() {

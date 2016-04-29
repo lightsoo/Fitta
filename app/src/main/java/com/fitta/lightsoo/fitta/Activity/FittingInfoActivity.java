@@ -48,6 +48,14 @@ import retrofit.Retrofit;
 
 import static com.fitta.lightsoo.fitta.Util.MediaHelper.getOutputMediaFile;
 
+
+
+/**
+ * FittingInfoActivity에서 입력한 값{ clothesCategory : 빅테이터 불류할 값, clothesSize : 결과값, )
+ * bundle을 통해 받으면 입력한값과 사진파일 :  mSaveFile을 서버에 전송해서
+ * 결과이미지를 clothesUrl로 이미지 경로를 받는다.
+ */
+
 public class FittingInfoActivity extends AppCompatActivity {
 
     private static final String TAG = "FittingInfoActivity";
@@ -60,12 +68,15 @@ public class FittingInfoActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout2, relativeLayoutGone, relativeLayoutGone2;
     private Button btn_Layout2, btn_Gone;
 
+    private String clothesUnit = ""; //단위 결과, 이거는 분류표!
     //서버에 전송할 데이터
-    private String clothesSize = ""; //사이즈
-    private String clothesUnit = ""; //단위 결과
+    private String clothesSize = ""; //사이즈, 이것만 서버에 보낸다.
     private String clothesCategory = ""; //빅데이터 분류용 어떤 이미지인지
     //서버로 전송받을 데이터 + FittingResultActivity로 전달
     private String clothesUrl = ""; //이미지 결과
+    private String clothesFeedback = "";//피드백 결과
+
+
     //배경화면 세팅
     LinearLayout layoutPlace ;
 
@@ -495,11 +506,12 @@ public class FittingInfoActivity extends AppCompatActivity {
                 final DialogLoadingFragment dialog = new DialogLoadingFragment();
                 dialog.show(getSupportFragmentManager(), "loading");
 
+                getCaptureImage(getCheckedRadioButtonId());
                 //여기서 어떤 사이즈옷인지, 분류할 어떤 데이터인지도 같이 보내줘서 서버에서 처리한다.
                 RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
                 Call call = NetworkManager.getInstance()
                         .getAPI(FittaAPI.class)
-                        .uploadImage(requestBody);
+                        .uploadImage(requestBody, clothesCategory, clothesSize);
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Response response, Retrofit retrofit) {
@@ -507,19 +519,17 @@ public class FittingInfoActivity extends AppCompatActivity {
 
                             Message message = (Message) response.body();
                             clothesUrl = message.url;
+                            clothesFeedback = message.clothesFeedback;
                             Log.d(TAG, "response = " + new Gson().toJson(message));
                             Toast.makeText(FittingInfoActivity.this, "파일업로드 성공인경우code(200~300)" + message.getMsg(),
                                     Toast.LENGTH_SHORT).show();
                             Intent intent1 = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
+                            //피드백 결과값을 보내줘야된다.
                             intent1.putExtra("clothesUrl", clothesUrl);
-                            intent1.putExtra("clothesSize", clothesSize);
-                            intent1.putExtra("clothesUnit", clothesUnit);
+                            intent1.putExtra("clothesFeedback", clothesFeedback);
 
-//                            intent1.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
-                            intent1.putExtra("clothesCategory", clothesCategory);
 
-                            Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit
-                            + ", clothesCategory : " + clothesCategory );
+                            Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesFeedback : " + clothesFeedback );
 
                             startActivityForResult(intent1, FITTING_RESULT);
                             dialog.dismiss();

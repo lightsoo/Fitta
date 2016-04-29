@@ -42,7 +42,7 @@ import static com.fitta.lightsoo.fitta.Util.MediaHelper.getOutputMediaFile;
 
 
 /**
- * FittingInfoActivity에서 입력한 값{ clothesImageName : 빅테이터 불류할 값, clothesSize : 어떤사이즈표 , clothesUnit : 사이즈결과값)
+ * FittingInfoActivity에서 입력한 값{ clothesCategory : 빅테이터 불류할 값, clothesSize : 결과값, )
  * bundle을 통해 받으면 입력한값과 사진파일 :  mSaveFile을 서버에 전송해서
  * 결과이미지를 clothesUrl로 이미지 경로를 받는다.
  */
@@ -58,15 +58,18 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
 
     private static final int REQUEST_CROP = 2;
     private static final int REQUEST_CAMERA = 3;
-
     private static final int FITTING_RESULT = 10;
-    private String clothesSize = ""; //사이즈
-    private String clothesUnit = ""; //단위 결과
-    private String clothesUrl = ""; //이미지 결과
+
+
+    private String clothesUnit = ""; //단위 결과, 이거는 분류표!
+    //서버에 전송할 데이터
+    private String clothesSize = ""; //사이즈, 이것만 서버에 보낸다.
     private String clothesCategory = ""; //빅데이터 분류용 어떤 이미지인지, 서버에만 보내주면괜찮아
+    //서버로 전송받을 데이터 + FittingResultActivity로 전달
+    private String clothesUrl = ""; //이미지 결과
+    private String clothesFeedback = "";//피드백 결과
 
-
-    private int clothesImage = 0;//이미지 아이디값인가 R.drawable.top1 ...
+    private int clothesImage = 0;//촬영 이미지 아이디값 ex) R.drawable.top1 ...
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +176,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
         Call call = NetworkManager.getInstance()
                 .getAPI(FittaAPI.class)
-                .uploadImage(requestBody);
+                .uploadImage(requestBody, clothesCategory, clothesSize);
 
         call.enqueue(new Callback() {
             @Override
@@ -182,6 +185,9 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
 
                     Message message = (Message) response.body();
                     clothesUrl = message.url;
+                    clothesFeedback = message.clothesFeedback;
+
+
                     Log.d(TAG, "response = " + new Gson().toJson(message));
                     Toast.makeText(CameraActivity.this, "파일업로드 성공인경우code(200~300)" + message.getMsg(),
                             Toast.LENGTH_SHORT).show();
@@ -189,9 +195,9 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
 //                    Log.i(TAG, "Got image path1: " + imgPath1);
                     Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
                     intent1.putExtra("clothesUrl", clothesUrl);
-                    intent1.putExtra("clothesSize", clothesSize);
-                    intent1.putExtra("clothesUnit", clothesUnit);
-                    Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
+                    intent1.putExtra("clothesFeedback", clothesFeedback);
+
+                    Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesFeedback : " + clothesFeedback);
                     startActivityForResult(intent1, FITTING_RESULT);
 
                     dialog.dismiss();
