@@ -531,21 +531,21 @@ public class FittingInfoActivity extends AppCompatActivity {
                             startActivityForResult(intent1, FITTING_RESULT);
                             dialog.dismiss();
                         } else {
-                            Toast.makeText(FittingInfoActivity.this, "파일업로드 실패는 아닌데 다른 코드..",
+                            Toast.makeText(FittingInfoActivity.this, "파일업로드 실패는 아닌데 다른 코드",
                                     Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
                     }
 
                     @Override
                     public void onFailure(Throwable t) {
-
+                        Toast.makeText(FittingInfoActivity.this, "파일업로드 실패",
+                                Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
                     }
                 });
-
                 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //                String imgPath1 = Uri.fromFile(mSaveFile).toString();
-
-
                 /*Log.i(TAG, "Got image path1: " + filePath);
                 Intent intent = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
                 intent.putExtra("clothesUrl", filePath);
@@ -555,8 +555,6 @@ public class FittingInfoActivity extends AppCompatActivity {
                         ", clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize);
                 Log.d(TAG, "filePath : " + filePath + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit);
                 startActivityForResult(intent, FITTING_RESULT);*/
-
-
 //                startActivity(intent);
                 break;
             case FITTING_RESULT:

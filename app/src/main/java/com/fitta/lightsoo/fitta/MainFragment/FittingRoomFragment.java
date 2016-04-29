@@ -99,27 +99,54 @@ public class FittingRoomFragment extends Fragment {
                     if (cntAdapterFlag == 1) {
                         Toast.makeText(getActivity(), "top : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "top의 positon : " + position);
-                        setFitting(iv_fittingroom_top, (String) data);
-                        fittingroom_top=(String)data;
                         setClearFitting();
+//                        setFitting(iv_fittingroom_top, (String) data);
+                        //임의로 지정된 이미지를 오버레이 해보자
+                        Glide.with(getContext())
+                                .load(R.drawable.df55_top)
+                                .crossFade()
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .into(iv_fittingroom_top);
+
+                        fittingroom_top=(String)data;
                     } else if (cntAdapterFlag == 2) {
                         Toast.makeText(getActivity(), "bottom : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "bottom의 positon : " + position);
-                        setFitting(iv_fittingroom_bottom, (String) data);
-                        fittingroom_bottom = (String)data;
                         setClearFitting();
+//                        setFitting(iv_fittingroom_bottom, (String) data);
+                        //임의로 지정된 이미지를 오버레이 해보자
+
+                        Glide.with(getContext())
+                                .load(R.drawable.df55_bottom)
+                                .crossFade()
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .into(iv_fittingroom_bottom);
+
+
+                        fittingroom_bottom = (String)data;
                     } else if (cntAdapterFlag == 3) {
                         Toast.makeText(getActivity(), "etc : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "etc의 positon : " + position);
-                        setFitting(iv_fittingroom_etc, (String) data);
-                        fittingroom_etc = (String)data;
                         setClearFitting();
+//                        setFitting(iv_fittingroom_etc, (String) data);
+                        //임의로 지정된 이미지를 오버레이 해보자
+                        Glide.with(getContext())
+                                .load(R.drawable.df55_etc)
+                                .crossFade()
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .into(iv_fittingroom_etc);
+
+
+                        fittingroom_etc = (String)data;
                     } else if (cntAdapterFlag == 4) {
                         //1,2,3번은 중복이 되는데 4번을 누를경우에는 이전에 입힌게 리셋되도록 하자
                         Toast.makeText(getActivity(), "like : " + (String) data, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "like의 positon : " + position);
-                        setFitting(iv_fittingroom_like, (String) data);
                         setClearFitting();
+                        setFitting(iv_fittingroom_like, (String) data);
                     } else {
                         Toast.makeText(getActivity(), "Header : " + (String) data, Toast.LENGTH_SHORT).show();
 
@@ -187,7 +214,7 @@ public class FittingRoomFragment extends Fragment {
 
         iv_fittingroom_avatar = (ImageView)view.findViewById(R.id.iv_fittingroom_avatar);
         Glide.with(getContext())
-                .load(R.drawable.body100cf)
+                .load(R.drawable.df55)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
@@ -213,12 +240,15 @@ public class FittingRoomFragment extends Fragment {
     }
 
     public void setClearFitting(){
-        if(cntAdapterFlag==4){
-            iv_fittingroom_top.setImageResource(0);fittingroom_top="";
-            iv_fittingroom_bottom.setImageResource(0);fittingroom_bottom="";
-            iv_fittingroom_etc.setImageResource(0);fittingroom_etc="";
+
+        //기타 OR 즐겨찾기 클릭시 기존에 있던거
+        if(cntAdapterFlag==3 ||cntAdapterFlag==4){
+            iv_fittingroom_top.setImageResource(0);
+            iv_fittingroom_bottom.setImageResource(0);
+            iv_fittingroom_etc.setImageResource(0);
             iv_fittingroom_like.setImageResource(0);
         }else {
+            iv_fittingroom_etc.setImageResource(0);
             iv_fittingroom_like.setImageResource(0);
         }
     }

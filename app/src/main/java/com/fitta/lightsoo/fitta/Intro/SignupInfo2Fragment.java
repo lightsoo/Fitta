@@ -51,8 +51,6 @@ public class SignupInfo2Fragment extends Fragment {
 
     private EditText et_bottom;
     private Button btn_post;
-
-
     Fragment result;
 
     @Nullable

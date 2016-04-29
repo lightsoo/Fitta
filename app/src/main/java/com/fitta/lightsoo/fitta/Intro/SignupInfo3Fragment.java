@@ -34,7 +34,6 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-
 //남자 상세정보입력
 public class SignupInfo3Fragment extends Fragment {
 

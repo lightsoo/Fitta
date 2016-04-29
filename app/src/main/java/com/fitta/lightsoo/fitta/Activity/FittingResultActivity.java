@@ -108,7 +108,7 @@ public class FittingResultActivity extends AppCompatActivity {
         clothes = (ImageView)findViewById(R.id.result_clothes);
         avatar = (ImageView)findViewById(R.id.result_avatar);
         Glide.with(getApplicationContext())
-                .load(R.drawable.body100cf)
+                .load(R.drawable.df55)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)

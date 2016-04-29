@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
+    <FrameLayout
         android:background="@drawable/shape_layout_border4"
         android:layout_width="238.33dp"
         android:layout_height="404.33dp"
@@ -17,21 +17,23 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/iv_fittingroom_avatar"
-            android:src="@drawable/iv_fittingroom_avatar"
-            android:scaleType="centerCrop"/>
+            android:id="@+id/iv_fittingroom_avatar"/>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/iv_fittingroom_top"  />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/iv_fittingroom_bottom"  />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/iv_fittingroom_etc" />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -39,7 +41,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
-    </RelativeLayout>
+
+    </FrameLayout>
 
     <RelativeLayout
         android:layout_width="122.33dp"
