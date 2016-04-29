@@ -3,12 +3,15 @@ package com.fitta.lightsoo.fitta;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.facebook.FacebookSdk;
 import com.kakao.auth.IApplicationConfig;
 import com.kakao.auth.KakaoAdapter;
 import com.kakao.auth.KakaoSDK;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by LG on 2016-02-20.
@@ -19,7 +22,12 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = this;
+//        setDefaultFont(this, "DEFAULT", "Roboto-Regular.ttf");
+        //폰트 수정하기기
+
+
+
+       mContext = this;
 
 
         KakaoSDK.init(new KakaoAdapter() {
@@ -89,4 +97,26 @@ public class MyApplication extends Application{
     public static Context getContext(){
         return mContext;
     }
+
+
+    public static void setDefaultFont(Context ctx,
+                                      String staticTypefaceFieldName, String fontAssetName) {
+        final Typeface regular = Typeface.createFromAsset(ctx.getAssets(),
+                fontAssetName);
+        replaceFont(staticTypefaceFieldName, regular);
+    }
+    protected static void replaceFont(String staticTypefaceFieldName,
+                                      final Typeface newTypeface) {
+        try {
+            final Field StaticField = Typeface.class
+                    .getDeclaredField(staticTypefaceFieldName);
+            StaticField.setAccessible(true);
+            StaticField.set(null, newTypeface);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

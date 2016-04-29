@@ -2,12 +2,10 @@ package com.fitta.lightsoo.fitta.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -38,7 +37,6 @@ import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;
 
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -65,7 +63,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     //서버에 전송할 데이터
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
-    private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
+    private String clothesCategory = ""; //빅데이터 분류용 어떤 이미지인지
     //서버로 전송받을 데이터 + FittingResultActivity로 전달
     private String clothesUrl = ""; //이미지 결과
     //배경화면 세팅
@@ -86,6 +84,8 @@ public class FittingInfoActivity extends AppCompatActivity {
     RadioButton radioBottom[] = new RadioButton[6];
     RadioButton radioEtc[] = new RadioButton[6];
     private RadioButton mBtnCurrentRadio;
+    private RadioGroup rg_length;
+    private RadioButton rd_length3,rd_length2, rd_length1;
 
     private File mSaveFile;
 
@@ -255,13 +255,15 @@ public class FittingInfoActivity extends AppCompatActivity {
 
 //        editSize = (EditText)findViewById(R.id.editSize);
         spinner1 = (Spinner)findViewById(R.id.spinner1);
-        spinner1Item = new String[]{"일반치수", "cm", "Inch", "호", "영문"};
+        spinner1Item = new String[]{"44 55 66", "cm", "Inch", "85 90 95", "S M L"};
         spinner1Adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, spinner1Item);
         spinner1Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(spinner1Adapter);
 
         spinner2 = (Spinner)findViewById(R.id.spinner2);
         btn_post = (Button)findViewById(R.id.btn_post);
+
+        rg_length=(RadioGroup)findViewById(R.id.rg_length);
 
         layoutPlace = (LinearLayout)findViewById(R.id.background);
         Glide.with(getApplicationContext())
@@ -299,78 +301,89 @@ public class FittingInfoActivity extends AppCompatActivity {
     }
 
     //어떠 이미지를 찍을건지 (상의9, 하의6, 기타6)
+    //찍은 이미지의 이미지를 설정하면서 빅데이터 불류한다.
     public int getCaptureImage(int checkedId){
             switch (checkedId){
                 case R.id.top1 :
-                    clothesImageName ="top1";
+                    clothesCategory ="top1";
                     return R.drawable.top1;
                 case R.id.top2 :
-                    clothesImageName ="top2";
+                    clothesCategory ="top2";
                     return R.drawable.top2;
                 case R.id.top3 :
-                    clothesImageName ="top3";
+                    clothesCategory ="top3";
                     return R.drawable.top3;
                 case R.id.top4 :
-                    clothesImageName ="top4";
+                    clothesCategory ="top4";
                     return R.drawable.top4;
                 case R.id.top5 :
-                    clothesImageName ="top5";
+                    clothesCategory ="top5";
                     return R.drawable.top5;
                 case R.id.top6 :
-                    clothesImageName ="top6";
+                    clothesCategory ="top6";
                     return R.drawable.top6;
                 case R.id.top7 :
-                    clothesImageName ="top7";
+                    clothesCategory ="top7";
                     return R.drawable.top7;
                 case R.id.top8 :
-                    clothesImageName ="top8";
+                    clothesCategory ="top8";
                     return R.drawable.top8;
                 case R.id.top9 :
-                    clothesImageName ="top9";
+                    clothesCategory ="top9";
                     break;
                 case R.id.bottom1 :
-                    clothesImageName ="bottom1";
+                    clothesCategory ="bottom1";
                     return R.drawable.bottom1;
                 case R.id.bottom2 :
-                    clothesImageName ="bottom2";
+                    clothesCategory ="bottom2";
                     return R.drawable.bottom2;
                 case R.id.bottom3 :
-                    clothesImageName ="bottom3";
+                    clothesCategory ="bottom3";
                     return R.drawable.bottom3;
                 case R.id.bottom4 :
-                    clothesImageName ="bottom4";
+                    clothesCategory ="bottom4";
                     return R.drawable.bottom4;
                 case R.id.bottom5 :
-                    clothesImageName ="bottom5";
+                    clothesCategory ="bottom5";
                     return R.drawable.bottom5;
                 case R.id.bottom6 :
-                    clothesImageName ="bottom6";
+                    clothesCategory ="bottom6";
                     return R.drawable.bottom6;
                 case R.id.etc1:
-                    clothesImageName ="etc1";
+                    clothesCategory ="etc1";
                     return R.drawable.etc1;
                 case R.id.etc2:
-                    clothesImageName ="etc2";
+                    clothesCategory ="etc2";
                     return R.drawable.etc2;
                 case R.id.etc3:
-                    clothesImageName ="etc3";
+                    clothesCategory ="etc3";
                     return R.drawable.etc3;
                 case R.id.etc4:
-                    clothesImageName ="etc4";
+                    clothesCategory ="etc4";
                     break;
                 case R.id.etc5:
-                    clothesImageName ="etc5";
+                    clothesCategory ="etc5";
                     break;
                 case R.id.etc6:
-                    clothesImageName ="etc6";
+                    clothesCategory ="etc6";
                     break;
             }
         return 0;
     }
 
-    //입력체크
+    //촬영이미지 선택됬는지 + 소매,길이 선택됬는지 두개를 비교한다.
     public boolean preInspection(){
-        return true;
+        //-1이 아니라면
+        boolean b = (getCheckedRadioButtonId() != -1);
+        Log.d(TAG, String.valueOf(b));
+        //비어있는 경우!!
+        if(!b||rg_length.getCheckedRadioButtonId() == -1){
+            return false;
+        }else{
+            return true;
+        }
+
+
 //        if(TextUtils.isEmpty(editSize.getText().toString())){
 //            return false;
 //        }else{
@@ -379,6 +392,7 @@ public class FittingInfoActivity extends AppCompatActivity {
 //        }
     }
 
+    //스피너에서 이미지 설정!
     public void setSpinnerData(View v, int position){
         clothesUnit = (String)spinner1.getAdapter().getItem(spinner1.getSelectedItemPosition());
         clothesSize = (String)spinner2.getAdapter().getItem(spinner2.getSelectedItemPosition());
@@ -397,12 +411,12 @@ public class FittingInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra("clothesUnit", clothesUnit);
         intent.putExtra("clothesSize", clothesSize);
-        intent.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
-        intent.putExtra("clothesImageName", clothesImageName);
+//        intent.putExtra("clothesCategory", getCaptureImage(getCheckedRadioButtonId()));
 
-        Log.d(TAG, "resultImage : " + getCaptureImage(getCheckedRadioButtonId())
-                + ", clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize
-         + ", clothesImageName : " + clothesImageName);
+        //촬영 이미지 클릭하면 결정되!어떤 촬영 이미지를 할건지 + 선택한 이미지 이름 전달
+        getCaptureImage(getCheckedRadioButtonId());
+        intent.putExtra("clothesCategory", clothesCategory);
+        Log.d(TAG, "clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize);
 //        startActivity(intent);
 //        finish();
         startActivityForResult(intent, FITTING_RESULT);
@@ -447,17 +461,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         return Uri.fromFile(mSaveFile);
     }
 
-
-    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
-        ParcelFileDescriptor parcelFileDescriptor =
-                getContentResolver().openFileDescriptor(uri, "r");
-        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-        parcelFileDescriptor.close();
-        return image;
-    }
-
-
    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -475,7 +478,6 @@ public class FittingInfoActivity extends AppCompatActivity {
             //크롭처리를 안한다면 여기서 프리뷰레이아웃을 보여줘서 다시 갤러리 선택하게 하거나 확인 누르게 하거나 해야될것 같다!
             case REQUEST_GALLERY :
                 Log.d(TAG, "REQUEST_GALLERY");
-
 //                mSaveFile = getOutputMediaFile();
 //                String filePath = Environment.getExternalStorageDirectory() + "/" + TEMP_PHOTO_FILE;
 //                Log.d(TAG, "getPath() : " + mSaveFile.getPath()) ;
@@ -484,18 +486,11 @@ public class FittingInfoActivity extends AppCompatActivity {
                 //이미지 데이터를 비트맵으로 받아온다.
                 try {
                     Bitmap image_bitmap  = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-
-//                    getBitmapFromUri();
-
-
-
                     SaveBitmapToFileCache(image_bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
                 //로딩 다이얼로그
                 final DialogLoadingFragment dialog = new DialogLoadingFragment();
                 dialog.show(getSupportFragmentManager(), "loading");
@@ -505,8 +500,6 @@ public class FittingInfoActivity extends AppCompatActivity {
                 Call call = NetworkManager.getInstance()
                         .getAPI(FittaAPI.class)
                         .uploadImage(requestBody);
-
-
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Response response, Retrofit retrofit) {
@@ -523,10 +516,10 @@ public class FittingInfoActivity extends AppCompatActivity {
                             intent1.putExtra("clothesUnit", clothesUnit);
 
 //                            intent1.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
-                            intent1.putExtra("clothesImageName", clothesImageName);
+                            intent1.putExtra("clothesCategory", clothesCategory);
 
                             Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit
-                            + ", clothesImageName : " + clothesImageName );
+                            + ", clothesCategory : " + clothesCategory );
 
                             startActivityForResult(intent1, FITTING_RESULT);
                             dialog.dismiss();
@@ -589,7 +582,6 @@ public class FittingInfoActivity extends AppCompatActivity {
             }
         }
     }
-
 
     //현재 체크되어있는지
     public int getCheckedRadioButtonId() {

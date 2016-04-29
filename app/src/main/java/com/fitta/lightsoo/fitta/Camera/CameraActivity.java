@@ -40,6 +40,13 @@ import retrofit.Retrofit;
 
 import static com.fitta.lightsoo.fitta.Util.MediaHelper.getOutputMediaFile;
 
+
+/**
+ * FittingInfoActivity에서 입력한 값{ clothesImageName : 빅테이터 불류할 값, clothesSize : 어떤사이즈표 , clothesUnit : 사이즈결과값)
+ * bundle을 통해 받으면 입력한값과 사진파일 :  mSaveFile을 서버에 전송해서
+ * 결과이미지를 clothesUrl로 이미지 경로를 받는다.
+ */
+
 public class CameraActivity extends AppCompatActivity implements CameraPreview.OnCameraStatusListener {
 
     private static final String TAG = "CameraActivity";
@@ -56,7 +63,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
     private String clothesUrl = ""; //이미지 결과
-    private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
+    private String clothesCategory = ""; //빅데이터 분류용 어떤 이미지인지, 서버에만 보내주면괜찮아
 
 
     private int clothesImage = 0;//이미지 아이디값인가 R.drawable.top1 ...
@@ -71,7 +78,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
         clothesSize = intent.getExtras().getString("clothesSize");
         clothesUnit = intent.getExtras().getString("clothesUnit");
         clothesImage = intent.getExtras().getInt("clothesImage");
-        clothesImageName = intent.getExtras().getString("clothesImageName");
+        clothesCategory = intent.getExtras().getString("clothesCategory");
 
         Log.d(TAG, "clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit + ", clothesImage : " + clothesImage);
 
@@ -158,22 +165,16 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
 
     //크롭처리를 하지않고 원본파일을 넘겨준다.
     public void getCameraImage(View button){
-//        Uri fileUri = Uri.fromFile(mSaveFile);
-        Log.d(TAG, "REQUEST_CAMERA");
-//        String imgPath1 = Uri.fromFile(mSaveFile).toString();
-
 
         //로딩 다이얼로그
         final DialogLoadingFragment dialog = new DialogLoadingFragment();
         dialog.show(getSupportFragmentManager(), "loading");
 
-//        dialog.show(getActivity().getSupportFragmentManager(), "loading");
-
-
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), mSaveFile);
         Call call = NetworkManager.getInstance()
                 .getAPI(FittaAPI.class)
                 .uploadImage(requestBody);
+
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Response response, Retrofit retrofit) {
@@ -184,7 +185,6 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
                     Log.d(TAG, "response = " + new Gson().toJson(message));
                     Toast.makeText(CameraActivity.this, "파일업로드 성공인경우code(200~300)" + message.getMsg(),
                             Toast.LENGTH_SHORT).show();
-
 
 //                    Log.i(TAG, "Got image path1: " + imgPath1);
                     Intent intent1 = new Intent(CameraActivity.this, FittingResultActivity.class);
@@ -207,6 +207,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
             }
         });
     }
+
 
     //사진촬영 이후 결과화면에서 확인 누른 다면 이후, 사진 크롭 처리로 이동할 함수
     public void cropImage(View button){

@@ -7,9 +7,6 @@ import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.POST;
 
-/**
- * Created by LG on 2016-04-18.
- */
 public interface LoginAPI {
 
     @POST("/login")

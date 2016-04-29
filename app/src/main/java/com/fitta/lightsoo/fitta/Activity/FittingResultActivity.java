@@ -6,7 +6,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,8 +25,8 @@ public class FittingResultActivity extends AppCompatActivity {
 
     private String clothesSize = ""; //사이즈
     private String clothesUnit = ""; //단위 결과
-    private String clothesImageName = ""; //빅데이터 분류용 어떤 이미지인지
-    private String clothesUrl = ""; //이미지 결과
+    private String clothesUrl = ""; //사진촬영이후 서버에 이미지보낸다음 리턴받은 이미지의 경로
+
     //배경화면 세팅
     RelativeLayout layoutPlace ;
     @Override
@@ -49,9 +48,8 @@ public class FittingResultActivity extends AppCompatActivity {
         clothesUrl = intent.getExtras().getString("clothesUrl");
         clothesSize = intent.getExtras().getString("clothesSize");
         clothesUnit = intent.getExtras().getString("clothesUnit");
-        clothesImageName = intent.getExtras().getString("clothesImageName");
 
-        Log.d(TAG, "FittingResultActivity에서 이미지 받은 유알엘 : "+clothesUrl);
+//        Log.d(TAG, "FittingResultActivity에서 이미지 받은 유알엘 : "+clothesUrl);
 
         //아바타에 입힐 옷을 세팅하는거야!!
         setClothes(clothesUrl);

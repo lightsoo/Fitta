@@ -150,13 +150,13 @@ public class FittingRoomFragment extends Fragment {
                     }
 
                     //나중에 여기서 마지막에 표정이랑 머리가 출력되게한다
-                    Glide.with(getContext())
+                    /*Glide.with(getContext())
                             .load(R.drawable.df55_etc)
                             .crossFade()
                             .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .skipMemoryCache(true)
                             .into(iv_fittingroom_etc);
-                    iv_fittingroom_etc.bringToFront();
+                    iv_fittingroom_etc.bringToFront();*/
 
                 }
             }

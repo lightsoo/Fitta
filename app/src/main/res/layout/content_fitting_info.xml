@@ -451,27 +451,27 @@
             android:layout_toEndOf="@+id/textView30"
             android:layout_marginLeft="17.67dp"
             android:orientation="horizontal"
-            android:id="@+id/radioGroup2">
+            android:id="@+id/rg_length">
 
             <RadioButton
                 android:layout_width="50dp"
                 android:layout_height="31.33dp"
                 android:text="길다"
-                android:id="@+id/radioButton"
+                android:id="@+id/rd_length3"
                 android:checked="false" />
 
             <RadioButton
                 android:layout_width="50dp"
                 android:layout_height="31.33dp"
                 android:text="보통"
-                android:id="@+id/radioButton2"
+                android:id="@+id/rd_length2"
                 android:checked="false" />
 
             <RadioButton
                 android:layout_width="50dp"
                 android:layout_height="31.33dp"
                 android:text="짧다"
-                android:id="@+id/radioButton3"
+                android:id="@+id/rd_length1"
                 android:checked="false" />
         </RadioGroup>
 
@@ -480,7 +480,7 @@
             android:layout_height="45dp"
             android:text=" 입력완료 "
             android:id="@+id/btn_post"
-            android:layout_below="@+id/radioGroup2"
+            android:layout_below="@+id/rg_length"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp" />
     </RelativeLayout>

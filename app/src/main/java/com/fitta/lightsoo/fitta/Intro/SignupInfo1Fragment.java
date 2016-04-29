@@ -121,10 +121,6 @@ public class SignupInfo1Fragment extends Fragment {
                 layoutPlace.setBackground(drawable);
             }
         });
-
-
-
-
     }
 
     public boolean preInspection(){
