@@ -19,36 +19,15 @@
         android:layout_marginLeft="37dp" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="60px"
-        android:text="종류/셔츠/M(95)"
-        android:id="@+id/textView9"
-        android:layout_below="@+id/relativeLayout3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10.33dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="옷이 다소 큽니다. 한 치수 낮은 것을 권유합니다."
-        android:textColor="@color/red"
-        android:id="@+id/tv_clothesFeedback"
-        android:textSize="70px"
-        android:layout_below="@+id/textView9"
-        android:layout_centerHorizontal="true" />
-
-
 
     <RelativeLayout
         android:layout_width="238.33dp"
-        android:layout_height="404.33dp"
+        android:layout_height="match_parent"
         android:background="@color/avatar_background"
         android:id="@+id/relativeLayout3"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:layout_above="@+id/relativeLayout7">
 
         <ImageView
             android:layout_width="match_parent"
@@ -64,30 +43,68 @@
             android:layout_alignParentStart="true" />
     </RelativeLayout>
 
+
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp">
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:id="@+id/relativeLayout7">
 
-        <Button
-            android:layout_width="160.67dp"
-            android:layout_height="47.33dp"
-            android:text="다시 피팅하기"
-            android:id="@+id/btn_refitting"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="false" />
+        <RelativeLayout
+            android:id="@+id/relativeLayoutText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/relativeLayoutButton">
 
-        <Button
-            android:layout_width="160.67dp"
-            android:layout_height="47.33dp"
-            android:text="피팅룸으로 가기"
-            android:id="@+id/btn_fittingroom"
-            android:layout_alignTop="@+id/btn_refresh"
-            android:layout_toRightOf="@+id/btn_refresh"
-            android:layout_toEndOf="@+id/btn_refresh"
-            android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="종류/셔츠/M(95)"
+                android:id="@+id/textView9"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="옷이 다소 큽니다. 한 치수 낮은 것을 권유합니다."
+                android:textColor="@color/red"
+                android:id="@+id/tv_clothesFeedback"
+                android:textSize="20dp"
+                android:layout_below="@+id/textView9"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/relativeLayoutButton">
+
+            <Button
+                android:layout_width="160.67dp"
+                android:layout_height="47.33dp"
+                android:text="다시 피팅하기"
+                android:id="@+id/btn_refitting"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="false" />
+
+            <Button
+                android:layout_width="160.67dp"
+                android:layout_height="47.33dp"
+                android:text="피팅룸으로 가기"
+                android:id="@+id/btn_fittingroom"
+                android:layout_alignTop="@+id/btn_refitting"
+                android:layout_toRightOf="@+id/btn_refitting"
+                android:layout_toEndOf="@+id/btn_refitting"
+                android:layout_marginLeft="20dp"/>
+        </RelativeLayout>
     </RelativeLayout>
+
 
 </RelativeLayout>

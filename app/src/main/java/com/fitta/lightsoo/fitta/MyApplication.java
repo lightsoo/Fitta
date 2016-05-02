@@ -20,6 +20,17 @@ public class MyApplication extends Application{
     public void onCreate() {
         super.onCreate();
 
+        /*//갤러리 권한 체크 (사용권한이 없는 경우 -1)
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            //권한이 없을경우
+
+
+
+
+
+        }*/
+
+
         //폰트 수정하기기
         //알아보니 안드로이드에서 지원해주는 것만 전체 application에 적용해서폰트처리할수있다!
 //        setDefaultFont(this, "DEFAULT", "Roboto-Regular.ttf");

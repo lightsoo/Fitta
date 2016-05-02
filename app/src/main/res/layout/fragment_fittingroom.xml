@@ -118,8 +118,6 @@
 
             </RadioGroup>
         </RelativeLayout>
-
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -148,7 +146,5 @@
             android:layout_toEndOf="@+id/btn_refresh"
             android:layout_marginLeft="20dp" />
     </RelativeLayout>
-
-
 </RelativeLayout>
 
