@@ -39,7 +39,10 @@ public interface FittaAPI {
                                    @Field("like")String like_bottom,
                                    @Field("like")String like_etc );
 
-
+    //토큰
+    @FormUrlEncoded
+    @POST("/logout")
+    Call<Message> logout(@Field("id")String id);
 
 
 }

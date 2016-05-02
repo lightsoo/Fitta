@@ -59,18 +59,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:text="종류/셔츠/M(95)"
                 android:id="@+id/textView9"
                 android:layout_centerHorizontal="true" />
 
             <TextView
+                android:singleLine="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="옷이 다소 큽니다. 한 치수 낮은 것을 권유합니다."
+                android:text="피드백!"
                 android:textColor="@color/red"
                 android:id="@+id/tv_clothesFeedback"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:layout_below="@+id/textView9"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>

@@ -44,5 +44,14 @@ public class PropertyManager {
         return mPrefs.getString(KEY_LOGIN_TYPE, "");
     }
 
+    public void deleteUserLoginId(){
+        mEditor.remove(FILED_ID);
+        mEditor.commit();
+    }
+    public void deleteLoginType()
+    {
+        mEditor.remove(KEY_LOGIN_TYPE);
+        mEditor.commit();
 
+    }
 }
