@@ -29,6 +29,7 @@ import com.fitta.lightsoo.fitta.RestAPI.LoginAPI;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.LoginButton;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
@@ -46,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final int CODE_ID_PASS_INCORRECT = 531;
 
     RelativeLayout background_login ;
-
-   private ImageButton btn_kakao;
+//   private ImageButton btn_kakao;
+    LoginButton btn_kakao;
 
     //for facebook
     CallbackManager callbackManager;
@@ -59,9 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     User user;
 
     private BackPressCloseHandler backPressCloseHandler;
-
     private Button btn_login;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +76,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+//        btn_kakao.setBackground(R.drawable.kakao_login);
+//        btn_kakao.onAtt
 
         btn_fb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,15 +195,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
 
     public void init(){
-
-
-
         btn_fb = (ImageButton)findViewById(R.id.btn_fb);
 
 //        background_login = (RelativeLayout)findViewById(R.id.background_login);
@@ -288,5 +282,4 @@ public class LoginActivity extends AppCompatActivity {
             mLoginManager.logOut();
         }
     }
-
 }

@@ -386,9 +386,9 @@
         </RelativeLayout>
 
         <Button
+            android:background="@drawable/btn_gone"
             android:layout_width="64.67dp"
             android:layout_height="37dp"
-            android:text="^"
             android:id="@+id/btn_gone"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
