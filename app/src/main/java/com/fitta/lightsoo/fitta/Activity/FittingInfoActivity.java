@@ -2,8 +2,6 @@ package com.fitta.lightsoo.fitta.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,9 +20,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Camera.CameraActivity;
 import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogLoadingFragment;
@@ -60,6 +55,9 @@ public class FittingInfoActivity extends AppCompatActivity {
 
     private static final String TAG = "FittingInfoActivity";
 
+    //배경화면 세팅
+    LinearLayout background_fitting_info;
+
     private static final int REQUEST_CAMERA = 100;
     private static final int REQUEST_GALLERY = 101;
     private static final int FITTING_RESULT = 10;
@@ -77,8 +75,6 @@ public class FittingInfoActivity extends AppCompatActivity {
     private String clothesFeedback = "";//피드백 결과
 
 
-    //배경화면 세팅
-    LinearLayout layoutPlace ;
 
     private Spinner spinner1, spinner2;          //사이즈, 단위 스피너
     private String[] spinner1Item, spinner2Item;
@@ -276,16 +272,16 @@ public class FittingInfoActivity extends AppCompatActivity {
 
         rg_length=(RadioGroup)findViewById(R.id.rg_length);
 
-        layoutPlace = (LinearLayout)findViewById(R.id.background);
-        Glide.with(getApplicationContext())
-                .load(R.drawable.background)
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                Drawable drawable = new BitmapDrawable(resource);
-                layoutPlace.setBackground(drawable);
-            }
-        });
+//        background_fitting_info = (LinearLayout)findViewById(R.id.background_fitting_info);
+//        Glide.with(getApplicationContext())
+//                .load(R.drawable.background_main)
+//                .asBitmap().into(new SimpleTarget<Bitmap>() {
+//            @Override
+//            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                Drawable drawable = new BitmapDrawable(resource);
+//                background_fitting_info.setBackground(drawable);
+//            }
+//        });
     }
 
     //spinner2데이터 세팅!

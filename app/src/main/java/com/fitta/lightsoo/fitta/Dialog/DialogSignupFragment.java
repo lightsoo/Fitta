@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.fitta.lightsoo.fitta.R;
 import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
@@ -18,7 +17,7 @@ import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
  */
 
 public class DialogSignupFragment extends DialogFragment {
-    private RelativeLayout layoutPlace;
+
     private ImageView logo;
 
     // Colors
@@ -38,13 +37,7 @@ public class DialogSignupFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_fragment_signup, container, false);
-//        background = (ImageView)view.findViewById(R.id.signup_background);
-//        Glide.with(getContext())
-//                .load(R.drawable.body100cf)
-//                .crossFade()
-//                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                .skipMemoryCache(true)
-//                .into(background);
+
 
 //        RubberLoaderView rubberLoaderView = (RubberLoaderView)view.findViewById(R.id.loaderview);
 //        rubberLoaderView.startLoading();

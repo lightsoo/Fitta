@@ -1,9 +1,6 @@
 package com.fitta.lightsoo.fitta.Intro;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,8 +14,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
@@ -46,7 +41,7 @@ import retrofit.Retrofit;
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
     Handler mHandler = new Handler(Looper.getMainLooper());
-    RelativeLayout layoutPlace ;
+    RelativeLayout background_splash ;
     String loginType;
     String userLoginId;
 
@@ -63,10 +58,10 @@ public class SplashActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
-        goMainActivity();
+//        goMainActivity();
 //        goLoginActivity();
         //완성 했는데 테스트할때는 바로 메인으로 가게끔해서 하자 그래야 디버그가 편해
-//        doRealStart();
+        doRealStart();
     }
 
     public void init(){
@@ -78,16 +73,16 @@ public class SplashActivity extends AppCompatActivity {
                 .skipMemoryCache(true)
                 .into(logo);
 
-        layoutPlace = (RelativeLayout)findViewById(R.id.background);
-        Glide.with(getApplicationContext())
-                .load(R.drawable.background)
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                Drawable drawable = new BitmapDrawable(resource);
-                layoutPlace.setBackground(drawable);
-            }
-        });
+//        background_splash = (RelativeLayout)findViewById(R.id.background_splash);
+//        Glide.with(getApplicationContext())
+//                .load(R.drawable.background_main)
+//                .asBitmap().into(new SimpleTarget<Bitmap>() {
+//            @Override
+//            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                Drawable drawable = new BitmapDrawable(resource);
+//                background_splash.setBackground(drawable);
+//            }
+//        });
     }
 
 

@@ -1,9 +1,6 @@
 package com.fitta.lightsoo.fitta.Intro;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,9 +10,6 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -50,7 +44,9 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     //server response code
     private static final int CODE_ID_PASS_INCORRECT = 531;
-    RelativeLayout layoutPlace ;
+
+    RelativeLayout background_login ;
+
    private ImageButton btn_kakao;
 
     //for facebook
@@ -209,24 +205,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
         btn_fb = (ImageButton)findViewById(R.id.btn_fb);
-//        Glide.with(getApplicationContext())
-//                .load(R.drawable.logo_facebook2)
-//                .crossFade()
-//                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                .skipMemoryCache(true)
-//
-//                .into(btn_fb);
 
-        layoutPlace = (RelativeLayout)findViewById(R.id.background);
-        Glide.with(getApplicationContext())
-                .load(R.drawable.background)
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                Drawable drawable = new BitmapDrawable(resource);
-                layoutPlace.setBackground(drawable);
-            }
-        });
+//        background_login = (RelativeLayout)findViewById(R.id.background_login);
+//        Glide.with(getApplicationContext())
+//                .load(R.drawable.background_main)
+//                .asBitmap().into(new SimpleTarget<Bitmap>() {
+//            @Override
+//            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                Drawable drawable = new BitmapDrawable(resource);
+//                background_login.setBackground(drawable);
+//            }
+//        });
 
 
 //        btn_kakao = (ImageButton)findViewById(R.id.btn_kakao);

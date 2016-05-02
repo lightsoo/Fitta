@@ -1,8 +1,5 @@
 package com.fitta.lightsoo.fitta.Intro;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,13 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Data.Fitta;
 import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
@@ -37,8 +30,6 @@ import retrofit.Retrofit;
 public class SignupInfo2Fragment extends Fragment {
 
     private static final String TAG = "SignupInfo2Fragment";
-
-    RelativeLayout layoutPlace ;
 
     private Spinner spinner;
     private String[] spinnerItem;
@@ -142,17 +133,6 @@ public class SignupInfo2Fragment extends Fragment {
 
         et_bottom = (EditText)view.findViewById(R.id.et_bottom);
         btn_post = (Button)view.findViewById(R.id.btn_post);
-
-        layoutPlace = (RelativeLayout)view.findViewById(R.id.background);
-        Glide.with(getContext())
-                .load(R.drawable.background)
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                Drawable drawable = new BitmapDrawable(resource);
-                layoutPlace.setBackground(drawable);
-            }
-        });
 
 
 //        spinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);

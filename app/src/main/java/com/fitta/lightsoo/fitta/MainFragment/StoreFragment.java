@@ -1,5 +1,8 @@
 package com.fitta.lightsoo.fitta.MainFragment;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -8,24 +11,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Dialog.DialogLoadingFragment;
 import com.fitta.lightsoo.fitta.R;
 public class StoreFragment extends Fragment {
 
-
-
-    private static final int REQUEST_GALLERY = 101;
-
-    private static final int FITTING_RESULT = 10;
-
     private Button btn_dialog;
     Handler mHandler = new Handler(Looper.getMainLooper());
+
+    //배경화면 세팅
+    RelativeLayout background_store ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_store, container, false);
+        background_store = (RelativeLayout)view.findViewById(R.id.background_store);
+        Glide.with(getContext())
+                .load(R.drawable.background_store)
+                .asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                Drawable drawable = new BitmapDrawable(resource);
+                background_store.setBackground(drawable);
+            }
+        });
 
 
 

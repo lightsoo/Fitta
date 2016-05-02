@@ -1,8 +1,5 @@
 package com.fitta.lightsoo.fitta.Intro;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,12 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.R;
 
 
@@ -41,7 +34,6 @@ public class SignupInfo1Fragment extends Fragment {
     private RadioButton radio_man, radio_woman;
 
     Fragment info2, info3;
-    RelativeLayout layoutPlace ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -107,20 +99,9 @@ public class SignupInfo1Fragment extends Fragment {
         et_weight=(EditText)view.findViewById(R.id.et_weight);
 
         radioGroup = (RadioGroup)view.findViewById(R.id.radioGroup);
-//        radioGroup.clearCheck();
-        radio_man= (RadioButton)view.findViewById(R.id.radio_man);
+         radio_man= (RadioButton)view.findViewById(R.id.radio_man);
         radio_woman = (RadioButton)view.findViewById(R.id.radio_woman);
 
-        layoutPlace = (RelativeLayout)view.findViewById(R.id.background);
-        Glide.with(getContext())
-                .load(R.drawable.background)
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                Drawable drawable = new BitmapDrawable(resource);
-                layoutPlace.setBackground(drawable);
-            }
-        });
     }
 
     public boolean preInspection(){

@@ -1,8 +1,5 @@
 package com.fitta.lightsoo.fitta.MainFragment;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,8 +16,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Adapter.ClothesAdapter;
 import com.fitta.lightsoo.fitta.Data.ClothesItems;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
@@ -50,7 +45,7 @@ public class FittingRoomFragment extends Fragment {
     //1 : top, 2 : bottom, 3 : etc, 4 : like 플래그를 둬서 리스트뷰 클릭시 구별하자!!!
     private int cntAdapterFlag=1;
 
-    RelativeLayout layoutPlace ;
+    RelativeLayout background_fittingroom ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -238,16 +233,16 @@ public class FittingRoomFragment extends Fragment {
         iv_fittingroom_etc = (ImageView)view.findViewById(R.id.iv_fittingroom_etc);
         iv_fittingroom_like = (ImageView)view.findViewById(R.id.iv_fittingroom_like);
 
-        layoutPlace = (RelativeLayout)view.findViewById(R.id.background);
-        Glide.with(getContext())
-                .load(R.drawable.avatar_background)
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                Drawable drawable = new BitmapDrawable(resource);
-                layoutPlace.setBackground(drawable);
-            }
-        });
+//        background_fittingroom = (RelativeLayout)view.findViewById(R.id.background_fittingroom);
+//        Glide.with(getContext())
+//                .load(R.drawable.avatar_background)
+//                .asBitmap().into(new SimpleTarget<Bitmap>() {
+//            @Override
+//            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                Drawable drawable = new BitmapDrawable(resource);
+//                background_fittingroom.setBackground(drawable);
+//            }
+//        });
 
     }
 

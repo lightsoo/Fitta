@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/background"
     tools:context="com.fitta.lightsoo.fitta.Intro.SignupInfo1Fragment">
 
 
@@ -44,11 +43,11 @@
             android:layout_alignStart="@+id/et_age">
 
             <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="51.67dp"
+                android:layout_height="26.67dp"
                 android:text=" 남자 "
                 android:button="@null"
-                android:background="@drawable/selector_radio"
+                android:background="@drawable/selector_signup_male"
                 android:id="@+id/radio_man"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
@@ -58,11 +57,12 @@
                 android:gravity="center_horizontal" />
 
             <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_width="51.67dp"
+                android:layout_height="26.67dp"
                 android:text=" 여자 "
                 android:button="@null"
-                android:background="@drawable/selector_radio"
+                android:background="@drawable/selector_signup_female"
                 android:id="@+id/radio_woman"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
@@ -70,8 +70,6 @@
                 android:paddingBottom="5dp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal" />
-
-
         </RadioGroup>
 
         <TextView

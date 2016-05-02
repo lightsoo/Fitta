@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/background"
     tools:context="com.fitta.lightsoo.fitta.Intro.SignupInfo3Fragment">
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_marginTop="50dp">
 
         <ImageView
-            android:src="@drawable/signup_female_top"
+            android:src="@drawable/signup_male_top"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:id="@+id/iv_top"
@@ -82,7 +82,7 @@
             android:layout_toEndOf="@+id/et_top" />
 
         <ImageView
-            android:src="@drawable/signup_female_bottom"
+            android:src="@drawable/signup_male_bottom"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:id="@+id/iv_bottom"

@@ -1,8 +1,5 @@
 package com.fitta.lightsoo.fitta.Intro;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,9 +16,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Data.Fitta;
 import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
@@ -155,17 +149,6 @@ public class SignupInfo3Fragment extends Fragment {
         et_top = (EditText)view.findViewById(R.id.et_top);
         et_bottom = (EditText)view.findViewById(R.id.et_bottom);
 
-
-        layoutPlace = (RelativeLayout)view.findViewById(R.id.background);
-        Glide.with(getContext())
-                .load(R.drawable.background)
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                Drawable drawable = new BitmapDrawable(resource);
-                layoutPlace.setBackground(drawable);
-            }
-        });
 
 
     }
