@@ -244,7 +244,6 @@ public class LoginActivity extends AppCompatActivity {
         tracker.stopTracking();
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
