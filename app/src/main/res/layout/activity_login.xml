@@ -12,16 +12,6 @@
     tools:context="com.fitta.lightsoo.fitta.Intro.LoginActivity">
 
 
-
-    <ImageView
-        android:layout_width="235.67dp"
-        android:layout_height="126.33dp"
-        android:id="@+id/iv_logo"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/logo"
-        android:layout_marginTop="119.33dp" />
-
     <ImageButton
         android:background="@drawable/facebook_login"
         android:layout_width="295.33dp"

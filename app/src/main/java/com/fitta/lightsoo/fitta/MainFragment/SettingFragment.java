@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
@@ -25,15 +25,15 @@ import retrofit.Retrofit;
 public class SettingFragment extends Fragment {
 
     private static final String TAG = "SettingFragment";
-    private Button btn_logout;
     String loginType;
     LoginManager mLoginManager = LoginManager.getInstance();
-
+    RelativeLayout relativeLayout1, relativeLayout2, relativeLayout3, relativeLayout4, relativeLayout5;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         init(view);
-        btn_logout.setOnClickListener(new View.OnClickListener() {
+
+        relativeLayout5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (loginType){
@@ -97,13 +97,16 @@ public class SettingFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
 
     public void init(View view){
         loginType = PropertyManager.getInstance().getLoginType();
-        btn_logout = (Button)view.findViewById(R.id.btn_logout);
+        relativeLayout1 =(RelativeLayout)view.findViewById(R.id.relativeLayout1);
+        relativeLayout2 =(RelativeLayout)view.findViewById(R.id.relativeLayout2);
+        relativeLayout3 =(RelativeLayout)view.findViewById(R.id.relativeLayout3);
+        relativeLayout4 =(RelativeLayout)view.findViewById(R.id.relativeLayout4);
+        relativeLayout5 =(RelativeLayout)view.findViewById(R.id.relativeLayout5);
     }
 
     private void goLoginActivity(){

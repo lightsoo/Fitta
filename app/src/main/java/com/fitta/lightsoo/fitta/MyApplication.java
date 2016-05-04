@@ -33,9 +33,13 @@ public class MyApplication extends Application{
 
         //폰트 수정하기기
         //알아보니 안드로이드에서 지원해주는 것만 전체 application에 적용해서폰트처리할수있다!
-//        setDefaultFont(this, "DEFAULT", "Roboto-Regular.ttf");
+//        setDefaultFont(this, "MONOSPACE", "Roboto-Regular.ttf");
+        setDefaultFont(this, "MONOSPACE", "NotoSansKR-Regular.otf");
 
-       mContext = this;
+//        setDefaultFont(this, "MONOSPACE", "NotoSansMonoCJKkr-Regular.otf");
+//        setDefaultFont(this, "MONOSPACE", "NotoSansCJKkr-Regular.otf");
+
+        mContext = this;
         KakaoSDK.init(new KakaoAdapter() {
             @Override
             public IApplicationConfig getApplicationConfig() {

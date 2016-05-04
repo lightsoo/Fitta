@@ -10,26 +10,20 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
-/**
- * Created by LG on 2016-02-18.
- */
 public class NetworkManager {
     // where my server lives.
 //    private static final String serverURL ="http://172.30.2.30:3000/";
     //aws 아이피주소
-//    private static final String serverURL ="http://52.192.180.38:3000/";
+    private static final String serverURL ="http://52.192.180.38:3333/";
 
     //피타사무실 아이피주소
-    private static final String serverURL ="http://192.168.0.13:3000/";
-
+//    private static final String serverURL ="http://192.168.0.13:3333/";
 
     //효돌 아이피주소
 //    private static final String serverURL ="http://192.168.1.63:3000/";
 
-
     //    private static final String serverURL ="http://127.0.0.1:3000/";
     Retrofit client;
-
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 
     private NetworkManager(){
@@ -53,7 +47,6 @@ public class NetworkManager {
 
     }
 
-
    /* // add custom interceptor to manipulate the cookie value in header
     okHttpClient.interceptors().add(new RequestInterceptor());
     okHttpClient.interceptors().add(new ResponseInterceptor());*/
@@ -67,7 +60,6 @@ public class NetworkManager {
     public <T> T getAPI(Class<T> serviceClass){
         return client.create(serviceClass);
     }
-
 
     /*// custom req, res interceptors
     public class ResponseInterceptor implements Interceptor{
@@ -96,6 +88,4 @@ public class NetworkManager {
             return chain.proceed(builder.build());
         }
     }*/
-
-
 }

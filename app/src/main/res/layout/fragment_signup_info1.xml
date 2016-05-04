@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background_signup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fitta.lightsoo.fitta.Intro.SignupInfo1Fragment">
 
 
-
-    <ImageView
-        android:src="@drawable/logo"
-        android:layout_width="235.67dp"
-        android:layout_height="144.33dp"
-        android:id="@+id/signup_logo"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="120dp"
-        android:layout_centerHorizontal="true" />
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signup_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="274.33dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +20,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="성별"
             android:textColor="#FF123456"
-            android:id="@+id/textView13"
+            android:id="@+id/tv_sex"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
@@ -38,7 +29,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/radioGroup"
-            android:layout_alignBottom="@+id/textView13"
+            android:layout_alignBottom="@+id/tv_sex"
             android:layout_alignLeft="@+id/et_age"
             android:layout_alignStart="@+id/et_age">
 
@@ -78,9 +69,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="나이"
             android:id="@+id/textView12"
-            android:layout_below="@+id/textView13"
-            android:layout_alignLeft="@+id/textView13"
-            android:layout_alignStart="@+id/textView13"
+            android:layout_below="@+id/tv_sex"
+            android:layout_alignLeft="@+id/tv_sex"
+            android:layout_alignStart="@+id/tv_sex"
             android:layout_marginTop="26dp" />
 
         <EditText

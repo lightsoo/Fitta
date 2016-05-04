@@ -1,5 +1,8 @@
 package com.fitta.lightsoo.fitta.Intro;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,8 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.R;
 
 
@@ -32,6 +39,8 @@ public class SignupInfo1Fragment extends Fragment {
     private Button btn_next1;
     private RadioGroup radioGroup;
     private RadioButton radio_man, radio_woman;
+    private RelativeLayout background_signup;
+
 
     Fragment info2, info3;
 
@@ -89,6 +98,16 @@ public class SignupInfo1Fragment extends Fragment {
     }
 
     public void init(View view){
+        background_signup = (RelativeLayout)view.findViewById(R.id.background_signup);
+        Glide.with(getContext())
+                .load(R.drawable.background_signup)
+                .asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                Drawable drawable = new BitmapDrawable(resource);
+                background_signup.setBackground(drawable);
+            }
+        });
         btn_next1 = (Button)view.findViewById(R.id.btn_next1);
 
         info2 = new SignupInfo2Fragment();

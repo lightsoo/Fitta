@@ -43,8 +43,6 @@ import retrofit.Retrofit;
 
 import static com.fitta.lightsoo.fitta.Util.MediaHelper.getOutputMediaFile;
 
-
-
 /**
  * FittingInfoActivity에서 입력한 값{ clothesCategory : 빅테이터 불류할 값, clothesSize : 결과값, )
  * bundle을 통해 받으면 입력한값과 사진파일 :  mSaveFile을 서버에 전송해서

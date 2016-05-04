@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+
+    android:id="@+id/background_signup2"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,7 +34,7 @@
     <Button
         android:layout_width="211dp"
         android:layout_height="45dp"
-        android:text="입력완료"
+        android:text="아바타 생성"
         android:id="@+id/btn_post"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
