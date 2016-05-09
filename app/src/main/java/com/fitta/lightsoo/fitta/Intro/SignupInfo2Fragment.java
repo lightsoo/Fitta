@@ -58,11 +58,12 @@ public class SignupInfo2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_info2, container, false);
         init(view);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int sid = spinner.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "선택번호 : " + sid, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "선택번호 : " + sid, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -90,7 +91,8 @@ public class SignupInfo2Fragment extends Fragment {
                 call.enqueue(new retrofit.Callback() {
                     @Override
                     public void onResponse(Response response, Retrofit retrofit) {
-                        if (response.isSuccess()) {//이전에 가입되었던 사람이라면 OK,
+                        if (response.isSuccess()) {
+                        //이전에 가입되었던 사람이라면 OK,
                             Toast.makeText(getActivity(), "서버전송 성공", Toast.LENGTH_SHORT).show();
                             Message msg = (Message)response.body();
                             Log.d(TAG, msg.toString());

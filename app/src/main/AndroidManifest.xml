@@ -77,7 +77,22 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".Setting.UserInfoActivity"></activity>
+        <activity
+            android:name=".Setting.AgreementActivity"
+            android:label="@string/title_activity_agreement"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Setting.GuideActivity"
+            android:label="@string/title_activity_guide"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Setting.IntroduceActivity"
+            android:label="@string/title_activity_introduce"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Setting.UserActivity"
+            android:label="@string/title_activity_user"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

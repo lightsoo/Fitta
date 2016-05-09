@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="사용자정보 재설정"
+                android:text="사용자정보"
                 android:id="@+id/textView2"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
@@ -35,7 +35,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="24dp"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@drawable/arrow" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -62,7 +62,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="24dp"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@drawable/arrow" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -89,7 +89,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="24dp"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@drawable/arrow" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -116,7 +116,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="24dp"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@drawable/arrow" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -147,13 +147,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-
             android:background="@drawable/shape_layout_border1"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:id="@+id/relativeLayout5">
 
             <TextView
+                android:textColor="@android:color/holo_red_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"

@@ -16,6 +16,10 @@ import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
+import com.fitta.lightsoo.fitta.Setting.AgreementActivity;
+import com.fitta.lightsoo.fitta.Setting.GuideActivity;
+import com.fitta.lightsoo.fitta.Setting.IntroduceActivity;
+import com.fitta.lightsoo.fitta.Setting.UserActivity;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -33,9 +37,49 @@ public class SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         init(view);
 
+        //사용자 정보
+        relativeLayout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //이용가이드
+        relativeLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), GuideActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //이용약관
+        relativeLayout3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AgreementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //회사소개
+        relativeLayout4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), IntroduceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //로그아웃
         relativeLayout5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                relativeLayout5.isEnabled();
+
                 switch (loginType){
                     case PropertyManager.LOGIN_TYPE_FACEBOOK:
                         Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).logout(PropertyManager.getInstance().getUserLoginId());
@@ -55,7 +99,7 @@ public class SettingFragment extends Fragment {
                             }
                         });
                         break;
-                    case PropertyManager.LOGIN_TYPE_KAKAO:
+                    case PropertyManager.LOGIN_TYPE_KAKAO :
                         Log.d(TAG, "PropertyManager.LOGIN_TYPE_KAKAO");
                         Call call1 = NetworkManager.getInstance().getAPI(FittaAPI.class).logout(PropertyManager.getInstance().getUserLoginId());
                         call1.enqueue(new Callback() {
@@ -72,27 +116,6 @@ public class SettingFragment extends Fragment {
 
                             }
                         });
-//                        Call call1 = NetworkManager.getInstance().getAPI(FittaAPI.class).logout(PropertyManager.getInstance().getUserLoginId());
-//                        call1.enqueue(new Callback() {
-//                            @Override
-//                            public void onResponse(Response response, Retrofit retrofit) {
-//                                UserManagement.requestLogout(new LogoutResponseCallback() {
-//                                    @Override
-//                                    public void onCompleteLogout() {
-//                                        PropertyManager.getInstance().deleteUserLoginId();
-//                                        PropertyManager.getInstance().deleteLoginType();
-//                                        Toast.makeText(getActivity(), "카카오톡 로그아웃 했습니다.", Toast.LENGTH_SHORT).show();
-//                                        goLoginActivity();
-//                                    }
-//                                });
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Throwable t) {
-//
-//                            }
-//                        });
                         break;
                 }
             }

@@ -8,6 +8,4 @@
     android:fitsSystemWindows="true"
     android:background="@android:color/transparent"
     app:theme="@style/CustomToolBar">
-
-
 </android.support.v7.widget.Toolbar>
