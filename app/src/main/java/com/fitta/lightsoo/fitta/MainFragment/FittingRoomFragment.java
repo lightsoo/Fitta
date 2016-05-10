@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fitta.lightsoo.fitta.Adapter.ClothesAdapter;
 import com.fitta.lightsoo.fitta.Data.ClothesItems;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
+import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
 import com.fitta.lightsoo.fitta.RestAPI.FittingRoomAPI;
@@ -219,14 +220,17 @@ public class FittingRoomFragment extends Fragment {
         btn_refresh = (Button)view.findViewById(R.id.btn_refresh);
         btn_add_like = (Button)view.findViewById(R.id.btn_add_like);
 
+        //아바타를 각각 구별해서 넣게끔하고 싶단말이지...
         iv_fittingroom_avatar = (ImageView)view.findViewById(R.id.iv_fittingroom_avatar);
+//        int avatar1 = R.drawable.avatar55df;
+//        int avatar2 = R.drawable.avatar110af;
+
         Glide.with(getContext())
-                .load(R.drawable.df55)
+                .load(PropertyManager.getInstance().getUserAvatar())
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(iv_fittingroom_avatar);
-
 
         iv_fittingroom_top = (ImageView)view.findViewById(R.id.iv_fittingroom_top);
         iv_fittingroom_bottom = (ImageView)view.findViewById(R.id.iv_fittingroom_bottom);

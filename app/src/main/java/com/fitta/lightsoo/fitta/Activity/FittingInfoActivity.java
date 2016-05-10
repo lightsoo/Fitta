@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -60,7 +59,6 @@ public class FittingInfoActivity extends AppCompatActivity {
     private static final int REQUEST_GALLERY = 101;
     private static final int FITTING_RESULT = 10;
 
-    private ScrollView scrollView;
     private RelativeLayout relativeLayout2, relativeLayoutGone, relativeLayoutGone2;
     private Button btn_Layout2, btn_Gone;
 
@@ -111,12 +109,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        //백키설정...
-//        final Drawable upArrow = getResources().getDrawable(android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material);
-//        upArrow.setColorFilter(getResources().getColor(R.color.avatar_background), PorterDuff.Mode.SRC_ATOP);
-//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
-
         //백키 이벤트
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +116,6 @@ public class FittingInfoActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-//        toolbar.getBackground().setAlpha(0);
         init();
         relativeLayout2.setVisibility(View.VISIBLE);
         relativeLayoutGone.setVisibility(View.GONE);
@@ -230,7 +221,6 @@ public class FittingInfoActivity extends AppCompatActivity {
         relativeLayout2 = (RelativeLayout)findViewById(R.id.relativeLayout2);
         relativeLayoutGone = (RelativeLayout)findViewById(R.id.relativeLayoutGone);
         relativeLayoutGone2 = (RelativeLayout)findViewById(R.id.relativeLayoutGone2);
-        scrollView = (ScrollView)findViewById(R.id.scrollView);
 
         //각
         btn_Layout2 = (Button)findViewById(R.id.btn_Layout2);

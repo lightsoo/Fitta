@@ -26,7 +26,6 @@ import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.LoginAPI;
-import com.fitta.lightsoo.fitta.Setting.UserActivity;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
@@ -61,9 +60,13 @@ public class SplashActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         init();
 
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
-//        goMainActivity();
+        //이거를 로그인하고 나서 넣자
+        PropertyManager.getInstance().setUserAvatar(R.drawable.avatar110af);
+
+
+//        Intent intent = new Intent(this, UserActivity.class);
+//        startActivity(intent);
+        goMainActivity();
 //        goLoginActivity();
         //완성 했는데 테스트할때는 바로 메인으로 가게끔해서 하자 그래야 디버그가 편해
 //        doRealStart();

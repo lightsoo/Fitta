@@ -75,9 +75,7 @@ public class SignupInfo2Fragment extends Fragment {
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                setInfo();
-
-
+//              setInfo();
                 age = getArguments().getString("age");
                 height = getArguments().getString("height");
                 weight = getArguments().getString("weight");

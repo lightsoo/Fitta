@@ -60,7 +60,6 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
     private static final int REQUEST_CAMERA = 3;
     private static final int FITTING_RESULT = 10;
 
-
     private String clothesUnit = ""; //단위 결과, 이거는 분류표!
     //서버에 전송할 데이터
     private String clothesSize = ""; //사이즈, 이것만 서버에 보낸다.
@@ -81,6 +80,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
         clothesSize = intent.getExtras().getString("clothesSize");
         clothesUnit = intent.getExtras().getString("clothesUnit");
         clothesImage = intent.getExtras().getInt("clothesImage");
+
         clothesCategory = intent.getExtras().getString("clothesCategory");
 
         Log.d(TAG, "clothesSize : " + clothesSize + ", clothesUnit : " + clothesUnit + ", clothesImage : " + clothesImage);
@@ -94,6 +94,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
         Log.d(TAG, "===initCameraPreview()===");
         takePhotoLayout =(RelativeLayout)findViewById(R.id.take_photo_layout);//기본화면
         photoResultLayout = (RelativeLayout)findViewById(R.id.photo_result_layout);//촬영결과 화면
+
         capturedImage = (ImageView) findViewById(R.id.capturedImage);//사진찍는 버튼의 이미지뷰
         cameraPreview =(CameraPreview)findViewById(R.id.cameraPreview); //카메라 surfaceview
         cameraPreview.setOnCameraStatusListener(this);

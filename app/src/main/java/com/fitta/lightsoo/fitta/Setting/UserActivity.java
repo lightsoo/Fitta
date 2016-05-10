@@ -120,7 +120,6 @@ public class UserActivity extends AppCompatActivity {
             et_male_height.setHint(PropertyManager.getInstance().getUserHeight());
             et_male_top.setHint(PropertyManager.getInstance().getUserTop());
             et_female_bottom.setHint(PropertyManager.getInstance().getUserBottom());
-
         }
 
         dialog.dismiss();

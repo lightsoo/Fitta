@@ -6,13 +6,11 @@ import android.preference.PreferenceManager;
 import com.fitta.lightsoo.fitta.MyApplication;
 
 public class PropertyManager {
-
     SharedPreferences mPrefs;
     SharedPreferences.Editor mEditor;
 
     private static final String KEY_LOGIN_TYPE = "key_login_type";
     private static final String FILED_ID ="filed_id";
-
 
     //스플래쉬, 로그인에서 사용
     public static final String LOGIN_TYPE_KAKAO = "login_type_kakao";
@@ -20,13 +18,7 @@ public class PropertyManager {
 
     //사용자의 개인치수
     public static String USER_SEX, USER_AGE, USER_HEIGHT, USER_WEIGHT, USER_TOP, USER_BOTTOM;
-
-
-
-
-
-
-
+    public static String USER_AVATAR;
 
 
     private PropertyManager() {
@@ -64,6 +56,16 @@ public class PropertyManager {
         mEditor.commit();
 
     }
+//  유저아바타
+    public void setUserAvatar(int userAvatar){
+        mEditor.putInt(USER_AVATAR, userAvatar);
+        mEditor.commit();
+    }
+
+    public int getUserAvatar(){
+        return mPrefs.getInt(USER_AVATAR, 0);
+    }
+
 
 //    유저의 정보를 저장해서 사용
     //sex, age, weight, heiht, top, bottom
@@ -119,7 +121,5 @@ public class PropertyManager {
     public String getUserBottom(){
         return mPrefs.getString(USER_BOTTOM, "");
     }
-
-
 
 }
