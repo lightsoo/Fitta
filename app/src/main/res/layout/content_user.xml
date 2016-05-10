@@ -179,17 +179,8 @@
             android:layout_alignStart="@+id/tv_weight"
             android:layout_marginTop="13dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="허리둘레"
-            android:id="@+id/tv_bottom"
-            android:layout_below="@+id/tv_top"
-            android:layout_alignStart="@+id/tv_top"
-            android:layout_marginTop="13dp" />
 
         <Spinner
-
             android:background="@drawable/shape_layout_border2"
             android:layout_width="73dp"
             android:layout_height="wrap_content"
@@ -207,6 +198,37 @@
             android:id="@+id/textView43"
             android:layout_alignTop="@+id/tv_top"
             android:layout_toEndOf="@+id/spinner3"  />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="허리둘레"
+            android:id="@+id/tv_bottom"
+            android:layout_below="@+id/tv_top"
+            android:layout_alignStart="@+id/tv_top"
+            android:layout_marginTop="13dp" />
+
+
+        <EditText
+            android:textSize="14dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_bottom"
+            android:layout_marginLeft="5.67dp"
+            android:layout_alignBaseline="@+id/tv_bottom"
+            android:layout_alignBottom="@+id/tv_bottom"
+            android:layout_toEndOf="@+id/tv_bottom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="inch"
+            android:id="@+id/textView44"
+            android:layout_alignTop="@+id/tv_bottom"
+            android:layout_toEndOf="@+id/et_bottom" />
+
 
 
     </RelativeLayout>

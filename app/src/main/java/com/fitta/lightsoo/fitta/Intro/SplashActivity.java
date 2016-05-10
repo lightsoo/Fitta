@@ -83,8 +83,6 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void doRealStart(){
         loginType = PropertyManager.getInstance().getLoginType();
         userLoginId = PropertyManager.getInstance().getUserLoginId();

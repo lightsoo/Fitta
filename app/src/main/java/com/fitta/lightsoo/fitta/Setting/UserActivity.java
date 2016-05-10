@@ -73,8 +73,9 @@ public class UserActivity extends AppCompatActivity {
 
         spinner = (Spinner)findViewById(R.id.spinner3);
         spinnerItem = new String[]{"A", "B", "C", "D", "E"};
-        arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerItem);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item, spinnerItem);
+        //어댑터 리스트 커스텀
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(arrayAdapter);
 
     }
