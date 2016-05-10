@@ -74,6 +74,7 @@
 (회사소개 본문)Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus velit, ornare a justo in, finibus commodo velit. Curabitur pharetra urna sed sapien ornare porttitor. Mauris ornare condimentum dignissim. Fusce non est augue. Aliquam erat volutpat. Suspendisse id ligula augue. Praesent magna lacus, fringilla id urna at, luctus fringilla leo. Phasellus lacinia lectus non risus elementum, eget interdum tellus dapibus. Morbi efficitur vitae nisl at egestas. Proin pretium faucibus enim eu volutpat. In tincidunt dapibus nulla et rutrum.
     </string>
     <string name="title_activity_user">UserActivity</string>
+    <string name="title_activity_signup_info_fragment">SignupInfoFragment</string>
 
 
 </resources>

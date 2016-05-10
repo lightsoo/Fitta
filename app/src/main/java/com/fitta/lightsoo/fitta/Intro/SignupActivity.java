@@ -41,13 +41,14 @@ public class SignupActivity extends AppCompatActivity {
 //        });
 
 
-
-
-        Fragment info1 = new SignupInfo1Fragment();
-//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        ft.add(R.id.container, info1, info1_TAG);
+        Fragment info0 = new SignupInfo0Fragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, info1).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, info0).commit();
+
+
+//        Fragment info1 = new SignupInfo1Fragment();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.container, info1).commit();
 
 //        ft.commit();
 //        current = info1;

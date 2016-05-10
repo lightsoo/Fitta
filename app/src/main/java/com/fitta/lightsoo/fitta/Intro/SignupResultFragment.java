@@ -23,6 +23,8 @@ public class SignupResultFragment extends Fragment{
     private static final String TAG = "SignupResultFragment";
     private Button btn_start;
     private ImageView iv_avatar;
+    //이거 url을 프로퍼티 매니저로 아바타를 대신할예정이다.
+    //신체값을 보냈을때 맞는 아바타를 받아서 그거를 쉐어드프리퍼런스로 저장!
     private String url="";
 
 
@@ -32,6 +34,7 @@ public class SignupResultFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_signup_result, container, false);
         init(view);
         setInfo();
+
         //아바타설정
         Glide.with(getContext())
                 .load(url)
@@ -40,7 +43,6 @@ public class SignupResultFragment extends Fragment{
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(iv_avatar);
-
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override

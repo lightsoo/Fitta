@@ -92,6 +92,10 @@
         <activity
             android:name=".Setting.UserActivity"
             android:label="@string/title_activity_user"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Intro.SignupInfo0Fragment"
+            android:label="@string/title_activity_signup_info_fragment"
             android:theme="@style/AppTheme"></activity>
     </application>
 
