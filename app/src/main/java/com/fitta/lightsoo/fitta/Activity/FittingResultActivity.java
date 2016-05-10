@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 
 public class FittingResultActivity extends AppCompatActivity {
@@ -103,7 +104,7 @@ public class FittingResultActivity extends AppCompatActivity {
         clothes = (ImageView)findViewById(R.id.result_clothes);
         avatar = (ImageView)findViewById(R.id.result_avatar);
         Glide.with(getApplicationContext())
-                .load(R.drawable.avatar55df)
+                .load(PropertyManager.getInstance().getUserAvatar())
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)

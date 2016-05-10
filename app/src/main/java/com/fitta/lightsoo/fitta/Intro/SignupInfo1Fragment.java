@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -39,7 +39,7 @@ public class SignupInfo1Fragment extends Fragment {
     private Button btn_next1;
     private RadioGroup radioGroup;
     private RadioButton radio_man, radio_woman;
-    private RelativeLayout background_signup;
+    private ScrollView background_signup;
 
 
     Fragment info2, info3;
@@ -98,7 +98,7 @@ public class SignupInfo1Fragment extends Fragment {
     }
 
     public void init(View view){
-        background_signup = (RelativeLayout)view.findViewById(R.id.background_signup);
+        background_signup = (ScrollView)view.findViewById(R.id.background_signup);
         Glide.with(getContext())
                 .load(R.drawable.background_signup)
                 .asBitmap().into(new SimpleTarget<Bitmap>() {

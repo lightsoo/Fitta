@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +24,7 @@ import com.fitta.lightsoo.fitta.Data.Fitta;
 import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
+import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
 
@@ -37,7 +38,7 @@ public class SignupInfo3Fragment extends Fragment {
 
     private static final String TAG = "SignupInfo3Fragment";
 
-    RelativeLayout background_signup2 ;
+    ScrollView background_signup2 ;
     private String age="", height="", weight="";
     //가슴둘레(cm), 허리둘레(inch)
     private String top="", bottom="";
@@ -73,8 +74,9 @@ public class SignupInfo3Fragment extends Fragment {
                     public void onResponse(Response response, Retrofit retrofit) {
                         if (response.isSuccess()) {//이전에 가입되었던 사람이라면 OK,
                             Toast.makeText(getActivity(), "서버전송 성공", Toast.LENGTH_SHORT).show();
+                            //여기서개인치수를 프로퍼티로 넣어야될듯 하다...
                             Message msg = (Message)response.body();
-                            Log.d(TAG, msg.toString());
+//                            Log.d(TAG, msg.toString());
 
                             Bundle bundle = new Bundle();
 //                            bundle.putString("age", age);
@@ -82,7 +84,13 @@ public class SignupInfo3Fragment extends Fragment {
 //                            bundle.putString("height", height);
 //                            bundle.putString("top", top);
 //                            bundle.putString("bottom", bottom);
-                            bundle.putString("url", msg.url);
+
+//                            bundle.putString("url", msg.url);
+
+
+                            //이거를 로그인하고 나서 넣자
+                            //ex) msg.avatar를 setUserAvatar()여기에 파라미터로주자
+                            PropertyManager.getInstance().setUserAvatar(R.drawable.avatar110af);
 
                             result = new SignupResultFragment();
                             result.setArguments(bundle);
@@ -93,10 +101,7 @@ public class SignupInfo3Fragment extends Fragment {
                         /*Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                         getActivity().finish();*/
-
                             dialog.dismiss();
-
-
                         } else {
                             //아니라면 not registered
 
@@ -147,7 +152,7 @@ public class SignupInfo3Fragment extends Fragment {
 
 
     public void init(View view){
-        background_signup2 = (RelativeLayout)view.findViewById(R.id.background_signup2);
+        background_signup2 = (ScrollView)view.findViewById(R.id.background_signup2);
         Glide.with(getContext())
                 .load(R.drawable.background_signup2)
                 .asBitmap().into(new SimpleTarget<Bitmap>() {

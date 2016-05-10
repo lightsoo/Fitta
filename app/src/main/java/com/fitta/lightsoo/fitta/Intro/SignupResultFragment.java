@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fitta.lightsoo.fitta.MainActivity;
+import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 
 /**
@@ -33,11 +34,13 @@ public class SignupResultFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_result, container, false);
         init(view);
-        setInfo();
+//        setInfo();
 
         //아바타설정
         Glide.with(getContext())
-                .load(url)
+                .load(PropertyManager.getInstance().getUserAvatar())
+
+//                .load(url)
 //                .load(R.drawable.body100cf)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)

@@ -60,9 +60,6 @@ public class SplashActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         init();
 
-        //이거를 로그인하고 나서 넣자
-        PropertyManager.getInstance().setUserAvatar(R.drawable.avatar110af);
-
 
 //        Intent intent = new Intent(this, UserActivity.class);
 //        startActivity(intent);

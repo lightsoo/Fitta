@@ -23,9 +23,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Data.Fitta;
-import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
+import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
 
@@ -98,8 +98,10 @@ public class SignupInfo2Fragment extends Fragment {
                         if (response.isSuccess()) {
                         //이전에 가입되었던 사람이라면 OK,
                             Toast.makeText(getActivity(), "서버전송 성공", Toast.LENGTH_SHORT).show();
-                            Message msg = (Message)response.body();
-                            Log.d(TAG, msg.toString());
+
+                            //여기서개인치수를 프로퍼티로 넣어야될듯 하다...
+//                            Message msg = (Message)response.body();
+//                            Log.d(TAG, msg.toString());
 
                             Bundle bundle = new Bundle();
 //                            bundle.putString("age", age);
@@ -107,7 +109,14 @@ public class SignupInfo2Fragment extends Fragment {
 //                            bundle.putString("height", height);
 //                            bundle.putString("top", top);
 //                            bundle.putString("bottom", bottom);
-                            bundle.putString("url", msg.url);
+
+//                            bundle.putString("url", msg.url);
+
+                            //이거를 로그인하고 나서 넣자
+                            //ex) msg.avatar를 setUserAvatar()여기에 파라미터로주자
+                            PropertyManager.getInstance().setUserAvatar(R.drawable.avatar110af);
+
+
                             //결과화면을 보여준다
                             result = new SignupResultFragment();
                             result.setArguments(bundle);

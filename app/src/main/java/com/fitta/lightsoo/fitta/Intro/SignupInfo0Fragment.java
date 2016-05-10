@@ -24,7 +24,6 @@ public class SignupInfo0Fragment extends Fragment {
         btn_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 goLoginActivity();
             }
         });
@@ -32,28 +31,21 @@ public class SignupInfo0Fragment extends Fragment {
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Fragment info1 = new SignupInfo1Fragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.container, info1).commit();
-
             }
         });
-
         return view;
     }
 
     public void init(View view){
         btn_no =(Button)view.findViewById(R.id.btn_no);
         btn_yes =(Button)view.findViewById(R.id.btn_yes);
-
     }
 
     private void goLoginActivity(){
         startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
     }
-
-
 }
