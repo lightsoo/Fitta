@@ -17,9 +17,8 @@ public class PropertyManager {
     public static final String LOGIN_TYPE_FACEBOOK = "login_type_facebook";
 
     //사용자의 개인치수
-    public static String USER_SEX, USER_AGE, USER_HEIGHT, USER_WEIGHT, USER_TOP, USER_BOTTOM;
+    public static final String USER_SEX = "sex", USER_AGE="age", USER_HEIGHT="height", USER_WEIGHT="weight", USER_TOP="top", USER_BOTTOM="bottom"; ;
     public static String USER_AVATAR;
-
 
     private PropertyManager() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());

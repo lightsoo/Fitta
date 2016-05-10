@@ -3,6 +3,7 @@ package com.fitta.lightsoo.fitta.Setting;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +28,9 @@ import retrofit.Retrofit;
 //바로 회원정보를 불러온다음 힌트로 넣어주고 수정하게끔한다.
 //레이아웃을 2개만들어 두고 남자와 여자를 구별해서 출력하게끔하자.
 public class UserActivity extends AppCompatActivity {
+
+    private static final String TAG = "UserActivity";
+
     //성별 플래그
     private String sex_flag = "";
     private RelativeLayout female_layout, male_layout;
@@ -68,7 +72,11 @@ public class UserActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        PropertyManager.getInstance().setUserSex("여");
+        PropertyManager.getInstance().setUserAge("15");
 
+        Log.d(TAG, "성별은 : " + PropertyManager.getInstance().getUserSex()
+                + ", 나이는 : " + PropertyManager.getInstance().getUserAge());
         init();
         getUserInfo();
 
@@ -101,7 +109,10 @@ public class UserActivity extends AppCompatActivity {
         //로딩 다이얼로그
         final DialogSignupFragment dialog = new DialogSignupFragment();
         dialog.show(getSupportFragmentManager(), "loading");
+
         sex_flag = PropertyManager.getInstance().getUserSex();
+
+
         if(sex_flag == "여"){
             female_layout.setVisibility(View.VISIBLE);
             male_layout.setVisibility(View.GONE);
@@ -109,8 +120,6 @@ public class UserActivity extends AppCompatActivity {
             et_female_weight.setHint(PropertyManager.getInstance().getUserWeight());
             et_female_height.setHint(PropertyManager.getInstance().getUserHeight());
             et_female_bottom.setHint(PropertyManager.getInstance().getUserBottom());
-
-
         }else{
             male_layout.setVisibility(View.VISIBLE);
             female_layout.setVisibility(View.GONE);
@@ -121,7 +130,6 @@ public class UserActivity extends AppCompatActivity {
             et_male_top.setHint(PropertyManager.getInstance().getUserTop());
             et_female_bottom.setHint(PropertyManager.getInstance().getUserBottom());
         }
-
         dialog.dismiss();
     }
 
@@ -145,8 +153,7 @@ public class UserActivity extends AppCompatActivity {
             bottom = et_male_bottom.getText().toString();
         }
 
-
-        Fitta fitta = new Fitta("여", age, height, weight, top, bottom) ;
+        Fitta fitta = new Fitta(PropertyManager.getInstance().getUserSex(), age, height, weight, top, bottom) ;
         Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).signup(fitta);
         call.enqueue(new Callback() {
             @Override
@@ -154,11 +161,8 @@ public class UserActivity extends AppCompatActivity {
                 if (response.isSuccess()) {
                     Toast.makeText(getApplicationContext(), "서버 성공", Toast.LENGTH_SHORT).show();
 //                    Fitta user = (Fitta)response.body();
-
                     finish();
                     dialog.dismiss();
-
-
                 } else {
                     //아니라면 not registered
 
