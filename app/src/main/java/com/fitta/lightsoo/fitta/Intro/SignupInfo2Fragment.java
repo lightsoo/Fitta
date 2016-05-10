@@ -75,7 +75,13 @@ public class SignupInfo2Fragment extends Fragment {
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setInfo();
+//                setInfo();
+
+
+                age = getArguments().getString("age");
+                height = getArguments().getString("height");
+                weight = getArguments().getString("weight");
+
                 top = (String)spinner.getAdapter().getItem(spinner.getSelectedItemPosition());
                 bottom = et_bottom.getText().toString();
                 Log.d(TAG, "age : " + age + ", height : " + height + ", weight : " + weight + ", top : " + top + ", bottom : " + bottom);
@@ -85,7 +91,7 @@ public class SignupInfo2Fragment extends Fragment {
                 dialog.show(getActivity().getSupportFragmentManager(), "loading");
                 //서버에 사용자의 정보를 입력한다음 디비에 저장하고
                 //해당되는 아바타 이미지url을 리턴받는다.
-                Fitta fitta = new Fitta(age, height, weight, top, bottom) ;
+                Fitta fitta = new Fitta("여", age, height, weight, top, bottom) ;
 
                 Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).signup(fitta);
                 call.enqueue(new retrofit.Callback() {
@@ -156,7 +162,7 @@ public class SignupInfo2Fragment extends Fragment {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 
-        et_bottom = (EditText)view.findViewById(R.id.et_bottom);
+        et_bottom = (EditText)view.findViewById(R.id.et_female_bottom);
         btn_post = (Button)view.findViewById(R.id.btn_post);
 
 

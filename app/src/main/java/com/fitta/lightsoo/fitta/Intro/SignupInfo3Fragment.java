@@ -65,7 +65,7 @@ public class SignupInfo3Fragment extends Fragment {
                 dialog.show(getActivity().getSupportFragmentManager(), "loading");
                 //서버에 사용자의 정보를 입력한다음 디비에 저장하고
                 //해당되는 아바타 이미지url을 리턴받는다.
-                Fitta fitta = new Fitta(age, height, weight, top, bottom) ;
+                Fitta fitta = new Fitta("남", age, height, weight, top, bottom) ;
 
                 Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).signup(fitta);
                 call.enqueue(new Callback() {
@@ -161,7 +161,7 @@ public class SignupInfo3Fragment extends Fragment {
         btn_post = (Button)view.findViewById(R.id.btn_post);
 
         et_top = (EditText)view.findViewById(R.id.et_top);
-        et_bottom = (EditText)view.findViewById(R.id.et_bottom);
+        et_bottom = (EditText)view.findViewById(R.id.et_female_bottom);
 
 
 

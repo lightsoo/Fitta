@@ -13,13 +13,15 @@
     tools:showIn="@layout/activity_user">
 
     <RelativeLayout
+        android:visibility="gone"
         android:background="@android:color/white"
         android:layout_width="334.67dp"
         android:layout_height="300dp"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="12dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/female_layout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -97,7 +99,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/et_age"
+            android:id="@+id/et_female_age"
             android:layout_marginLeft="5.67dp"
             android:layout_alignBaseline="@+id/tv_Age"
             android:layout_alignBottom="@+id/tv_Age"
@@ -109,7 +111,7 @@
             android:text="세"
             android:id="@+id/textView40"
             android:layout_alignTop="@+id/tv_Age"
-            android:layout_toEndOf="@+id/et_age" />
+            android:layout_toEndOf="@+id/et_female_age" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -126,7 +128,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/et_height"
+            android:id="@+id/et_female_height"
             android:layout_marginLeft="5.67dp"
             android:layout_alignBaseline="@+id/tv_height"
             android:layout_alignBottom="@+id/tv_height"
@@ -138,7 +140,7 @@
             android:text="cm"
             android:id="@+id/textView41"
             android:layout_alignTop="@+id/tv_height"
-            android:layout_toEndOf="@+id/et_height" />
+            android:layout_toEndOf="@+id/et_female_height" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -156,7 +158,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/et_weight"
+            android:id="@+id/et_female_weight"
             android:layout_marginLeft="5.67dp"
             android:layout_alignBaseline="@+id/tv_weight"
             android:layout_alignBottom="@+id/tv_weight"
@@ -168,7 +170,7 @@
             android:text="kg"
             android:id="@+id/textView42"
             android:layout_alignTop="@+id/tv_weight"
-            android:layout_toEndOf="@+id/et_weight" />
+            android:layout_toEndOf="@+id/et_female_weight" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -184,7 +186,7 @@
             android:background="@drawable/shape_layout_border2"
             android:layout_width="73dp"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner3"
+            android:id="@+id/female_spinner"
             android:layout_marginLeft="5.67dp"
             android:layout_alignBaseline="@+id/tv_top"
             android:layout_alignBottom="@+id/tv_top"
@@ -197,7 +199,7 @@
             android:text="컵"
             android:id="@+id/textView43"
             android:layout_alignTop="@+id/tv_top"
-            android:layout_toEndOf="@+id/spinner3"  />
+            android:layout_toEndOf="@+id/female_spinner"  />
 
         <TextView
             android:layout_width="wrap_content"
@@ -215,7 +217,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/et_bottom"
+            android:id="@+id/et_female_bottom"
             android:layout_marginLeft="5.67dp"
             android:layout_alignBaseline="@+id/tv_bottom"
             android:layout_alignBottom="@+id/tv_bottom"
@@ -227,9 +229,238 @@
             android:text="inch"
             android:id="@+id/textView44"
             android:layout_alignTop="@+id/tv_bottom"
-            android:layout_toEndOf="@+id/et_bottom" />
+            android:layout_toEndOf="@+id/et_female_bottom" />
 
 
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="visible"
+        android:background="@android:color/white"
+        android:layout_width="334.67dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/male_layout" >
+
+        <EditText
+            android:textSize="14dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_male_age"
+            android:layout_marginLeft="5.67dp"
+            android:layout_alignBaseline="@+id/tv_male_age"
+            android:layout_alignBottom="@+id/tv_male_age"
+            android:layout_toEndOf="@+id/tv_male_age" />
+
+        <EditText
+            android:textSize="14dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_male_height"
+            android:layout_marginLeft="5.67dp"
+            android:layout_alignBaseline="@+id/textView52"
+            android:layout_alignBottom="@+id/textView52"
+            android:layout_toEndOf="@+id/textView52" />
+
+        <EditText
+            android:textSize="14dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_male_weight"
+            android:layout_marginLeft="5.67dp"
+            android:layout_alignBaseline="@+id/tv_male_weight"
+            android:layout_alignBottom="@+id/tv_male_weight"
+            android:layout_toEndOf="@+id/tv_male_weight" />
+
+        <EditText
+            android:textSize="14dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_male_bottom"
+            android:layout_marginLeft="5.67dp"
+            android:layout_alignBaseline="@+id/tv_male_bottom"
+            android:layout_alignBottom="@+id/tv_male_bottom"
+            android:layout_toEndOf="@+id/tv_male_bottom" />
+
+
+        <EditText
+            android:textSize="14dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et_male_top"
+            android:layout_marginLeft="5.67dp"
+            android:layout_alignBaseline="@+id/tv_male_top"
+            android:layout_alignBottom="@+id/tv_male_top"
+            android:layout_toEndOf="@+id/tv_male_top" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15dp"
+            android:text="사용자님"
+            android:id="@+id/textView39"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="성별"
+            android:textSize="12dp"
+            android:id="@+id/textView45"
+            android:layout_below="@+id/textView39"
+            android:layout_alignStart="@+id/textView39"
+            android:layout_marginTop="22dp" />
+
+        <TextView
+            android:textSize="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=":"
+            android:layout_marginLeft="5.67dp"
+            android:id="@+id/textView46"
+            android:layout_alignTop="@+id/textView45"
+            android:layout_toEndOf="@+id/textView45" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="신체정보"
+            android:id="@+id/textView47"
+            android:layout_below="@+id/textView45"
+            android:layout_alignStart="@+id/textView45"
+            android:layout_marginTop="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="남"
+            android:id="@+id/textView48"
+            android:layout_above="@+id/textView47"
+            android:layout_toEndOf="@+id/textView46"
+            android:layout_marginLeft="5.67dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:id="@+id/textView49"
+            android:layout_alignBottom="@+id/textView47"
+            android:layout_toEndOf="@+id/textView47"
+            android:layout_marginLeft="5.67dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나이"
+            android:id="@+id/tv_male_age"
+            android:layout_marginLeft="13.67dp"
+            android:layout_alignBottom="@+id/textView49"
+            android:layout_toEndOf="@+id/textView49" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="세"
+            android:id="@+id/textView51"
+            android:layout_alignTop="@+id/tv_male_age"
+            android:layout_toEndOf="@+id/et_male_age" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="키"
+            android:id="@+id/textView52"
+            android:layout_below="@+id/tv_male_age"
+            android:layout_alignStart="@+id/tv_male_age"
+            android:layout_marginTop="13dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cm"
+            android:id="@+id/textView53"
+            android:layout_alignTop="@+id/textView52"
+            android:layout_toEndOf="@+id/et_male_height" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="몸무게"
+            android:id="@+id/tv_male_weight"
+            android:layout_below="@+id/textView52"
+            android:layout_alignStart="@+id/textView52"
+            android:layout_marginTop="13dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:id="@+id/textView55"
+            android:layout_alignTop="@+id/tv_male_weight"
+            android:layout_toEndOf="@+id/et_male_weight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가슴둘레"
+            android:id="@+id/tv_male_top"
+            android:layout_below="@+id/tv_male_weight"
+            android:layout_alignStart="@+id/tv_male_weight"
+            android:layout_marginTop="13dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cm"
+            android:id="@+id/textView57"
+            android:layout_alignTop="@+id/tv_male_top"
+            android:layout_toEndOf="@+id/et_male_top" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="허리둘레"
+            android:id="@+id/tv_male_bottom"
+            android:layout_below="@+id/tv_male_top"
+            android:layout_alignStart="@+id/tv_male_top"
+            android:layout_marginTop="13dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="inch"
+            android:id="@+id/textView59"
+            android:layout_alignTop="@+id/tv_male_bottom"
+            android:layout_toEndOf="@+id/et_male_bottom" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="334.67dp"
+        android:layout_height="44dp"
+        android:text="다시설정하기"
+        android:id="@+id/btn_put"
+        android:layout_below="@+id/male_layout"
+        android:layout_alignStart="@+id/male_layout"
+        android:layout_marginTop="12.33dp" />
 </RelativeLayout>

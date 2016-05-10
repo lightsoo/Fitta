@@ -18,6 +18,16 @@ public class PropertyManager {
     public static final String LOGIN_TYPE_KAKAO = "login_type_kakao";
     public static final String LOGIN_TYPE_FACEBOOK = "login_type_facebook";
 
+    //사용자의 개인치수
+    public static String USER_SEX, USER_AGE, USER_HEIGHT, USER_WEIGHT, USER_TOP, USER_BOTTOM;
+
+
+
+
+
+
+
+
 
     private PropertyManager() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
@@ -54,4 +64,62 @@ public class PropertyManager {
         mEditor.commit();
 
     }
+
+//    유저의 정보를 저장해서 사용
+    //sex, age, weight, heiht, top, bottom
+    public void setUserSex(String userSex){
+        mEditor.putString(USER_SEX, userSex);
+        mEditor.commit();
+    }
+
+    public void setUserAge(String userAge){
+        mEditor.putString(USER_AGE, userAge);
+        mEditor.commit();
+    }
+
+    public void setUserWeight(String userWeight){
+        mEditor.putString(USER_WEIGHT, userWeight);
+        mEditor.commit();
+    }
+
+    public void setUserHeight(String userHeight){
+        mEditor.putString(USER_HEIGHT, userHeight);
+        mEditor.commit();
+    }
+    public void setUserTop(String userTop){
+        mEditor.putString(USER_TOP, userTop);
+        mEditor.commit();
+    }
+
+    public void setUserBottom(String userBottom){
+        mEditor.putString(USER_BOTTOM, userBottom);
+        mEditor.commit();
+    }
+    //GETTER
+    public String getUserSex(){
+        return mPrefs.getString(USER_SEX, "");
+    }
+
+    public String getUserAge(){
+        return mPrefs.getString(USER_AGE, "");
+    }
+
+    public String getUserWeight(){
+        return mPrefs.getString(USER_WEIGHT, "");
+    }
+
+    public String getUserHeight(){
+        return mPrefs.getString(USER_HEIGHT, "");
+    }
+
+    public String getUserTop(){
+        return mPrefs.getString(USER_TOP, "");
+    }
+
+    public String getUserBottom(){
+        return mPrefs.getString(USER_BOTTOM, "");
+    }
+
+
+
 }

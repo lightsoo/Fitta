@@ -5,9 +5,10 @@ package com.fitta.lightsoo.fitta.Data;
  */
 public class Fitta {
 
-    public String age, height, weight, top, bottom ;
+    public String sex, age, height, weight, top, bottom ;
 
-    public Fitta (String age, String height,String weight, String top, String bottom ){
+    public Fitta (String sex, String age, String height,String weight, String top, String bottom ){
+        this.sex = sex;
         this.age = age;
         this.height = height;
         this.weight = weight;

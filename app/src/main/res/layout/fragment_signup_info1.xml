@@ -30,8 +30,8 @@
             android:orientation="horizontal"
             android:id="@+id/radioGroup"
             android:layout_alignBottom="@+id/tv_sex"
-            android:layout_alignLeft="@+id/et_age"
-            android:layout_alignStart="@+id/et_age">
+            android:layout_alignLeft="@+id/et_female_age"
+            android:layout_alignStart="@+id/et_female_age">
 
             <RadioButton
                 android:layout_width="51.67dp"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/et_age"
+            android:id="@+id/et_female_age"
             android:layout_above="@+id/textView14"
             android:layout_toRightOf="@+id/textView15"
             android:layout_toEndOf="@+id/textView15"
@@ -113,20 +113,20 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/et_height"
+            android:id="@+id/et_female_height"
             android:layout_alignBottom="@+id/textView14"
-            android:layout_alignLeft="@+id/et_age"
-            android:layout_alignStart="@+id/et_age" />
+            android:layout_alignLeft="@+id/et_female_age"
+            android:layout_alignStart="@+id/et_female_age" />
 
         <EditText
             android:layout_width="131.67dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/et_weight"
+            android:id="@+id/et_female_weight"
             android:layout_alignBottom="@+id/textView15"
-            android:layout_alignLeft="@+id/et_height"
-            android:layout_alignStart="@+id/et_height" />
+            android:layout_alignLeft="@+id/et_female_height"
+            android:layout_alignStart="@+id/et_female_height" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,8 +135,8 @@
             android:text="세"
             android:id="@+id/textView16"
             android:layout_alignTop="@+id/textView12"
-            android:layout_toRightOf="@+id/et_age"
-            android:layout_toEndOf="@+id/et_age"
+            android:layout_toRightOf="@+id/et_female_age"
+            android:layout_toEndOf="@+id/et_female_age"
             android:layout_marginLeft="13dp"
             android:layout_marginStart="13dp" />
 

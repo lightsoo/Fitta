@@ -14,6 +14,10 @@ import retrofit.http.Part;
 
 public interface FittaAPI {
 
+//    @GET("/userinfo")
+//    Call<Fitta> getUserInfo();
+
+
     @POST("/signup")
     Call<Message> signup(@Body Fitta fitta);
 

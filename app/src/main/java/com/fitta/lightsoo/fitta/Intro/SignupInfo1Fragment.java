@@ -113,9 +113,9 @@ public class SignupInfo1Fragment extends Fragment {
         info2 = new SignupInfo2Fragment();
         info3 = new SignupInfo3Fragment();
 
-        et_age = (EditText)view.findViewById(R.id.et_age);
-        et_height=(EditText)view.findViewById(R.id.et_height);
-        et_weight=(EditText)view.findViewById(R.id.et_weight);
+        et_age = (EditText)view.findViewById(R.id.et_female_age);
+        et_height=(EditText)view.findViewById(R.id.et_female_height);
+        et_weight=(EditText)view.findViewById(R.id.et_female_weight);
 
         radioGroup = (RadioGroup)view.findViewById(R.id.radioGroup);
          radio_man= (RadioButton)view.findViewById(R.id.radio_man);
