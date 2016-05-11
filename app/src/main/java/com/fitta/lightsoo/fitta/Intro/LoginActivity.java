@@ -25,6 +25,7 @@ import com.facebook.login.DefaultAudience;
 import com.facebook.login.LoginBehavior;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.fitta.lightsoo.fitta.Data.Test;
 import com.fitta.lightsoo.fitta.Data.User;
 import com.fitta.lightsoo.fitta.Handler.BackPressCloseHandler;
 import com.fitta.lightsoo.fitta.MainActivity;
@@ -51,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     //server response code
     private static final int CODE_ID_PASS_INCORRECT = 531;
+    private static final int CODE_NOT_FOUND = 404;
+
 
     RelativeLayout background_login ;
 //   private ImageButton btn_kakao;
@@ -64,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String userLoginId;
     User user;
+    Test test;
 
     private BackPressCloseHandler backPressCloseHandler;
     private Button btn_login;
@@ -111,21 +115,27 @@ public class LoginActivity extends AppCompatActivity {
 //                    userLoginId = token.getUserId();
                     userLoginId = token.getToken();
                     Log.d(TAG, "userLoginId : " + userLoginId);
-
                     user = new User(userLoginId, PropertyManager.LOGIN_TYPE_FACEBOOK);
+                    test = new Test("테스트이름", "1", userLoginId );
+
                     Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);
+//                    Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(test);
                     call.enqueue(new Callback() {
                         @Override
                         public void onResponse(Response response, Retrofit retrofit) {
                             if(response.isSuccess()){
+                                Log.d(TAG, "페이스북 Login success");
                                 Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                                 PropertyManager.getInstance().setUserLoginId(userLoginId);
                                 PropertyManager.getInstance().setLoginType(PropertyManager.LOGIN_TYPE_FACEBOOK);
+
                                 goSignupActivity();
 //                                goMainActivity();
                             } else {
                                 if(response.code() == CODE_ID_PASS_INCORRECT){
                                     Toast.makeText(LoginActivity.this, "ID or Password incorrect", Toast.LENGTH_SHORT).show();
+                                }else if(response.code() == CODE_NOT_FOUND){
+                                    Toast.makeText(LoginActivity.this, "404 NOT FOUND", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(LoginActivity.this, "Server Failure.", Toast.LENGTH_SHORT).show();
                                 }
@@ -134,7 +144,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Throwable t) {
-
+                            Log.d(TAG, t.toString());
+                            Toast.makeText(LoginActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -161,15 +172,19 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UserProfile result) {
                         Toast.makeText(LoginActivity.this, "User : " + result.getId(), Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "User : " + result.getId());
+//                        Log.d(TAG, "User : " + result.getId());
 //                        userLoginId = ""+ result.getId();
 
                         user = new User(userLoginId, PropertyManager.LOGIN_TYPE_KAKAO);
+                        test = new Test("테스트이름", "2", userLoginId );
+
                         Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);
+//                        Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(test);
                         call.enqueue(new Callback() {
                             @Override
                             public void onResponse(Response response, Retrofit retrofit) {
                                 if (response.isSuccess()) {
+                                    Log.d(TAG, "카카오톡 Login success");
                                     Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                                     PropertyManager.getInstance().setUserLoginId(userLoginId);
                                     PropertyManager.getInstance().setLoginType(PropertyManager.LOGIN_TYPE_KAKAO);
@@ -179,7 +194,9 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
                                     if (response.code() == CODE_ID_PASS_INCORRECT) {
                                         Toast.makeText(LoginActivity.this, "ID or Password incorrect", Toast.LENGTH_SHORT).show();
-                                    } else {
+                                    }else if(response.code() == CODE_NOT_FOUND){
+                                        Toast.makeText(LoginActivity.this, "404 NOT FOUND", Toast.LENGTH_SHORT).show();
+                                    }else {
                                         Toast.makeText(LoginActivity.this, "Server Failure.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -187,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Throwable t) {
-
+                                Toast.makeText(LoginActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -217,6 +234,7 @@ public class LoginActivity extends AppCompatActivity {
                 background_login.setBackground(drawable);
             }
         });
+
 //        Glide.with(getApplicationContext())
 //                .load(R.drawable.background_main)
 //                .asBitmap().into(new SimpleTarget<Bitmap>() {
@@ -226,7 +244,6 @@ public class LoginActivity extends AppCompatActivity {
 //                background_login.setBackground(drawable);
 //            }
 //        });
-
 
 //        btn_kakao = (ImageButton)findViewById(R.id.btn_kakao);
 

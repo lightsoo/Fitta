@@ -17,7 +17,6 @@ public interface FittaAPI {
 //    @GET("/userinfo")
 //    Call<Fitta> getUserInfo();
 
-
     @POST("/signup")
     Call<Message> signup(@Body Fitta fitta);
 
@@ -27,7 +26,6 @@ public interface FittaAPI {
             @Part("movie_img\"; filename=\"image.jpg\" ")RequestBody file1,
             @Part("clothesCategory")String clothesCategory,
             @Part("clothesSize")String clothesSize);
-
 
     //어떻게 할지 확인이 필요하다...
     @FormUrlEncoded

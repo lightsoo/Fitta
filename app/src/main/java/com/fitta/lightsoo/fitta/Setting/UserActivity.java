@@ -72,8 +72,9 @@ public class UserActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         PropertyManager.getInstance().setUserSex("여");
-        PropertyManager.getInstance().setUserAge("15");
+        PropertyManager.getInstance().setUserAge("21");
 
         Log.d(TAG, "성별은 : " + PropertyManager.getInstance().getUserSex()
                 + ", 나이는 : " + PropertyManager.getInstance().getUserAge());
@@ -112,19 +113,20 @@ public class UserActivity extends AppCompatActivity {
 
         sex_flag = PropertyManager.getInstance().getUserSex();
 
-
-        if(sex_flag == "여"){
+        if(sex_flag.equals("여")){
             female_layout.setVisibility(View.VISIBLE);
             male_layout.setVisibility(View.GONE);
-            et_female_age.setHint(PropertyManager.getInstance().getUserAge());
+
+            et_female_age.setText(PropertyManager.getInstance().getUserAge());
             et_female_weight.setHint(PropertyManager.getInstance().getUserWeight());
             et_female_height.setHint(PropertyManager.getInstance().getUserHeight());
+            female_spinner.setSelection(3);
             et_female_bottom.setHint(PropertyManager.getInstance().getUserBottom());
         }else{
             male_layout.setVisibility(View.VISIBLE);
             female_layout.setVisibility(View.GONE);
 
-            et_male_age.setHint(PropertyManager.getInstance().getUserAge());
+            et_male_age.setText(PropertyManager.getInstance().getUserAge());
             et_male_weight.setHint(PropertyManager.getInstance().getUserWeight());
             et_male_height.setHint(PropertyManager.getInstance().getUserHeight());
             et_male_top.setHint(PropertyManager.getInstance().getUserTop());
