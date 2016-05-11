@@ -21,7 +21,7 @@ public class PropertyManager {
     public static String USER_AVATAR;
 
     //사용자 이름
-
+    public static final String USER_NAME = "name";
 
     private PropertyManager() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
@@ -56,9 +56,7 @@ public class PropertyManager {
     {
         mEditor.remove(KEY_LOGIN_TYPE);
         mEditor.commit();
-
     }
-
 
 //  유저아바타, 이미지리소스를 저장하지 않으려고 그냥 사용
     public void setUserAvatar(int userAvatar){
@@ -70,13 +68,20 @@ public class PropertyManager {
         return mPrefs.getInt(USER_AVATAR, 0);
     }
 
-
 //    유저의 정보를 저장해서 사용
+    //유저 이름
+    //name
+    public void setUserName(String userName){
+        mEditor.putString(USER_NAME, userName);
+        mEditor.commit();
+    }
+
+    public String getUserName(){
+        return mPrefs.getString(USER_NAME, "");
+    }
 
 
-
-
-
+    //유저 신체정보
     //sex, age, weight, heiht, top, bottom
     public void setUserSex(String userSex){
         mEditor.putString(USER_SEX, userSex);

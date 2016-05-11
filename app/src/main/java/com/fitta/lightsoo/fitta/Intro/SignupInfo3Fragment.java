@@ -92,7 +92,7 @@ public class SignupInfo3Fragment extends Fragment {
 //                            bundle.putString("top", top);
 //                            bundle.putString("bottom", bottom);
 
-//                            bundle.putString("url", msg.url);
+                            bundle.putString("url", msg.url);
 
 
                             //이거를 로그인하고 나서 넣자
@@ -174,9 +174,6 @@ public class SignupInfo3Fragment extends Fragment {
         btn_post.setEnabled(true);
         et_top = (EditText)view.findViewById(R.id.et_top);
         et_bottom = (EditText)view.findViewById(R.id.et_female_bottom);
-
-
-
     }
 
     public boolean preInspection(){
@@ -184,14 +181,13 @@ public class SignupInfo3Fragment extends Fragment {
                 TextUtils.isEmpty(et_bottom.getText().toString())){
             return false;
         }else{
-
             top = et_top.getText().toString();
             bottom = et_bottom.getText().toString();
             return true;
         }
     }
 
-    //signUpInfo1으로 받은 정보!
+    //signUpInfo1으로 받은 정보
     public void setInfo(){
         age = getArguments().getString("age");
         height = getArguments().getString("height");

@@ -28,13 +28,13 @@ public class SignupResultFragment extends Fragment{
     //신체값을 보냈을때 맞는 아바타를 받아서 그거를 쉐어드프리퍼런스로 저장!
     private String url="";
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_result, container, false);
         init(view);
-//        setInfo();
+        //회원가입후 서버로부터 이미지url을 받아온다
+        setInfo();
 
         //아바타설정
         Glide.with(getContext())

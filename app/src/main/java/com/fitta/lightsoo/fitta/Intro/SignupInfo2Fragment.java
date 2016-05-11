@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Data.Fitta;
+import com.fitta.lightsoo.fitta.Data.Message;
 import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.Manager.PropertyManager;
@@ -101,7 +102,7 @@ public class SignupInfo2Fragment extends Fragment {
                             Toast.makeText(getActivity(), "서버전송 성공", Toast.LENGTH_SHORT).show();
 
                             //여기서개인치수를 프로퍼티로 넣어야될듯 하다...
-//                            Message msg = (Message)response.body();
+                            Message msg = (Message)response.body();
 //                            Log.d(TAG, msg.toString());
 
                             Bundle bundle = new Bundle();
@@ -111,7 +112,7 @@ public class SignupInfo2Fragment extends Fragment {
 //                            bundle.putString("top", top);
 //                            bundle.putString("bottom", bottom);
 
-//                            bundle.putString("url", msg.url);
+                            bundle.putString("url", msg.url);
 
                             //이거를 로그인하고 나서 넣자
                             //ex) msg.avatar를 setUserAvatar()여기에 파라미터로주자
@@ -177,12 +178,10 @@ public class SignupInfo2Fragment extends Fragment {
 //        spinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
     }
 
-    //signUpInfo1으로 받은 정보!
+    //signUpInfo1으로 받은 정보
     public void setInfo(){
         age = getArguments().getString("age");
         height = getArguments().getString("height");
         weight = getArguments().getString("weight");
     }
-
-
 }
