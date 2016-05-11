@@ -7,15 +7,15 @@ public class User {
 
     public String authToken;
     public String authType;
+
     public User(String authToken, String authType){
         this.authToken = authToken;
         this.authType = authType;
     }
 
-    public void setId(String authToken) {
+    public void setToken(String authToken) {
         this.authToken = authToken;
     }
-
 
     //getter
     public String getToken() {
@@ -25,7 +25,4 @@ public class User {
     public String getType() {
         return authType;
     }
-
-
-
 }

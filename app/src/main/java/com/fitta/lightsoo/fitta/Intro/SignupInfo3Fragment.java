@@ -55,7 +55,14 @@ public class SignupInfo3Fragment extends Fragment {
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setInfo();
+                btn_post.setEnabled(false);
+
+//                setInfo();
+                age = getArguments().getString("age");
+                height = getArguments().getString("height");
+                weight = getArguments().getString("weight");
+
+
                 top = et_top.getText().toString();
                 bottom = et_bottom.getText().toString();
                 Log.d(TAG,"age : " + age + ", height : " + height + ", weight : " + weight + ", top : " + top + ", bottom : " + bottom);
@@ -164,7 +171,7 @@ public class SignupInfo3Fragment extends Fragment {
         });
 
         btn_post = (Button)view.findViewById(R.id.btn_post);
-
+        btn_post.setEnabled(true);
         et_top = (EditText)view.findViewById(R.id.et_top);
         et_bottom = (EditText)view.findViewById(R.id.et_female_bottom);
 

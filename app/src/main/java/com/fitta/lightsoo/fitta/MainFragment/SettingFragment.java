@@ -116,6 +116,10 @@ public class SettingFragment extends Fragment {
                             }
                         });
                         break;
+
+                    default:
+                        goLoginActivity();
+                        break;
                 }
             }
         });

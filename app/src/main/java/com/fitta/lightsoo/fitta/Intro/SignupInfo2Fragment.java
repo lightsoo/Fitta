@@ -75,6 +75,7 @@ public class SignupInfo2Fragment extends Fragment {
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_post.setEnabled(false);
 //              setInfo();
                 age = getArguments().getString("age");
                 height = getArguments().getString("height");
@@ -171,7 +172,7 @@ public class SignupInfo2Fragment extends Fragment {
 
         et_bottom = (EditText)view.findViewById(R.id.et_female_bottom);
         btn_post = (Button)view.findViewById(R.id.btn_post);
-
+        btn_post.setEnabled(true);
 
 //        spinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
     }

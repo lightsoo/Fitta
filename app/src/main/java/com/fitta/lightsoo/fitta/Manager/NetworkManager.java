@@ -48,7 +48,6 @@ public class NetworkManager {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
     }
 
    /* // add custom interceptor to manipulate the cookie value in header
