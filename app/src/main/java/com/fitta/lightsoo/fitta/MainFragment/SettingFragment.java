@@ -79,10 +79,9 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 relativeLayout5.isEnabled();
-
                 switch (loginType){
                     case PropertyManager.LOGIN_TYPE_FACEBOOK:
-                        Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).logout(PropertyManager.getInstance().getUserLoginId());
+                        Call call = NetworkManager.getInstance().getAPI(FittaAPI.class).logout(PropertyManager.getInstance().getUserLoginToken());
                         call.enqueue(new Callback() {
                             @Override
                             public void onResponse(Response response, Retrofit retrofit) {
@@ -101,7 +100,7 @@ public class SettingFragment extends Fragment {
                         break;
                     case PropertyManager.LOGIN_TYPE_KAKAO :
                         Log.d(TAG, "PropertyManager.LOGIN_TYPE_KAKAO");
-                        Call call1 = NetworkManager.getInstance().getAPI(FittaAPI.class).logout(PropertyManager.getInstance().getUserLoginId());
+                        Call call1 = NetworkManager.getInstance().getAPI(FittaAPI.class).logout(PropertyManager.getInstance().getUserLoginToken());
                         call1.enqueue(new Callback() {
                             @Override
                             public void onResponse(Response response, Retrofit retrofit) {

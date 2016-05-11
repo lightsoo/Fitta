@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
     LoginManager mLoginManager;
     AccessTokenTracker tracker;
 
-    String userLoginId;
+    String userLoginToken;
     User user;
     Test test;
 
@@ -113,10 +113,10 @@ public class LoginActivity extends AppCompatActivity {
 //                Log.d(TAG, "token : " + token.getToken());
                 if(token != null){
 //                    userLoginId = token.getUserId();
-                    userLoginId = token.getToken();
-                    Log.d(TAG, "userLoginId : " + userLoginId);
-                    user = new User(userLoginId, PropertyManager.LOGIN_TYPE_FACEBOOK);
-                    test = new Test("테스트이름", "1", userLoginId );
+                    userLoginToken = token.getToken();
+                    Log.d(TAG, "userLoginToken : " + userLoginToken);
+                    user = new User(userLoginToken, PropertyManager.LOGIN_TYPE_FACEBOOK);
+                    test = new Test("테스트이름", "1", userLoginToken );
 
                     Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);
 //                    Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(test);
@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(response.isSuccess()){
                                 Log.d(TAG, "페이스북 Login success");
                                 Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                                PropertyManager.getInstance().setUserLoginId(userLoginId);
+                                PropertyManager.getInstance().setUserLoginToken(userLoginToken);
                                 PropertyManager.getInstance().setLoginType(PropertyManager.LOGIN_TYPE_FACEBOOK);
 
                                 goSignupActivity();
@@ -156,8 +156,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSessionOpened() {
                 Toast.makeText(LoginActivity.this, "accessToken : " + Session.getCurrentSession().getAccessToken(), Toast.LENGTH_SHORT).show();
-                userLoginId = Session.getCurrentSession().getAccessToken();
-                Log.d(TAG, "userLoginId : " + userLoginId);
+                userLoginToken = Session.getCurrentSession().getAccessToken();
+                Log.d(TAG, "userLoginToken : " + userLoginToken);
                 UserManagement.requestMe(new MeResponseCallback() {
                     @Override
                     public void onSessionClosed(ErrorResult errorResult) {
@@ -175,8 +175,8 @@ public class LoginActivity extends AppCompatActivity {
 //                        Log.d(TAG, "User : " + result.getId());
 //                        userLoginId = ""+ result.getId();
 
-                        user = new User(userLoginId, PropertyManager.LOGIN_TYPE_KAKAO);
-                        test = new Test("테스트이름", "2", userLoginId );
+                        user = new User(userLoginToken, PropertyManager.LOGIN_TYPE_KAKAO);
+                        test = new Test("테스트이름", "2", userLoginToken );
 
                         Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);
 //                        Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(test);
@@ -186,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (response.isSuccess()) {
                                     Log.d(TAG, "카카오톡 Login success");
                                     Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                                    PropertyManager.getInstance().setUserLoginId(userLoginId);
+                                    PropertyManager.getInstance().setUserLoginToken(userLoginToken);
                                     PropertyManager.getInstance().setLoginType(PropertyManager.LOGIN_TYPE_KAKAO);
 
                                     goSignupActivity();
@@ -223,7 +223,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void init(){
         btn_fb = (ImageButton)findViewById(R.id.btn_fb);
-
+        btn_fb.setEnabled(true);
         background_login = (RelativeLayout)findViewById(R.id.background_login);
         Glide.with(getApplicationContext())
                 .load(R.drawable.background_signup)
@@ -291,11 +291,12 @@ public class LoginActivity extends AppCompatActivity {
     private void loginOrLogout(){
         AccessToken token = AccessToken.getCurrentAccessToken();
         if (token == null) {
+            btn_fb.setEnabled(false);
             mLoginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess(LoginResult loginResult) {
 
-                }
+            }
 
                 @Override
                 public void onCancel() {

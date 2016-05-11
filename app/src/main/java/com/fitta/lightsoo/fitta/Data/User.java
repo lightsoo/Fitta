@@ -5,25 +5,25 @@ package com.fitta.lightsoo.fitta.Data;
  */
 public class User {
 
-    public String id;
-    public String type;
-    public User(String id, String type){
-        this.id = id;
-        this.type = type;
+    public String authToken;
+    public String authType;
+    public User(String authToken, String authType){
+        this.authToken = authToken;
+        this.authType = authType;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String authToken) {
+        this.authToken = authToken;
     }
 
 
     //getter
-    public String getId() {
-        return id;
+    public String getToken() {
+        return authToken;
     }
 
     public String getType() {
-        return type;
+        return authType;
     }
 
 

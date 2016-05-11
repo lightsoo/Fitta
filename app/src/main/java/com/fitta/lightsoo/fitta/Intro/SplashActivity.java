@@ -26,7 +26,6 @@ import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.LoginAPI;
-import com.fitta.lightsoo.fitta.Setting.UserActivity;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
@@ -47,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
     Handler mHandler = new Handler(Looper.getMainLooper());
     RelativeLayout background_splash ;
     String loginType;
-    String userLoginId;
+    String userLoginToken;
 
     CallbackManager callbackManager = CallbackManager.Factory.create();
     LoginManager mLoginManager = LoginManager.getInstance();
@@ -86,7 +85,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void doRealStart(){
         loginType = PropertyManager.getInstance().getLoginType();
-        userLoginId = PropertyManager.getInstance().getUserLoginId();
+        userLoginToken = PropertyManager.getInstance().getUserLoginToken();
         //로그인 한적이 없을 경우 혹은 로그아웃했을 경우 → 로그인 액티비티로 이동
         if(TextUtils.isEmpty(loginType)){
             mHandler.postDelayed(new Runnable() {
@@ -100,12 +99,12 @@ public class SplashActivity extends AppCompatActivity {
             switch (loginType){
                 case PropertyManager.LOGIN_TYPE_FACEBOOK:
                     //로그인 id가 존재할경우
-                    if(!TextUtils.isEmpty(userLoginId)){
-                        Log.d(TAG, "id가 있는경우 :!TextUtils.isEmpty(userLoginId))");
-                        Log.d(TAG, "userLoginId : " + userLoginId );
+                    if(!TextUtils.isEmpty(userLoginToken)){
+                        Log.d(TAG, "id가 있는경우 :!TextUtils.isEmpty(userLoginToken))");
+                        Log.d(TAG, "userLoginToken : " + userLoginToken );
 
                         loginType = PropertyManager.getInstance().getLoginType();
-                        User user = new User(userLoginId, loginType);
+                        User user = new User(userLoginToken, loginType);
 
                         Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);
                         call.enqueue(new Callback() {
@@ -129,7 +128,7 @@ public class SplashActivity extends AppCompatActivity {
                         });
                         mLoginManager.logInWithReadPermissions(this, null);
                     }else{//id가 없을경우에 로그인 페이지로 이동!!!
-                        Log.d(TAG, "id가 없는경우 : !TextUtils.isEmpty(userLoginId))");
+                        Log.d(TAG, "id가 없는경우 : !TextUtils.isEmpty(userLoginToken))");
                         mHandler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -143,13 +142,13 @@ public class SplashActivity extends AppCompatActivity {
                 case PropertyManager.LOGIN_TYPE_KAKAO:
                     Log.d(TAG, "case PropertyManager.LOGIN_TYPE_KAKAO:");
                     //로그인 id가 존재할 경우
-                    if(!TextUtils.isEmpty(userLoginId)){
+                    if(!TextUtils.isEmpty(userLoginToken)){
 
-                        Log.d(TAG, "id가 있는경우 :!TextUtils.isEmpty(userLoginId))");
-                        Log.d(TAG, "userLoginId : " + userLoginId );
+                        Log.d(TAG, "id가 있는경우 :!TextUtils.isEmpty(userLoginToken))");
+                        Log.d(TAG, "userLoginToken : " + userLoginToken );
 
                         loginType = PropertyManager.getInstance().getLoginType();
-                        User user = new User(userLoginId, loginType);
+                        User user = new User(userLoginToken, loginType);
 
                         Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);
                         call.enqueue(new Callback() {
@@ -183,7 +182,7 @@ public class SplashActivity extends AppCompatActivity {
                             }
                         });
                     }else{
-                        Log.d(TAG, "id가 없는경우 : !TextUtils.isEmpty(userLoginId))");
+                        Log.d(TAG, "id가 없는경우 : !TextUtils.isEmpty(userLoginToken))");
                         //페북 로그인 했는데 일전에 레몬클립에서 페북으로 로그인한 id와 다를 경우
                         //즉, 이앱으로 페북로그인했다가 다른 페북id로 페북 앱을 로그인 했을 경우
                         mHandler.postDelayed(new Runnable() {

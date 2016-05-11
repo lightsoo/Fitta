@@ -10,7 +10,7 @@ public class PropertyManager {
     SharedPreferences.Editor mEditor;
 
     private static final String KEY_LOGIN_TYPE = "key_login_type";
-    private static final String FILED_ID ="filed_id";
+    private static final String FILED_TOKEN ="filed_token";
 
     //스플래쉬, 로그인에서 사용
     public static final String LOGIN_TYPE_KAKAO = "login_type_kakao";
@@ -20,6 +20,9 @@ public class PropertyManager {
     public static final String USER_SEX = "sex", USER_AGE="age", USER_HEIGHT="height", USER_WEIGHT="weight", USER_TOP="top", USER_BOTTOM="bottom"; ;
     public static String USER_AVATAR;
 
+    //사용자 이름
+
+
     private PropertyManager() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
         mEditor = mPrefs.edit();
@@ -27,8 +30,8 @@ public class PropertyManager {
     // singleton holder pattern : thread safe, lazy class initialization, memory saving.
     public static class InstanceHolder{ private static final PropertyManager INSTANCE = new PropertyManager();}
     public static PropertyManager getInstance(){ return InstanceHolder.INSTANCE; }
-    public void setUserLoginId(String id){
-        mEditor.putString(FILED_ID, id);
+    public void setUserLoginToken(String token){
+        mEditor.putString(FILED_TOKEN, token);
         mEditor.commit();
     }
 
@@ -37,8 +40,8 @@ public class PropertyManager {
         mEditor.commit();
     }
 
-    public String getUserLoginId(){
-        return mPrefs.getString(FILED_ID, "");
+    public String getUserLoginToken(){
+        return mPrefs.getString(FILED_TOKEN, "");
     }
 
     public String getLoginType(){
@@ -46,7 +49,7 @@ public class PropertyManager {
     }
 
     public void deleteUserLoginId(){
-        mEditor.remove(FILED_ID);
+        mEditor.remove(FILED_TOKEN);
         mEditor.commit();
     }
     public void deleteLoginType()
@@ -55,7 +58,9 @@ public class PropertyManager {
         mEditor.commit();
 
     }
-//  유저아바타
+
+
+//  유저아바타, 이미지리소스를 저장하지 않으려고 그냥 사용
     public void setUserAvatar(int userAvatar){
         mEditor.putInt(USER_AVATAR, userAvatar);
         mEditor.commit();
@@ -67,6 +72,11 @@ public class PropertyManager {
 
 
 //    유저의 정보를 저장해서 사용
+
+
+
+
+
     //sex, age, weight, heiht, top, bottom
     public void setUserSex(String userSex){
         mEditor.putString(USER_SEX, userSex);

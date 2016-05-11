@@ -158,11 +158,6 @@ public class FittingRoomFragment extends Fragment {
             }
         });
 
-
-
-
-
-
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,8 +171,6 @@ public class FittingRoomFragment extends Fragment {
         btn_add_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Call call = NetworkManager.getInstance()
                         .getAPI(FittaAPI.class)
 //                        .uploadLikeImage(like_top,like_bottom,like_etc);
