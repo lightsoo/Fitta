@@ -15,8 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +25,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Data.Fitta;
 import com.fitta.lightsoo.fitta.Data.Message;
-import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
+import com.fitta.lightsoo.fitta.Dialog.DialogLoadingFragment;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
@@ -39,12 +40,15 @@ public class SignupInfo2Fragment extends Fragment {
 
     private static final String TAG = "SignupInfo2Fragment";
 
-    RelativeLayout background_signup2 ;
+    ScrollView background_signup2 ;
+//    RelativeLayout background_signup2 ;
+
+    private TextView tv_signup_ex;
+
 
     private Spinner spinner;
     private String[] spinnerItem;
     private ArrayAdapter arrayAdapter;
-
 
     private String age="", height="", weight="";
     //가슴둘레(컵), 허리둘레(inch)
@@ -87,7 +91,7 @@ public class SignupInfo2Fragment extends Fragment {
                 Log.d(TAG, "age : " + age + ", height : " + height + ", weight : " + weight + ", top : " + top + ", bottom : " + bottom);
 
                 //로딩 다이얼로그
-                final DialogSignupFragment dialog = new DialogSignupFragment();
+                final DialogLoadingFragment dialog = new DialogLoadingFragment();
                 dialog.show(getActivity().getSupportFragmentManager(), "loading");
                 //서버에 사용자의 정보를 입력한다음 디비에 저장하고
                 //해당되는 아바타 이미지url을 리턴받는다.
@@ -112,7 +116,7 @@ public class SignupInfo2Fragment extends Fragment {
 //                            bundle.putString("top", top);
 //                            bundle.putString("bottom", bottom);
 
-                            bundle.putString("url", msg.url);
+                            bundle.putString("url", msg.imageUrl);
 
                             //이거를 로그인하고 나서 넣자
                             //ex) msg.avatar를 setUserAvatar()여기에 파라미터로주자
@@ -151,9 +155,9 @@ public class SignupInfo2Fragment extends Fragment {
     }
 
     public void init(View view){
-        background_signup2 = (RelativeLayout)view.findViewById(R.id.background_signup2);
+        background_signup2 = (ScrollView)view.findViewById(R.id.background_signup2);
         Glide.with(getContext())
-                .load(R.drawable.background_signup2)
+                .load(R.drawable.background_signup)
                 .asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -162,8 +166,8 @@ public class SignupInfo2Fragment extends Fragment {
             }
         });
 
-
-
+        tv_signup_ex = (TextView)view.findViewById(R.id.tv_signup_ex);
+        tv_signup_ex.setText("이내용은 아바타의 정확도를 위한 입력 사항이며\n옵션 설정에서 얼마든지 수정할 수 있습니다.\n잘 모르는 사이즈는 나중에 작성해주세요!");
         spinner = (Spinner)view.findViewById(R.id.spinner);
         spinnerItem = new String[]{"A", "B", "C", "D", "E"};
         //컨텍스트, 스피너 커스텀, contents

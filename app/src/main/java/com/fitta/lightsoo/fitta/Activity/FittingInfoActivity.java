@@ -70,8 +70,6 @@ public class FittingInfoActivity extends AppCompatActivity {
     private String clothesUrl = ""; //이미지 결과
     private String clothesFeedback = "";//피드백 결과
 
-
-
     private Spinner spinner1, spinner2;          //사이즈, 단위 스피너
     private String[] spinner1Item, spinner2Item;
     private ArrayAdapter spinner1Adapter, spinner2Adapter;
@@ -82,7 +80,7 @@ public class FittingInfoActivity extends AppCompatActivity {
     private RadioButtonWithTableLayout tableLayoutTop, tableLayoutBottom, tableLayoutEtc;
     public static final int top_id[] = {R.id.top1, R.id.top2,R.id.top3,R.id.top4,R.id.top5,R.id.top6,R.id.top7,R.id.top8,R.id.top9};
     public static final int bottom_id[] = {R.id.bottom1, R.id.bottom2, R.id.bottom3, R.id.bottom4, R.id.bottom5, R.id.bottom6};
-    public static final int etc_id[] = {R.id.etc1, R.id.etc2, R.id.etc3, R.id.etc4, R.id.etc5, R.id.etc6};
+    public static final int etc_id[] = {R.id.etc1, R.id.etc2, R.id.etc3};
     RadioButton radioTop[] = new RadioButton[9];
     RadioButton radioBottom[] = new RadioButton[6];
     RadioButton radioEtc[] = new RadioButton[6];
@@ -353,15 +351,6 @@ public class FittingInfoActivity extends AppCompatActivity {
                 case R.id.etc3:
                     clothesCategory ="etc3";
                     return R.drawable.etc3;
-                case R.id.etc4:
-                    clothesCategory ="etc4";
-                    break;
-                case R.id.etc5:
-                    clothesCategory ="etc5";
-                    break;
-                case R.id.etc6:
-                    clothesCategory ="etc6";
-                    break;
             }
         return 0;
     }
@@ -406,12 +395,14 @@ public class FittingInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra("clothesUnit", clothesUnit);
         intent.putExtra("clothesSize", clothesSize);
-//        intent.putExtra("clothesCategory", getCaptureImage(getCheckedRadioButtonId()));
+
+        //이게 어떤걸 클릭했는지에 따라 프리뷰에 뜨는 이미지 설정
+        intent.putExtra("clothesImage", getCaptureImage(getCheckedRadioButtonId()));
 
         //촬영 이미지 클릭하면 결정되!어떤 촬영 이미지를 할건지 + 선택한 이미지 이름 전달
         getCaptureImage(getCheckedRadioButtonId());
         intent.putExtra("clothesCategory", clothesCategory);
-        Log.d(TAG, "clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize);
+        Log.d(TAG, "clothesUnit : " + clothesUnit + ", clothesSize : " + clothesSize + ", clothesCategory : " + clothesCategory);
 //        startActivity(intent);
 //        finish();
         startActivityForResult(intent, FITTING_RESULT);
@@ -485,6 +476,7 @@ public class FittingInfoActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 ////////////////////////////////////////////////////////////////////////////////////////////////////
                 //로딩 다이얼로그
                 final DialogLoadingFragment dialog = new DialogLoadingFragment();
@@ -502,23 +494,24 @@ public class FittingInfoActivity extends AppCompatActivity {
                         if (response.isSuccess()) {
 
                             Message message = (Message) response.body();
-                            clothesUrl = message.url;
+                            clothesUrl = message.imageUrl;
                             clothesFeedback = message.clothesFeedback;
                             Log.d(TAG, "response = " + new Gson().toJson(message));
-                            Toast.makeText(FittingInfoActivity.this, "파일업로드 성공인경우code(200~300)" + message.getMsg(),
+
+                            Toast.makeText(FittingInfoActivity.this, "파일업로드 성공" + message.getMsg(),
                                     Toast.LENGTH_SHORT).show();
                             Intent intent1 = new Intent(FittingInfoActivity.this, FittingResultActivity.class);
                             //피드백 결과값을 보내줘야된다.
                             intent1.putExtra("clothesUrl", clothesUrl);
                             intent1.putExtra("clothesFeedback", clothesFeedback);
 
-
                             Log.d(TAG, "clothesUrl : " + clothesUrl + ", clothesFeedback : " + clothesFeedback );
 
                             startActivityForResult(intent1, FITTING_RESULT);
                             dialog.dismiss();
                         } else {
-                            Toast.makeText(FittingInfoActivity.this, "파일업로드 실패는 아닌데 다른 코드",
+                            Toast.makeText(FittingInfoActivity.this,
+                                    "파일업로드 실패는 아닌데 다른 코드",
                                     Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }

@@ -5,26 +5,26 @@ package com.fitta.lightsoo.fitta.Data;
  */
 public class Message {
 
-    public String url;
+    public String imageUrl;
     public String msg;
     public int code;
     public String clothesFeedback;
 
 
     public Message(){}
-    public Message(int code, String msg, String url, String clothesFeedback) {
-        this.url = url;
+    public Message(int code, String msg, String imageUrl, String clothesFeedback) {
+        this.imageUrl = imageUrl;
         this.code = code;
         this.msg = msg;
         this.clothesFeedback= clothesFeedback;
     }
 
     public String getMsg() {
-        return msg;
+        return imageUrl;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMsg(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getCode(){
@@ -33,7 +33,7 @@ public class Message {
 
     @Override
     public String toString() {
-        String str = "code : " + getCode() + ", msg : " + getMsg() + ", url : " + url;
+        String str = "code : " + getCode() + ", msg : " + getMsg() + ", imageUrl : " + imageUrl;
         return str;
     }
 }

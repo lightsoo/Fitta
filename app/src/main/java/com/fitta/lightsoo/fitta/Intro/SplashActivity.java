@@ -34,7 +34,6 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-
 /**
  * 쉐어드프리퍼런스를 통해서 로그인의 로큰값들이 있으면, /login/?token값을 넘겨주고
  * 성공시 MianActivity를 호출해서 화면이동하자.
@@ -63,13 +62,12 @@ public class SplashActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, UserActivity.class);
 //        startActivity(intent);
 //        goMainActivity();
-        goLoginActivity();
+//        goLoginActivity();
         //완성 했는데 테스트할때는 바로 메인으로 가게끔해서 하자 그래야 디버그가 편해
-//        doRealStart();
+        doRealStart();
     }
 
     public void init(){
-
         background_splash = (RelativeLayout)findViewById(R.id.background_splash);
         Glide.with(getApplicationContext())
                 .load(R.drawable.background_splash)
@@ -93,7 +91,7 @@ public class SplashActivity extends AppCompatActivity {
                     Log.d(TAG, "로그인 한적이 없어서 로그인페이지로 이동");
                     goLoginActivity();
                 }
-            }, 2500);
+            }, 2000);
         }else {
             switch (loginType){
                 case PropertyManager.LOGIN_TYPE_FACEBOOK:
@@ -135,7 +133,7 @@ public class SplashActivity extends AppCompatActivity {
 
                                 goLoginActivity();
                             }
-                        }, 1500);
+                        }, 2000);
                     }
                     break;
                 case PropertyManager.LOGIN_TYPE_KAKAO:
@@ -195,7 +193,7 @@ public class SplashActivity extends AppCompatActivity {
                                     }
                                 });
                             }
-                        }, 1500);
+                        }, 2000);
                     }
                     break;
             }

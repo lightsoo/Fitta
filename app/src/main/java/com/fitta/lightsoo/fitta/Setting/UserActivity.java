@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.fitta.lightsoo.fitta.Data.Fitta;
-import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
+import com.fitta.lightsoo.fitta.Dialog.DialogLoadingFragment;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
@@ -75,6 +75,7 @@ public class UserActivity extends AppCompatActivity {
 
         PropertyManager.getInstance().setUserSex("여");
         PropertyManager.getInstance().setUserAge("21");
+        PropertyManager.getInstance().setUserTop("B");
 
         Log.d(TAG, "성별은 : " + PropertyManager.getInstance().getUserSex()
                 + ", 나이는 : " + PropertyManager.getInstance().getUserAge());
@@ -108,7 +109,7 @@ public class UserActivity extends AppCompatActivity {
     public void getUserInfo(){
 
         //로딩 다이얼로그
-        final DialogSignupFragment dialog = new DialogSignupFragment();
+        final DialogLoadingFragment dialog = new DialogLoadingFragment();
         dialog.show(getSupportFragmentManager(), "loading");
 
         sex_flag = PropertyManager.getInstance().getUserSex();
@@ -120,8 +121,11 @@ public class UserActivity extends AppCompatActivity {
             et_female_age.setText(PropertyManager.getInstance().getUserAge());
             et_female_weight.setHint(PropertyManager.getInstance().getUserWeight());
             et_female_height.setHint(PropertyManager.getInstance().getUserHeight());
-            female_spinner.setSelection(3);
+            setFemaleTop(PropertyManager.getInstance().getUserTop());
+
+
             et_female_bottom.setHint(PropertyManager.getInstance().getUserBottom());
+
         }else{
             male_layout.setVisibility(View.VISIBLE);
             female_layout.setVisibility(View.GONE);
@@ -138,7 +142,7 @@ public class UserActivity extends AppCompatActivity {
     //수정된 정보를 서버에전송
     public void putUserInfo(){
         //로딩 다이얼로그
-        final DialogSignupFragment dialog = new DialogSignupFragment();
+        final DialogLoadingFragment dialog = new DialogLoadingFragment();
         dialog.show(getSupportFragmentManager(), "loading");
         //여자라면
         if(sex_flag == "여"){
@@ -207,5 +211,25 @@ public class UserActivity extends AppCompatActivity {
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         female_spinner.setAdapter(arrayAdapter);
     }
+
+    //여자가 어떤상의인지에 따라서 스피너 설정
+    public void setFemaleTop(String cntTop){
+        switch (cntTop){
+            case "A": female_spinner.setSelection(0);
+                break;
+            case "B": female_spinner.setSelection(1);
+                break;
+            case "C": female_spinner.setSelection(2);
+                break;
+            case "D": female_spinner.setSelection(3);
+                break;
+            case "E": female_spinner.setSelection(4);
+                break;
+
+        }
+
+
+    }
+
 
 }

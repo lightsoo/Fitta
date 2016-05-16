@@ -3,6 +3,7 @@ package com.fitta.lightsoo.fitta.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 
 public class FittingResultActivity extends AppCompatActivity {
@@ -45,11 +45,11 @@ public class FittingResultActivity extends AppCompatActivity {
         clothesUrl = intent.getExtras().getString("clothesUrl");
         clothesFeedback = intent.getExtras().getString("clothesFeedback");
         tv_clothesFeedback.setText(clothesFeedback);
-//        Log.d(TAG, "FittingResultActivity에서 이미지 받은 유알엘 : "+clothesUrl);
+        Log.d(TAG, "FittingResultActivity에서 이미지 받은 유알엘 : " + clothesUrl);
 
         //아바타에 입힐 옷을 세팅하는거야!!
-        setClothes(clothesUrl);
-
+        setClothes("http://218.48.18.38/clothes/user_test/test_image_01.png");
+//        http://218.48.18.38/clothes/user_test/test_image_01.png
         //다시 피팅하기 클릭시 처음부터 다시
         btn_refitting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +104,7 @@ public class FittingResultActivity extends AppCompatActivity {
         clothes = (ImageView)findViewById(R.id.result_clothes);
         avatar = (ImageView)findViewById(R.id.result_avatar);
         Glide.with(getApplicationContext())
-                .load(PropertyManager.getInstance().getUserAvatar())
+                .load(R.drawable.avatar55df)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
@@ -131,6 +131,7 @@ public class FittingResultActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(clothesUrl)
                 .crossFade()
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(clothes);

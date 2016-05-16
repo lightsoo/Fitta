@@ -10,8 +10,7 @@
     <ImageView
         android:layout_width="269dp"
         android:layout_height="144.33dp"
-        android:id="@+id/logo"
-        android:background="@drawable/logo"/>
+        android:id="@+id/logo"/>
 
     <com.github.silvestrpredko.dotprogressbar.DotProgressBar
         android:id="@+id/dot_progress_bar"

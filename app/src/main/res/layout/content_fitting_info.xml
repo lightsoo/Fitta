@@ -20,8 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="77.99px"
-
+            android:textSize="13.7dp"
             android:text="촬영할 의상의 종류를 선택하세요"
             android:id="@+id/textView3"
             android:layout_alignParentTop="true"
@@ -30,13 +29,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="77.99px"
+            android:textSize="26.6dp"
             android:text="상의"
             android:id="@+id/tv_top"
             android:layout_below="@+id/textView3"
 
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="83dp"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"/>
 
@@ -45,8 +44,8 @@
             android:layout_height="wrap_content"
             android:text="하의"
             android:id="@+id/tv_bottom"
-            android:textSize="77.99px"
-            android:layout_marginTop="141dp"
+            android:textSize="26.6dp"
+            android:layout_marginTop="151dp"
             android:layout_below="@+id/tv_top"
             android:layout_alignLeft="@+id/tv_top"
             android:layout_alignStart="@+id/tv_top" />
@@ -67,7 +66,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top1"
                         android:id="@+id/top1"
                         android:checked="false" />
 
@@ -75,7 +74,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top2"
                         android:id="@+id/top2"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -84,7 +83,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top3"
                         android:id="@+id/top3"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -97,7 +96,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top4"
                         android:id="@+id/top4"
                         android:checked="false" />
 
@@ -105,7 +104,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top5"
                         android:id="@+id/top5"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -114,7 +113,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top6"
                         android:id="@+id/top6"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -125,7 +124,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top7"
                         android:id="@+id/top7"
                         android:checked="false" />
 
@@ -133,7 +132,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top8"
                         android:id="@+id/top8"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -142,7 +141,7 @@
                         android:layout_width="60.33dp"
                         android:layout_height="60.33dp"
                         android:button="@null"
-                        android:background="@drawable/selector_radio_top1"
+                        android:background="@drawable/selector_fittinginfo_top9"
                         android:id="@+id/top9"
                         android:layout_weight="1"
                         android:checked="false" />
@@ -156,7 +155,7 @@
             android:layout_below="@+id/tableLayoutTop"
             android:layout_alignLeft="@+id/tableLayoutTop"
             android:layout_alignStart="@+id/tableLayoutTop"
-            android:layout_marginTop="12.67dp">
+            android:layout_marginTop="34dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -168,7 +167,7 @@
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@drawable/selector_fittinginfo_bottom1"
                     android:id="@+id/bottom1"
                     android:checked="false" />
 
@@ -176,7 +175,7 @@
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@drawable/selector_fittinginfo_bottom2"
                     android:id="@+id/bottom2"
                     android:layout_weight="1"
                     android:checked="false" />
@@ -185,7 +184,7 @@
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@drawable/selector_fittinginfo_bottom3"
                     android:id="@+id/bottom3"
                     android:layout_weight="1"
                     android:checked="false" />
@@ -201,7 +200,7 @@
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@drawable/selector_fittinginfo_bottom4"
                     android:id="@+id/bottom4"
                     android:checked="false" />
 
@@ -209,7 +208,7 @@
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@drawable/selector_fittinginfo_bottom5"
                     android:id="@+id/bottom5"
                     android:layout_weight="1"
                     android:checked="false" />
@@ -218,7 +217,7 @@
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@drawable/selector_fittinginfo_bottom6"
                     android:id="@+id/bottom6"
                     android:layout_weight="1"
                     android:checked="false" />
@@ -228,12 +227,12 @@
 
         <com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout
             android:layout_width="180.99dp"
-            android:layout_height="120.66dp"
+            android:layout_height="60.33dp"
             android:id="@+id/tableLayoutEtc"
             android:layout_below="@+id/tableLayoutBottom"
             android:layout_alignLeft="@+id/tableLayoutBottom"
             android:layout_alignStart="@+id/tableLayoutBottom"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="34dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -244,7 +243,7 @@
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@drawable/selector_fittinginfo_etc1"
                     android:id="@+id/etc1"
                     android:checked="false" />
 
@@ -252,65 +251,34 @@
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@drawable/selector_fittinginfo_etc2"
                     android:id="@+id/etc2"
                     android:layout_weight="1"
                     android:checked="false" />
 
                 <RadioButton
+                    android:enabled="false"
                     android:layout_width="60.33dp"
                     android:layout_height="60.33dp"
                     android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
+                    android:background="@color/transparent"
                     android:id="@+id/etc3"
                     android:layout_weight="1"
                     android:checked="false" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-
-                <RadioButton
-                    android:layout_weight="1"
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
-                    android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
-                    android:id="@+id/etc4"
-                    android:checked="false" />
-
-                <RadioButton
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
-                    android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
-                    android:id="@+id/etc5"
-                    android:layout_weight="1"
-                    android:checked="false" />
-
-                <RadioButton
-                    android:layout_width="60.33dp"
-                    android:layout_height="60.33dp"
-                    android:button="@null"
-                    android:background="@drawable/selector_radio_top1"
-                    android:id="@+id/etc6"
-                    android:layout_weight="1"
-                    android:checked="false" />
-            </TableRow>
         </com.fitta.lightsoo.fitta.RadioLayout.RadioButtonWithTableLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="77.99px"
+            android:textSize="26.6dp"
             android:text="기타"
             android:id="@+id/textView"
             android:layout_below="@+id/tv_bottom"
             android:layout_alignLeft="@+id/tv_bottom"
             android:layout_alignStart="@+id/tv_bottom"
-            android:layout_marginTop="110.67dp" />
+            android:layout_marginTop="90dp" />
 
     </RelativeLayout>
     </ScrollView>
@@ -336,7 +304,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="70px"
+                android:textSize="16.66dp"
                 android:text="사이즈 입력하기"
                 android:id="@+id/textView29"
                 android:layout_centerVertical="true"
@@ -358,7 +326,7 @@
         android:id="@+id/relativeLayoutGone"
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -375,7 +343,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="70px"
+                android:textSize="16.6dp"
                 android:text="사이즈 입력하기"
                 android:id="@+id/textView25"
                 android:layout_centerVertical="true"
@@ -416,7 +384,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="14dp"
             android:text="사이즈 입력"
             android:id="@+id/textView26"
             android:layout_marginLeft="32.67dp"
@@ -429,8 +397,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="소매, 기장길이 선택"
+            android:textSize="14dp"
             android:id="@+id/textView30"
             android:layout_below="@+id/spinner1"
             android:layout_alignLeft="@+id/textView26"

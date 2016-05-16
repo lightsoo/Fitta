@@ -11,6 +11,14 @@
     android:id="@+id/background_login"
     tools:context="com.fitta.lightsoo.fitta.Intro.LoginActivity">
 
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_signup"
+        android:layout_width="268.33dp"
+        android:layout_height="170.67dp"
+        android:id="@+id/imageView6"
+        android:layout_marginTop="41.67dp"
+        android:layout_alignParentTop="true" />
 
     <ImageButton
         android:background="@drawable/facebook_login"
@@ -31,12 +39,14 @@
         android:layout_alignStart="@+id/btn_fb" />
 
     <Button
+        android:background="@color/amber_900"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로그인테스트용"
         android:id="@+id/btn_login"
         android:layout_below="@+id/btn_kakao"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

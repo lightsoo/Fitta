@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/background_store"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,12 +11,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.fitta.lightsoo.fitta.MainFragment.StoreFragment">
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="다이얼로그"
         android:id="@+id/btn_dialog"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <ImageView
+        android:layout_width="274dp"
+        android:layout_height="202dp"
+        android:id="@+id/iv_store"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"  />
 </RelativeLayout>

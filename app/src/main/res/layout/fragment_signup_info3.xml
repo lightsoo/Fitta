@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    android:id="@+id/background_signup2"
+    android:id="@+id/background_signup3"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:layout_width="283.33dp"
             android:layout_height="wrap_content"
             android:text="이내용은 아바타의 정확도를 위한 입력 사항이며 옵션 설정에서 얼마든지 수정할 수 있습니다. 잘 모르는 사이즈는 나중에 작성해주세요!"
-            android:id="@+id/textView20"
+            android:id="@+id/tv_signup_ex"
             android:layout_below="@+id/textView19"
             android:layout_alignLeft="@+id/textView19"
             android:layout_alignStart="@+id/textView19"
@@ -36,7 +36,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView20"
+            android:layout_below="@+id/tv_signup_ex"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:id="@+id/relativeLayout8">

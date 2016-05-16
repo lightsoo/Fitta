@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     android:id="@+id/background_signup2"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,120 +7,126 @@
     android:layout_height="match_parent"
     tools:context="com.fitta.lightsoo.fitta.Intro.SignupInfo2Fragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="선택입력사항"
-        android:id="@+id/textView19"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="39.67dp"
-        android:layout_marginTop="59dp" />
-
-    <TextView
-        android:layout_width="283.33dp"
-        android:layout_height="wrap_content"
-        android:text="이내용은 아바타의 정확도를 위한 입력 사항이며 옵션 설정에서 얼마든지 수정할 수 있습니다. 잘 모르는 사이즈는 나중에 작성해주세요!"
-        android:id="@+id/textView20"
-        android:layout_below="@+id/textView19"
-        android:layout_alignLeft="@+id/textView19"
-        android:layout_alignStart="@+id/textView19"
-        android:layout_marginTop="39dp" />
-
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView20"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:src="@drawable/signup_female_top"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/iv_top"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="선택입력사항"
+            android:id="@+id/textView19"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="39.67dp"
+            android:layout_marginTop="59dp" />
 
         <TextView
+            android:layout_width="283.33dp"
+            android:layout_height="wrap_content"
+            android:text="이내용은 아바타의 정확도를 위한 입력 사항이며 옵션 설정에서 얼마든지 수정할 수 있습니다. 잘 모르는 사이즈는 나중에 작성해주세요!"
+            android:id="@+id/tv_signup_ex"
+            android:layout_below="@+id/textView19"
+            android:layout_alignLeft="@+id/textView19"
+            android:layout_alignStart="@+id/textView19"
+            android:layout_marginTop="39dp" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="가슴둘레(상의사이즈)"
-            android:id="@+id/tv_top"
-            android:layout_above="@+id/iv_bottom"
-            android:layout_alignTop="@+id/iv_top"
-            android:layout_toEndOf="@+id/iv_top"
-            android:layout_marginLeft="5dp" />
+            android:layout_below="@+id/tv_signup_ex"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp">
 
-        <Spinner
-            android:background="@drawable/shape_layout_border2"
-            android:layout_width="131dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner"
-            android:layout_marginBottom="20dp"
-            android:layout_above="@+id/tv_bottom"
-            android:layout_alignStart="@+id/tv_bottom"/>
+            <ImageView
+                android:src="@drawable/signup_female_top"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/iv_top"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="컵"
-            android:id="@+id/textView22"
-            android:layout_alignBottom="@+id/spinner"
-            android:layout_toEndOf="@+id/spinner" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="가슴둘레(상의사이즈)"
+                android:id="@+id/tv_top"
+                android:layout_above="@+id/iv_bottom"
+                android:layout_alignTop="@+id/iv_top"
+                android:layout_toEndOf="@+id/iv_top"
+                android:layout_marginLeft="5dp" />
 
-        <ImageView
-            android:src="@drawable/signup_female_bottom"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/iv_bottom"
-            android:layout_below="@+id/iv_top"
-            android:layout_alignLeft="@+id/iv_top"
-            android:layout_alignStart="@+id/iv_top"
-            android:layout_marginTop="60dp" />
+            <Spinner
+                android:background="@drawable/shape_layout_border2"
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner"
+                android:layout_marginBottom="20dp"
+                android:layout_above="@+id/tv_bottom"
+                android:layout_alignStart="@+id/tv_bottom"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="허리둘레(하의사이즈)"
-            android:id="@+id/tv_bottom"
-            android:layout_alignTop="@+id/iv_bottom"
-            android:layout_toEndOf="@+id/iv_bottom"
-            android:layout_marginLeft="5dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="컵"
+                android:id="@+id/textView22"
+                android:layout_alignBottom="@+id/spinner"
+                android:layout_toEndOf="@+id/spinner" />
 
-        <EditText
-            android:layout_width="131dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:id="@+id/et_female_bottom"
-            android:layout_below="@+id/iv_bottom"
-            android:layout_alignStart="@+id/tv_bottom" />
+            <ImageView
+                android:src="@drawable/signup_female_bottom"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/iv_bottom"
+                android:layout_below="@+id/iv_top"
+                android:layout_alignLeft="@+id/iv_top"
+                android:layout_alignStart="@+id/iv_top"
+                android:layout_marginTop="60dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="inch"
-            android:id="@+id/tv_inch"
-            android:layout_alignBottom="@+id/et_female_bottom"
-            android:layout_toRightOf="@+id/et_female_bottom"
-            android:layout_toEndOf="@+id/et_female_bottom" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="허리둘레(하의사이즈)"
+                android:id="@+id/tv_bottom"
+                android:layout_alignTop="@+id/iv_bottom"
+                android:layout_toEndOf="@+id/iv_bottom"
+                android:layout_marginLeft="5dp" />
+
+            <EditText
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/et_female_bottom"
+                android:layout_below="@+id/iv_bottom"
+                android:layout_alignStart="@+id/tv_bottom" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="inch"
+                android:id="@+id/tv_inch"
+                android:layout_alignBottom="@+id/et_female_bottom"
+                android:layout_toRightOf="@+id/et_female_bottom"
+                android:layout_toEndOf="@+id/et_female_bottom" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="211dp"
+            android:layout_height="45dp"
+            android:text="아바타 생성"
+            android:id="@+id/btn_post"
+            android:layout_below="@+id/relativeLayout22"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="75dp" />
     </RelativeLayout>
 
-    <Button
-        android:layout_width="211dp"
-        android:layout_height="45dp"
-        android:text="아바타 생성"
-        android:id="@+id/btn_post"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
 
-
-</RelativeLayout>
+</ScrollView>

@@ -9,7 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.fitta.lightsoo.fitta.Activity.FittingInfoActivity">
 
-
     <include layout="@layout/toolbar_fittinginfo"></include>
 
     <include layout="@layout/content_fitting_info" />

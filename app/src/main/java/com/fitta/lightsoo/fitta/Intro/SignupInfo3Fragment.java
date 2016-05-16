@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -22,7 +23,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.Data.Fitta;
 import com.fitta.lightsoo.fitta.Data.Message;
-import com.fitta.lightsoo.fitta.Dialog.DialogSignupFragment;
+import com.fitta.lightsoo.fitta.Dialog.DialogLoadingFragment;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
 import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
@@ -37,8 +38,10 @@ import retrofit.Retrofit;
 public class SignupInfo3Fragment extends Fragment {
 
     private static final String TAG = "SignupInfo3Fragment";
+    ScrollView background_signup3 ;
+//    RelativeLayout background_signup2 ;
 
-    ScrollView background_signup2 ;
+    private TextView tv_signup_ex;
     private String age="", height="", weight="";
     //가슴둘레(cm), 허리둘레(inch)
     private String top="", bottom="";
@@ -56,12 +59,10 @@ public class SignupInfo3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 btn_post.setEnabled(false);
-
 //                setInfo();
                 age = getArguments().getString("age");
                 height = getArguments().getString("height");
                 weight = getArguments().getString("weight");
-
 
                 top = et_top.getText().toString();
                 bottom = et_bottom.getText().toString();
@@ -69,7 +70,7 @@ public class SignupInfo3Fragment extends Fragment {
                 //입력받은 값들을 이제 서버에 보내줘야해 그리고 나서
 
                 //로딩 다이얼로그
-                final DialogSignupFragment dialog = new DialogSignupFragment();
+                final DialogLoadingFragment dialog = new DialogLoadingFragment();
                 dialog.show(getActivity().getSupportFragmentManager(), "loading");
                 //서버에 사용자의 정보를 입력한다음 디비에 저장하고
                 //해당되는 아바타 이미지url을 리턴받는다.
@@ -83,6 +84,7 @@ public class SignupInfo3Fragment extends Fragment {
                             Toast.makeText(getActivity(), "서버전송 성공", Toast.LENGTH_SHORT).show();
                             //여기서개인치수를 프로퍼티로 넣어야될듯 하다...
                             Message msg = (Message)response.body();
+                            Log.d(TAG,"서버로부터 받은 이미지url : "+ msg.imageUrl);
 //                            Log.d(TAG, msg.toString());
 
                             Bundle bundle = new Bundle();
@@ -92,12 +94,15 @@ public class SignupInfo3Fragment extends Fragment {
 //                            bundle.putString("top", top);
 //                            bundle.putString("bottom", bottom);
 
-                            bundle.putString("url", msg.url);
-
+                            bundle.putString("url", msg.imageUrl);
 
                             //이거를 로그인하고 나서 넣자
                             //ex) msg.avatar를 setUserAvatar()여기에 파라미터로주자
                             PropertyManager.getInstance().setUserAvatar(R.drawable.avatar110af);
+
+                            //테스트용
+//                            PropertyManager.getInstance().setUserAvatar2(msg.url);
+
 
                             result = new SignupResultFragment();
                             result.setArguments(bundle);
@@ -111,7 +116,6 @@ public class SignupInfo3Fragment extends Fragment {
                             dialog.dismiss();
                         } else {
                             //아니라면 not registered
-
                         }
                     }
 
@@ -159,16 +163,20 @@ public class SignupInfo3Fragment extends Fragment {
 
 
     public void init(View view){
-        background_signup2 = (ScrollView)view.findViewById(R.id.background_signup2);
+//        background_signup2 = (RelativeLayout)view.findViewById(R.id.background_signup2);
+
+        background_signup3 = (ScrollView)view.findViewById(R.id.background_signup3);
         Glide.with(getContext())
-                .load(R.drawable.background_signup2)
+                .load(R.drawable.background_signup)
                 .asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 Drawable drawable = new BitmapDrawable(resource);
-                background_signup2.setBackground(drawable);
+                background_signup3.setBackground(drawable);
             }
         });
+        tv_signup_ex = (TextView)view.findViewById(R.id.tv_signup_ex);
+        tv_signup_ex.setText("이내용은 아바타의 정확도를 위한 입력 사항이며\n옵션 설정에서 얼마든지 수정할 수 있습니다.\n잘 모르는 사이즈는 나중에 작성해주세요!");
 
         btn_post = (Button)view.findViewById(R.id.btn_post);
         btn_post.setEnabled(true);

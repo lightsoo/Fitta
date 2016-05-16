@@ -10,10 +10,8 @@
 
     <color name="transparent">#00000000</color>
 
-
     <color name="avatar_background">#80FFFFFF</color>
-    <color name="loader_extra">#43A047</color>
-    <color name="loader_prime">#7CB342</color>
-
+    <color name="loader_extra">#E2A077</color>
+    <color name="loader_prime">#EB137D</color>
 
 </resources>

@@ -29,16 +29,16 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-//        background_signup = (RelativeLayout)findViewById(R.id.background_signup);
-//        Glide.with(getApplicationContext())
-//                .load(R.drawable.background_main)
-//                .asBitmap().into(new SimpleTarget<Bitmap>() {
-//            @Override
-//            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                Drawable drawable = new BitmapDrawable(resource);
-//                background_signup.setBackground(drawable);
-//            }
-//        });
+        /*background_signup = (RelativeLayout)findViewById(R.id.background_signup);
+        Glide.with(getApplicationContext())
+                .load(R.drawable.background_signup)
+                .asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                Drawable drawable = new BitmapDrawable(resource);
+                background_signup.setBackground(drawable);
+            }
+        });*/
 
 
         Fragment info0 = new SignupInfo0Fragment();

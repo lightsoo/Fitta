@@ -282,9 +282,9 @@ public class FittingRoomFragment extends Fragment {
                 List<String> clotheBottom = clothesItems.clotheBottom;
                 List<String> clotheEtc = clothesItems.clotheEtc;
 
-                Log.d("please", "response = " +clotheTop );
-                Log.d("please", "response = " +clotheBottom);
-                Log.d("please", "response = " +clotheEtc);
+                Log.d("please", "response = " + clotheTop);
+                Log.d("please", "response = " + clotheBottom);
+                Log.d("please", "response = " + clotheEtc);
 
                 /*for(int i = 0; i<response.body().clotheTop.size();i++){
                     Log.d("please", "clotheTop[" +i+"] = " +response.body().clotheTop.get(i));
@@ -321,4 +321,5 @@ public class FittingRoomFragment extends Fragment {
             }
         });
     }
+
 }

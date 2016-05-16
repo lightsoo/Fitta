@@ -21,9 +21,9 @@ public interface FittaAPI {
     Call<Message> signup(@Body Fitta fitta);
 
     @Multipart
-    @POST("/uploadImage")
+    @POST("/api/clothes/bg_subtract")
     Call<Message> uploadImage(
-            @Part("movie_img\"; filename=\"image.jpg\" ")RequestBody file1,
+            @Part("image\"; filename=\"image.jpg\" ")RequestBody file1,
             @Part("clothesCategory")String clothesCategory,
             @Part("clothesSize")String clothesSize);
 

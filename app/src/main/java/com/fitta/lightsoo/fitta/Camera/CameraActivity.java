@@ -51,7 +51,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
 
     private static final String TAG = "CameraActivity";
     private CameraPreview cameraPreview;
-    private ImageView Clothes, capturedImage;
+    private ImageView captureClothes, capturedImage;    //프리뷰에 나오는 옷이미지, 촬영결과 이미지
     private File mSaveFile;
     private String cameraPath;
     RelativeLayout takePhotoLayout, photoResultLayout;
@@ -79,6 +79,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
         Intent intent = new Intent(getIntent());
         clothesSize = intent.getExtras().getString("clothesSize");
         clothesUnit = intent.getExtras().getString("clothesUnit");
+
         clothesImage = intent.getExtras().getInt("clothesImage");
 
         clothesCategory = intent.getExtras().getString("clothesCategory");
@@ -99,7 +100,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
         cameraPreview =(CameraPreview)findViewById(R.id.cameraPreview); //카메라 surfaceview
         cameraPreview.setOnCameraStatusListener(this);
 
-        Clothes = (ImageView)findViewById(R.id.clothes);
+        captureClothes = (ImageView)findViewById(R.id.clothes);
 
         Glide.with(getApplicationContext())
                 .load(clothesImage)
@@ -108,7 +109,7 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
 //                .fitCenter()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
-                .into(Clothes);
+                .into(captureClothes);
 
     }
 
@@ -185,8 +186,9 @@ public class CameraActivity extends AppCompatActivity implements CameraPreview.O
                 if (response.isSuccess()) {
 
                     Message message = (Message) response.body();
-                    clothesUrl = message.url;
-                    clothesFeedback = message.clothesFeedback;
+                    clothesUrl = message.imageUrl;
+
+//                    clothesFeedback = message.clothesFeedback;
 
 
                     Log.d(TAG, "response = " + new Gson().toJson(message));

@@ -63,6 +63,14 @@ public class PropertyManager {
         mEditor.putInt(USER_AVATAR, userAvatar);
         mEditor.commit();
     }
+    //아바타의 경로를 저장한 다음에 스플래쉬 화면에서 bitmap으로 바꿀까?
+    public void setUserAvatar2(String userAvatarUrl){
+        mEditor.putString(USER_AVATAR, userAvatarUrl);
+        mEditor.commit();
+    }
+    public String getUserAvatar2(){
+        return mPrefs.getString(USER_AVATAR, "");
+    }
 
     public int getUserAvatar(){
         return mPrefs.getInt(USER_AVATAR, 0);
