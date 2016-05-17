@@ -1,10 +1,5 @@
 # Fitta - 가상피팅
 
-1. Enviroment
+1. Enviroment & lib
 
--Client Side : Android 2.0 preview 4, Retrofit2 lib, API 15-21
-
--Server Side : Node.js (express, express-session, express-mysql-session, mysql, multer, aync)
-
--Cloud : Amazon Web Service (EC2, RDS, S3)
-
+-Client Side : API 17-22 Android 2.0 preview 4, Retrofit2 lib, facebook, kakaotalk, rubber-loader
