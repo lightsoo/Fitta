@@ -5,6 +5,8 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,9 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.fitta.lightsoo.fitta.MainActivity;
 import com.fitta.lightsoo.fitta.R;
 
@@ -40,6 +45,7 @@ public class SignupResultFragment extends Fragment{
     //이거 url을 프로퍼티 매니저로 아바타를 대신할예정이다.
     //신체값을 보냈을때 맞는 아바타를 받아서 그거를 쉐어드프리퍼런스로 저장!
     private String url="";
+    private RelativeLayout background_signupresult;
 
     @Nullable
     @Override
@@ -50,14 +56,14 @@ public class SignupResultFragment extends Fragment{
         setInfo();
 
         //아바타설정
-       /* Glide.with(getContext())
-                .load(PropertyManager.getInstance().getUserAvatar())
+       Glide.with(getContext())
+//                .load(PropertyManager.getInstance().getUserAvatar())
 //                .load(url)
-//                .load(R.drawable.body100cf)
+                .load(R.drawable.avatar55df)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
-                .into(iv_avatar);*/
+                .into(iv_avatar);
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +81,18 @@ public class SignupResultFragment extends Fragment{
         btn_start = (Button)view.findViewById(R.id.btn_start2);
         iv_avatar = (ImageView)view.findViewById(R.id.iv_avatar);
         //텍스트뷰를 초기화해줘서 화면에 출력해줘야된다.
+
+        background_signupresult = (RelativeLayout)view.findViewById(R.id.background_signupresult);
+        Glide.with(getContext())
+                .load(R.drawable.background_signup)
+                .asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                Drawable drawable = new BitmapDrawable(resource);
+                background_signupresult.setBackground(drawable);
+            }
+        });
+
     }
 
     //signUpInfo2,3에서 서버로 데이터를 전송한다음 아바타 url을 받아서 쓴다!
@@ -148,12 +166,12 @@ public class SignupResultFragment extends Fragment{
 //            ImageView img=(ImageView)findViewById(R.id.imgPicker);
 //            img.setImageBitmap(b);
 
-            Glide.with(getContext())
-                    .load(b)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
-                    .into(iv_avatar);
+//            Glide.with(getContext())
+//                    .load(b)
+//                    .crossFade()
+//                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                    .skipMemoryCache(true)
+//                    .into(iv_avatar);
         }
         catch (FileNotFoundException e)
         {

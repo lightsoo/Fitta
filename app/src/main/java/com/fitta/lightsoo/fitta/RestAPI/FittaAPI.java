@@ -20,6 +20,9 @@ public interface FittaAPI {
     @POST("/signup")
     Call<Message> signup(@Body Fitta fitta);
 
+//    @POST("/uploadImage")
+
+    //서버로 이미지 전송
     @Multipart
     @POST("/api/clothes/bg_subtract")
     Call<Message> uploadImage(

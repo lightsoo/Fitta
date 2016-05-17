@@ -48,7 +48,8 @@ public class FittingResultActivity extends AppCompatActivity {
         Log.d(TAG, "FittingResultActivity에서 이미지 받은 유알엘 : " + clothesUrl);
 
         //아바타에 입힐 옷을 세팅하는거야!!
-        setClothes("http://218.48.18.38/clothes/user_test/test_image_01.png");
+        setClothes(clothesUrl);
+//        setClothes("http://218.48.18.38/clothes/user_test/test_image_01.png");
 //        http://218.48.18.38/clothes/user_test/test_image_01.png
         //다시 피팅하기 클릭시 처음부터 다시
         btn_refitting.setOnClickListener(new View.OnClickListener() {

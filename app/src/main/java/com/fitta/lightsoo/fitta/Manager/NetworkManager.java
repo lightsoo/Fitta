@@ -24,9 +24,9 @@ public class NetworkManager {
 //    private static final String serverURL ="http://192.168.0.13:3333/";
 
     //효돌 아이피주소
-//    private static final String serverURL ="http://192.168.1.63:3000/";
-
-    //    private static final String serverURL ="http://127.0.0.1:3000/";
+//    private static final String serverURL ="http://192.168.0.4:3333/";
+    //local
+//        private static final String serverURL ="http://127.0.0.1:3333/";
     Retrofit client;
     HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 

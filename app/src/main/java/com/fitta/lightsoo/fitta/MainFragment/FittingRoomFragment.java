@@ -19,7 +19,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fitta.lightsoo.fitta.Adapter.ClothesAdapter;
 import com.fitta.lightsoo.fitta.Data.ClothesItems;
 import com.fitta.lightsoo.fitta.Manager.NetworkManager;
-import com.fitta.lightsoo.fitta.Manager.PropertyManager;
 import com.fitta.lightsoo.fitta.R;
 import com.fitta.lightsoo.fitta.RestAPI.FittaAPI;
 import com.fitta.lightsoo.fitta.RestAPI.FittingRoomAPI;
@@ -219,7 +218,8 @@ public class FittingRoomFragment extends Fragment {
 //        int avatar2 = R.drawable.avatar110af;
 
         Glide.with(getContext())
-                .load(PropertyManager.getInstance().getUserAvatar())
+//                .load(PropertyManager.getInstance().getUserAvatar())
+                .load(R.drawable.avatar55df)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)

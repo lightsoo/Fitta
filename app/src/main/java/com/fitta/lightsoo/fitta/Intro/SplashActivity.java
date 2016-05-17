@@ -61,10 +61,10 @@ public class SplashActivity extends AppCompatActivity {
 
 //        Intent intent = new Intent(this, UserActivity.class);
 //        startActivity(intent);
-//        goMainActivity();
+        goMainActivity();
 //        goLoginActivity();
         //완성 했는데 테스트할때는 바로 메인으로 가게끔해서 하자 그래야 디버그가 편해
-        doRealStart();
+//        doRealStart();
     }
 
     public void init(){
